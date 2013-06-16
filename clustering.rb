@@ -14,10 +14,12 @@ class Cluster
   	def mean
  		mean_len = 0;
 		weight = 0;
-		lengths.each { |elem|
-		        mean_len = mean_len + elem[0] * elem[1];
-			weight = weight + elem[1]
-		}
+
+		lengths.each do |length, n|
+		  mean_len = mean_len + length * n
+		  weight      = weight + n
+		end		
+
 		mean_len = mean_len/weight
 		mean_len
   	end
