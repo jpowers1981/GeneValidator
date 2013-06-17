@@ -66,8 +66,8 @@ end
 # outputs the most dense cluster
 def hierarchical_clustering (vec, debug = false)
 
-	# Thresholds
-	threshold_distance = (0.25 * (vec.max - vec.min))
+        # Thresholds
+	threshold_distance = (0.25 * (vec.max-vec.min))
 	threshold_density = (0.5 * vec.length).to_i
 
 	# make a histogram from the input vector

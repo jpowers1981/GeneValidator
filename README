@@ -8,6 +8,10 @@
 1.3 add BLAST to PATH:
 PATH=$PATH:/blast/install/path/
 export PATH
+1.4 Libraries:
+sudo apt-get install ruby1.9.1-dev
+sudo apt-get install libxslt-dev libxml2-dev
+sudo gem install bio-blastxmlparser
 
 **************************************************
 **************** Implementation ******************
