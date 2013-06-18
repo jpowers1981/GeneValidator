@@ -54,15 +54,9 @@ end
 
 unless options[:skip_blast]
 
-  b = Blast.new
-  if options[:type].to_s.downcase == 'protein'
-    puts "This is a protein"
-    b.blast("blastp", ARGV[0],11,1)    
-  else 
-    puts "This is a transcript"
-    b.blast("blastn", ARGV[0],5,2)
-  end
-    b.clusterization
+  b = Blast.new(ARGV[0], options[:type].to_s.downcase)
+  b.blast
+  b.clusterization
   exit
 end
 
