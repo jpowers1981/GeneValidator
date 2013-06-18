@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 require './clustering'
+require './sequences'
 require 'bio-blastxmlparser'
 require 'net/http'
 require 'open-uri'
@@ -10,18 +11,31 @@ class Blast
 
   # blast command: blastn or blastp
   attr_reader :command
-
   # result of executing command
   attr_reader :result
-
   #BLAST output
   attr_reader :xml_output
+  #query sequence type
+  attr_reader :type
+  #query sequence fasta file
+  attr_reader :fasta_file
 
-  def initialize
+  def initialize(fasta_file, type)
+    @type = type
+    @fasta_file = fasta_file
   end
 
-  def blast(command, filename, gapopen, gapextend)
-    # we don't know what to do if the arguments ain't String
+  def blast
+    #call blast with the default parameters
+    if type == 'protein'
+      advanced_blast("blastp", @fasta_file, 11, 1)
+    else
+      advanced_blast("blastn", @fasta_file, 5, 2)
+    end
+  end
+
+  def advanced_blast(command, filename, gapopen, gapextend)
+    
     raise TypeError unless command.is_a? String and filename.is_a? String
 
     evalue = "1e-5"
@@ -53,19 +67,71 @@ class Blast
     output
   end
 
-  def parse_output
-    output = @xml_output
+  def parse_output(filename)
 
+
+
+    hits = Array.new
+
+    output = @xml_output
+    output = File.open(filename, "rb").read
+ 
+    xml = Bio::BlastXMLParser::NokogiriBlastXml.new(output).to_enum #XmlIterator.new(filename).to_enum
+
+    xml.each do | iter |
+      iter.each do | hit |
+        hsp = hit.hsps.first
+        seq = Sequence.new
+
+        seq.object_type = "ref"
+        seq.seq_type = @type
+        seq.database = iter.field("BlastOutput_db")
+	seq.id = hit.hit_id
+        seq.definition = hit.hit_def
+        seq.species = hit.hit_def.scan(/\[([^\]\[]+)\]$/)[0][0]
+        seq.accession_no = hit.accession
+	seq.e_value = hsp.evalue
+        seq.fasta_length = hit.len
+        seq.hit_from = hsp.hit_from
+        seq.hit_to = hsp.hit_to
+
+        #get gene by accession number
+        if @type == "protein"
+          seq.raw_sequence = get_sequence_by_accession_no(seq.accession_no, "protein")
+        else
+          seq.raw_sequence = get_sequence_by_accession_no(seq.accession_no, "nucleotide")
+        end
+        seq.xml_length = seq.raw_sequence.length
+
+        align = Alignment.new
+        align.query_seq = hsp.qseq
+        align.hit_seq = hsp.hseq
+        align.bit_score = hsp.bit_score
+	align.score = hsp.score
+
+	regex = align.hit_seq.gsub(/[+ -]/, '+' => '.', ' ' => '.', '-' => '')
+
+	#puts "----\n#{regex}\n----"
+
+        seq.alignment_start_offset = seq.raw_sequence.index(/#{regex}/)
+
+        seq.alignment = align
+        hits.push(seq)
+	seq.print
+        puts "----------------------"
+      end     
+    end
+
+    hits
   end
 
   def get_sequence_by_accession_no(accno,db)
 
     #url = URI.parse('http://www.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=nucleotide&retmax=1&usehistory=y&term=EF100000')
 
-    uri = "http://www.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=nucleotide&retmax=1&usehistory=y&term=#{accno}/"
-
-    #result = open(uri).read
+    uri = "http://www.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=#{db}&retmax=1&usehistory=y&term=#{accno}/"
     result = Net::HTTP.get(URI.parse(uri))
+
     result2 = result
     queryKey = result2.scan(/<\bQueryKey\b>([\w\W\d]+)<\/\bQueryKey\b>/)[0][0]
     webEnv = result.scan(/<\bWebEnv\b>([\w\W\d]+)<\/\bWebEnv\b>/)[0][0]
@@ -113,6 +179,9 @@ class Blast
   end
 end
 
-b = Blast.new
-out = b.get_sequence_by_accession_no("EF100000","nucleotide")
-puts out
+b = Blast.new("ana","protein")
+#out = b.get_sequence_by_accession_no("EF100000","nucleotide")
+#puts out
+b.parse_output("/home/monique/GSoC2013/data/output_prot1_predicted.xml")
+
+
