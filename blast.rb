@@ -13,18 +13,23 @@ class Blast
   attr_reader :command
   # result of executing command
   attr_reader :result
-  #BLAST output
+  #blast output
   attr_reader :xml_output
   #query sequence type
   attr_reader :type
   #query sequence fasta file
   attr_reader :fasta_file
+  #predicted sequence
+  attr_reader :predicted_seq
+  #array list with the reference sequences
+  attr_reader :ref_seq_list
 
   def initialize(fasta_file, type)
     @type = type
     @fasta_file = fasta_file
   end
 
+  #call blast according to the type of the sequence
   def blast
     #call blast with the default parameters
     if type == 'protein'
@@ -34,6 +39,7 @@ class Blast
     end
   end
 
+  #call blast with specific parameters
   def advanced_blast(command, filename, gapopen, gapextend)
     
     raise TypeError unless command.is_a? String and filename.is_a? String
@@ -56,6 +62,7 @@ class Blast
 
     cmd = "#{command} -query #{filename} -db nr -remote -evalue #{evalue} -outfmt 5 -gapopen #{gapopen} -gapextend #{gapextend} "
     puts "Executing \"#{cmd}\"..."
+    puts "This may take a while..."
     output = %x[#{cmd} 2>/dev/null]
 
     if output == ""
@@ -67,67 +74,70 @@ class Blast
     output
   end
 
-  def parse_output(filename)
+  #parse the xml blast output given as string parameter (optional parameter)
+  def parse_output(output = nil)
 
-
+    @predicted_seq = Sequence.new
 
     hits = Array.new
 
-    output = @xml_output
-    output = File.open(filename, "rb").read
- 
-    xml = Bio::BlastXMLParser::NokogiriBlastXml.new(output).to_enum #XmlIterator.new(filename).to_enum
-
-    xml.each do | iter |
-      iter.each do | hit |
-        hsp = hit.hsps.first
-        seq = Sequence.new
-
-        seq.object_type = "ref"
-        seq.seq_type = @type
-        seq.database = iter.field("BlastOutput_db")
-	seq.id = hit.hit_id
-        seq.definition = hit.hit_def
-        seq.species = hit.hit_def.scan(/\[([^\]\[]+)\]$/)[0][0]
-        seq.accession_no = hit.accession
-	seq.e_value = hsp.evalue
-        seq.fasta_length = hit.len
-        seq.hit_from = hsp.hit_from
-        seq.hit_to = hsp.hit_to
-
-        #get gene by accession number
-        if @type == "protein"
-          seq.raw_sequence = get_sequence_by_accession_no(seq.accession_no, "protein")
-        else
-          seq.raw_sequence = get_sequence_by_accession_no(seq.accession_no, "nucleotide")
-        end
-        seq.xml_length = seq.raw_sequence.length
-
-        align = Alignment.new
-        align.query_seq = hsp.qseq
-        align.hit_seq = hsp.hseq
-        align.bit_score = hsp.bit_score
-	align.score = hsp.score
-
-	regex = align.hit_seq.gsub(/[+ -]/, '+' => '.', ' ' => '.', '-' => '')
-
-	#puts "----\n#{regex}\n----"
-
-        seq.alignment_start_offset = seq.raw_sequence.index(/#{regex}/)
-
-        seq.alignment = align
-        hits.push(seq)
-	seq.print
-        puts "----------------------"
-      end     
+    if output == nil
+      output = @xml_output
     end
 
+    xml = Bio::BlastXMLParser::NokogiriBlastXml.new(output).to_enum #XmlIterator.new(filename).to_enum
+
+    iter = xml.next
+    @predicted_seq.xml_length = iter.field("Iteration_query-len")
+
+    iter.each do | hit |
+      hsp = hit.hsps.first
+      hsp.field("Hsp_bit-score")
+      seq = Sequence.new
+
+      seq.object_type = "ref"
+      seq.seq_type = @type
+      seq.database = iter.field("BlastOutput_db")
+      seq.id = hit.hit_id
+      seq.definition = hit.hit_def
+      seq.species = hit.hit_def.scan(/\[([^\]\[]+)\]$/)[0][0]
+      seq.accession_no = hit.accession
+      seq.e_value = hsp.evalue
+      seq.xml_length = hit.len
+      seq.hit_from = hsp.hit_from
+      seq.hit_to = hsp.hit_to
+
+      #get gene by accession number
+      if @type == "protein"
+        seq.raw_sequence = get_sequence_by_accession_no(seq.accession_no, "protein")
+      else
+        seq.raw_sequence = get_sequence_by_accession_no(seq.accession_no, "nucleotide")
+      end
+      seq.fasta_length = seq.raw_sequence.length
+
+      align = Alignment.new
+      align.query_seq = hsp.qseq
+      align.hit_seq = hsp.hseq
+      align.bit_score = hsp.bit_score
+      align.score = hsp.score
+
+      regex = align.hit_seq.gsub(/[+ -]/, '+' => '.', ' ' => '.', '-' => '')
+      #puts "----\n#{regex}\n----"
+
+      #seq.alignment_start_offset = seq.raw_sequence.index(/#{regex}/)
+      seq.alignment = align
+
+      hits.push(seq)
+      #seq.print
+      puts "getting sequence #{seq.accession_no}..."
+    end     
+    
+    @ref_seq_list = hits	
     hits
   end
 
+  #get gene by accession number from a givem database
   def get_sequence_by_accession_no(accno,db)
-
-    #url = URI.parse('http://www.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=nucleotide&retmax=1&usehistory=y&term=EF100000')
 
     uri = "http://www.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=#{db}&retmax=1&usehistory=y&term=#{accno}/"
     result = Net::HTTP.get(URI.parse(uri))
@@ -151,14 +161,16 @@ class Blast
 
   end
 
-  def clusterization
-    output = @xml_output
-    output2 = @xml_output
+  #clusterization by length from a list of sequences
+  def clusterization_by_length(lst = nil)
 
-    contents = output.scan(/<\bHit_len\b>(\d+)<\/\bHit_len\b>/)
-    contents = contents.map{ |x| x[0].to_i }.sort{|a,b| a<=>b}
+    if lst == nil
+      lst = @ref_seq_list
+    end
 
-    query_len = output2.scan(/<\bIteration_query-len\b>(\d+)<\/\bIteration_query-len\b>/)
+    raise TypeError unless lst[0].is_a? Sequence
+
+    contents = lst.map{ |x| x.xml_length.to_i }.sort{|a,b| a<=>b}
 
     clusters = hierarchical_clustering(contents)
     max_density = 0;
@@ -170,18 +182,22 @@ class Blast
       end
     end
       
-    puts "Predicted sequence length: #{query_len}"
+    puts "Predicted sequence length: #{@predicted_seq.xml_length}"
     puts "Maximum sequence length: #{contents.max}"
     puts "Number of sequences: #{contents.length}"
     puts "\nMost dense cluster:"
 
     clusters[max_density_cluster].print_cluster
+
   end
 end
 
+#Main body
+#Test certain methods of Blast class
+=begin
 b = Blast.new("ana","protein")
-#out = b.get_sequence_by_accession_no("EF100000","nucleotide")
-#puts out
-b.parse_output("/home/monique/GSoC2013/data/output_prot1_predicted.xml")
-
+puts b.get_sequence_by_accession_no("EF100000","nucleotide")
+file = File.open("/home/monique/GSoC2013/data/output_prot1_predicted.xml", "rb").read
+b.parse_output(file)
+=end
 

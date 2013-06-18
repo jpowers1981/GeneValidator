@@ -40,8 +40,7 @@ class Sequence
     puts "Raw_sequence = #{@raw_sequence.insert(@hit_from-1,'#').insert(@hit_to+1,'#')}"
     puts "Hit seq =      #{alignment.hit_seq}"
     puts "Query seq =    #{alignment.query_seq}"
-
-
+    puts "----------------------"
   end
 
 end

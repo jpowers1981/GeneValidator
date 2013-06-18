@@ -52,40 +52,17 @@ end
 
 # Main body
 
-unless options[:skip_blast]
+b = Blast.new(ARGV[0], options[:type].to_s.downcase)
 
-  b = Blast.new(ARGV[0], options[:type].to_s.downcase)
+unless options[:skip_blast]
   b.blast
-  b.clusterization
+  b.parse_output
+  b.clusterization_by_length
   exit
 end
 
-
 # Skip the blast-ing part and provide a xml blast output file as argument to this ruby script
-
-file = File.open(ARGV[0], "rb")
-
-contents = file.read.scan(/<\bHit_len\b>(\d+)<\/\bHit_len\b>/)
-contents = contents.map{ |x| x[0].to_i }.sort{|a,b| a<=>b}
- 
-clusters = hierarchical_clustering(contents)
-max_density = 0;
-max_density_cluster = 0;
-clusters.each_with_index{|item, i|
-        if item.density > max_density
-                max_density = item.density
-                max_density_cluster = i;
-        end
-}
-
-file = File.open(ARGV[0], "rb")
-query_len = file.read.scan(/<\bIteration_query-len\b>(\d+)<\/\bIteration_query-len\b>/)
-
-puts "Predicted sequence length: #{query_len}"
-puts "Maximum sequence length: #{contents.max}"
-puts "Number of sequences: #{contents.length}"
-puts "\nMost dense cluster:"
-clusters[max_density_cluster].print_cluster
-
-
+file = File.open(ARGV[0], "rb").read
+b.parse_output(file)
+b.clusterization_by_length
 
