@@ -6,6 +6,7 @@ require 'bio-blastxmlparser'
 require 'net/http'
 require 'open-uri'
 require 'uri'
+require 'gnuplot.rb'
 
 class Blast
 
@@ -87,10 +88,11 @@ class Blast
 
     xml = Bio::BlastXMLParser::NokogiriBlastXml.new(output).to_enum #XmlIterator.new(filename).to_enum
 
-    iter = xml.next
+    iter = xml.first
     @predicted_seq.xml_length = iter.field("Iteration_query-len")
 
     iter.each do | hit |
+
       hsp = hit.hsps.first
       hsp.field("Hsp_bit-score")
       seq = Sequence.new
@@ -99,21 +101,29 @@ class Blast
       seq.seq_type = @type
       seq.database = iter.field("BlastOutput_db")
       seq.id = hit.hit_id
+  
       seq.definition = hit.hit_def
-      seq.species = hit.hit_def.scan(/\[([^\]\[]+)\]$/)[0][0]
+=begin      
+      species_regex = hit.hit_def.scan(/\[([^\]\[]+)\]$/)
+      if species_rgx == 0
+      	seq.species = "Unknown" 
+      end
+	    seq.species = species_regex[0][0]
+=end	    
       seq.accession_no = hit.accession
       seq.e_value = hsp.evalue
+      
       seq.xml_length = hit.len
       seq.hit_from = hsp.hit_from
       seq.hit_to = hsp.hit_to
 
       #get gene by accession number
       if @type == "protein"
-        seq.raw_sequence = get_sequence_by_accession_no(seq.accession_no, "protein")
+        seq.raw_sequence = ""#get_sequence_by_accession_no(seq.accession_no, "protein")
       else
-        seq.raw_sequence = get_sequence_by_accession_no(seq.accession_no, "nucleotide")
+        seq.raw_sequence = ""#get_sequence_by_accession_no(seq.accession_no, "nucleotide")
       end
-      seq.fasta_length = seq.raw_sequence.length
+      seq.fasta_length = 0#seq.raw_sequence.length
 
       align = Alignment.new
       align.query_seq = hsp.qseq
@@ -129,11 +139,12 @@ class Blast
 
       hits.push(seq)
       #seq.print
-      puts "getting sequence #{seq.accession_no}..."
+      #puts "getting sequence #{seq.accession_no}..."
     end     
     
     @ref_seq_list = hits	
     hits
+
   end
 
   #get gene by accession number from a givem database
@@ -190,6 +201,48 @@ class Blast
     clusters[max_density_cluster].print_cluster
 
   end
+  
+  def print_lengths(lst = nil)
+    if lst == nil
+      lst = @ref_seq_list
+    end  
+    
+    raise TypeError unless lst[0].is_a? Sequence	
+    contents = lst.sort{|a, b| a.xml_length.to_i <=>b.xml_length.to_i }
+    contents.each_with_index do |elem, i| puts "#{elem.xml_length}" end    
+    
+  end
+
+  def plot_lengths(lst = nil)
+    if lst == nil
+      lst = @ref_seq_list
+    end
+
+    raise TypeError unless lst[0].is_a? Sequence
+
+
+    lengths = lst.map{ |x| x.xml_length.to_i }.sort{|a, b| a <=>b }
+
+    x = *(0..lengths.max)
+    y = Array.new(lengths.max,0)
+    data = Hash[lengths.group_by { |x| x }.map{ |k, vs| [k, vs.length]}]
+    data.collect{|arr| y[arr[0]] = arr[1]; puts "#{arr[0]} appears #{arr[1]} times"}
+
+    Gnuplot.open do |gp|
+      Gnuplot::Plot.new(gp) do |plot|
+        plot.title "Length distribution"
+        plot.style "data histograms"
+        plot.xtics "out""#nomirror rotate by -90"
+        plot.xrange "[#{lengths.min-10}:#{lengths.max+10}]"
+        #plot.xrange "[200:250]"
+        plot.yrange "[0:#{y.max+1}]"
+        plot.data << Gnuplot::DataSet.new( [x,y] ) do |ds|
+          ds.using = "2:xtic(1)"
+        end
+      end
+    end
+  end
+
 end
 
 #Main body
