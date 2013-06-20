@@ -1,0 +1,2842 @@
+<?xml version="1.0"?>
+<!DOCTYPE BlastOutput PUBLIC "-//NCBI//NCBI BlastOutput/EN" "http://www.ncbi.nlm.nih.gov/dtd/NCBI_BlastOutput.dtd">
+<BlastOutput>
+  <BlastOutput_program>blastp</BlastOutput_program>
+  <BlastOutput_version>BLASTP 2.2.28+</BlastOutput_version>
+  <BlastOutput_reference>Stephen F. Altschul, Thomas L. Madden, Alejandro A. Sch&amp;auml;ffer, Jinghui Zhang, Zheng Zhang, Webb Miller, and David J. Lipman (1997), &quot;Gapped BLAST and PSI-BLAST: a new generation of protein database search programs&quot;, Nucleic Acids Res. 25:3389-3402.</BlastOutput_reference>
+  <BlastOutput_db>nr</BlastOutput_db>
+  <BlastOutput_query-ID>76871</BlastOutput_query-ID>
+  <BlastOutput_query-def>unnamed protein product</BlastOutput_query-def>
+  <BlastOutput_query-len>186</BlastOutput_query-len>
+  <BlastOutput_param>
+    <Parameters>
+      <Parameters_matrix>BLOSUM62</Parameters_matrix>
+      <Parameters_expect>10</Parameters_expect>
+      <Parameters_gap-open>11</Parameters_gap-open>
+      <Parameters_gap-extend>1</Parameters_gap-extend>
+      <Parameters_filter>F</Parameters_filter>
+    </Parameters>
+  </BlastOutput_param>
+<BlastOutput_iterations>
+<Iteration>
+  <Iteration_iter-num>1</Iteration_iter-num>
+  <Iteration_query-ID>76871</Iteration_query-ID>
+  <Iteration_query-def>unnamed protein product</Iteration_query-def>
+  <Iteration_query-len>186</Iteration_query-len>
+<Iteration_hits>
+<Hit>
+  <Hit_num>1</Hit_num>
+  <Hit_id>gi|322787504|gb|EFZ13592.1|</Hit_id>
+  <Hit_def>hypothetical protein SINV_13722 [Solenopsis invicta]</Hit_def>
+  <Hit_accession>EFZ13592</Hit_accession>
+  <Hit_len>186</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>392.504</Hsp_bit-score>
+      <Hsp_score>1007</Hsp_score>
+      <Hsp_evalue>2.46524e-137</Hsp_evalue>
+      <Hsp_query-from>1</Hsp_query-from>
+      <Hsp_query-to>186</Hsp_query-to>
+      <Hsp_hit-from>1</Hsp_hit-from>
+      <Hsp_hit-to>186</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>186</Hsp_identity>
+      <Hsp_positive>186</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>186</Hsp_align-len>
+      <Hsp_qseq>MSANRLNVLVTLMLAVALLVTESGNAQVDGYLQFNPKRSAVSSPQKYCGKKLSNALQIICDGVYNSMFKKSGQDFPPQNKRHIAHRINGNEEESFTTLKSNFLNWCVEVYHRHYRFVFVSEMEMADYPLAYDISPYLPPFLSRARARGMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYCGP</Hsp_qseq>
+      <Hsp_hseq>MSANRLNVLVTLMLAVALLVTESGNAQVDGYLQFNPKRSAVSSPQKYCGKKLSNALQIICDGVYNSMFKKSGQDFPPQNKRHIAHRINGNEEESFTTLKSNFLNWCVEVYHRHYRFVFVSEMEMADYPLAYDISPYLPPFLSRARARGMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYCGP</Hsp_hseq>
+      <Hsp_midline>MSANRLNVLVTLMLAVALLVTESGNAQVDGYLQFNPKRSAVSSPQKYCGKKLSNALQIICDGVYNSMFKKSGQDFPPQNKRHIAHRINGNEEESFTTLKSNFLNWCVEVYHRHYRFVFVSEMEMADYPLAYDISPYLPPFLSRARARGMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYCGP</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>2</Hit_num>
+  <Hit_id>gi|332023615|gb|EGI63846.1|</Hit_id>
+  <Hit_def>LIRP [Acromyrmex echinatior]</Hit_def>
+  <Hit_accession>EGI63846</Hit_accession>
+  <Hit_len>161</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>192.971</Hsp_bit-score>
+      <Hsp_score>489</Hsp_score>
+      <Hsp_evalue>4.00333e-59</Hsp_evalue>
+      <Hsp_query-from>1</Hsp_query-from>
+      <Hsp_query-to>185</Hsp_query-to>
+      <Hsp_hit-from>1</Hsp_hit-from>
+      <Hsp_hit-to>154</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>128</Hsp_identity>
+      <Hsp_positive>137</Hsp_positive>
+      <Hsp_gaps>31</Hsp_gaps>
+      <Hsp_align-len>185</Hsp_align-len>
+      <Hsp_qseq>MSANRLNVLVTLMLAVALLVTESGNAQVDGYLQFNPKRSAVSSPQKYCGKKLSNALQIICDGVYNSMFKKSGQDFPPQNKRHIAHRINGNEEESFTTLKSNFLNWCVEVYHRHYRFVFVSEMEMADYPLAYDISPYLPPFLSRARARGMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYCG</Hsp_qseq>
+      <Hsp_hseq>MSANRLNVLVTLLLAVALLVTESGNAQVDGYPQFSSKRSAVSAPQKYCGKKLSNALQIICDGVYNSMFKKSGQ---------------AREEANVDSRDSNF------------DYVRTQEMEMADYPIAYE----FPPFLPRARARGMLDGRFAGRRYRRQGRGIHEECCINPCTINELTSYCG</Hsp_hseq>
+      <Hsp_midline>MSANRLNVLVTL+LAVALLVTESGNAQVDGY QF+ KRSAVS+PQKYCGKKLSNALQIICDGVYNSMFKKSGQ                 EE +  +  SNF             +V   EMEMADYP+AY+     PPFL RARARGMLDGRFAGRRYRR+ RGIHEECCIN CTINELTSYCG</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>3</Hit_num>
+  <Hit_id>gi|307168703|gb|EFN61735.1|</Hit_id>
+  <Hit_def>LIRP [Camponotus floridanus]</Hit_def>
+  <Hit_accession>EFN61735</Hit_accession>
+  <Hit_len>133</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>174.096</Hsp_bit-score>
+      <Hsp_score>440</Hsp_score>
+      <Hsp_evalue>3.98776e-52</Hsp_evalue>
+      <Hsp_query-from>1</Hsp_query-from>
+      <Hsp_query-to>185</Hsp_query-to>
+      <Hsp_hit-from>1</Hsp_hit-from>
+      <Hsp_hit-to>133</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>95</Hsp_identity>
+      <Hsp_positive>110</Hsp_positive>
+      <Hsp_gaps>52</Hsp_gaps>
+      <Hsp_align-len>185</Hsp_align-len>
+      <Hsp_qseq>MSANRLNVLVTLMLAVALLVTESGNAQVDGYLQFNPKRSAVSSPQKYCGKKLSNALQIICDGVYNSMFKKSGQDFPPQNKRHIAHRINGNEEESFTTLKSNFLNWCVEVYHRHYRFVFVSEMEMADYPLAYDISPYLPPFLSRARARGMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYCG</Hsp_qseq>
+      <Hsp_hseq>MSTNHLNVFVSLMIAIAFLVSESRNAQANGYPQFNQKPAGV--PQKYCGKKLSNALQIVCDG----------------------------------------------VYNSMFKKSLDQEMEMADYPFAYDS----PPFLPRARARGMLNGPFAGRRYRRQSRGIHEECCLNACTISELSSYCA</Hsp_hseq>
+      <Hsp_midline>MS N LNV V+LM+A+A LV+ES NAQ +GY QFN K + V  PQKYCGKKLSNALQI+CDG                                              VY+  ++     EMEMADYP AYD     PPFL RARARGML+G FAGRRYRR+SRGIHEECC+N CTI+EL+SYC </Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>4</Hit_num>
+  <Hit_id>gi|307197897|gb|EFN78996.1|</Hit_id>
+  <Hit_def>LIRP [Harpegnathos saltator]</Hit_def>
+  <Hit_accession>EFN78996</Hit_accession>
+  <Hit_len>158</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>134.035</Hsp_bit-score>
+      <Hsp_score>336</Hsp_score>
+      <Hsp_evalue>2.74025e-36</Hsp_evalue>
+      <Hsp_query-from>1</Hsp_query-from>
+      <Hsp_query-to>186</Hsp_query-to>
+      <Hsp_hit-from>1</Hsp_hit-from>
+      <Hsp_hit-to>156</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>80</Hsp_identity>
+      <Hsp_positive>116</Hsp_positive>
+      <Hsp_gaps>30</Hsp_gaps>
+      <Hsp_align-len>186</Hsp_align-len>
+      <Hsp_qseq>MSANRLNVLVTLMLAVALLVTESGNAQVDGYLQFNPKRSAVSSPQKYCGKKLSNALQIICDGVYNSMFKKSGQDFPPQNKRHIAHRINGNEEESFTTLKSNFLNWCVEVYHRHYRFVFVSEMEMADYPLAYDISPYLPPFLSRARARGMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYCGP</Hsp_qseq>
+      <Hsp_hseq>MSAYRLSVIVTLVMAVAFLMPESGNAQSDGSYAL---KWSMNVPQRYCGRRLSNALQTVCTGVYNNMFKKNVQQEENKTQQEKSHFVDPG------TRRSNMY----------------SELEVSEYPLNYE-RPSL--FISGMGATQFIN-RYRGSRVRR-ARGIYEECCLNACTYNELSTYCGP</Hsp_hseq>
+      <Hsp_midline>MSA RL+V+VTL++AVA L+ ESGNAQ DG       + +++ PQ+YCG++LSNALQ +C GVYN+MFKK+ Q    + ++  +H ++        T +SN                  SE+E+++YPL Y+  P L  F+S   A   ++ R+ G R RR +RGI+EECC+N CT NEL++YCGP</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>5</Hit_num>
+  <Hit_id>gi|345487237|ref|XP_001601730.2|</Hit_id>
+  <Hit_def>PREDICTED: LIRP-like [Nasonia vitripennis]</Hit_def>
+  <Hit_accession>XP_001601730</Hit_accession>
+  <Hit_len>133</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>104.375</Hsp_bit-score>
+      <Hsp_score>259</Hsp_score>
+      <Hsp_evalue>4.13751e-25</Hsp_evalue>
+      <Hsp_query-from>1</Hsp_query-from>
+      <Hsp_query-to>184</Hsp_query-to>
+      <Hsp_hit-from>1</Hsp_hit-from>
+      <Hsp_hit-to>129</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>76</Hsp_identity>
+      <Hsp_positive>93</Hsp_positive>
+      <Hsp_gaps>57</Hsp_gaps>
+      <Hsp_align-len>185</Hsp_align-len>
+      <Hsp_qseq>MSANRLNVLVTLMLAVALLVTESGNAQVDGYLQFNPKRSAVSSPQKYCGKKLSNALQIICDGVYNSMFKKS-GQDFPPQNKRHIAHRINGNEEESFTTLKSNFLNWCVEVYHRHYRFVFVSEMEMADYPLAYDISPYLPPFLSRARARGMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYC</Hsp_qseq>
+      <Hsp_hseq>MSTSRLSGLVTLTFAILLLLQLV-QAQSDVY-QYEQKRQGAS---KYCGQQLSNALQLVCHGRYNPMFKKSVGQG-----------------------------------------------MEMDDYPFNYDDSY---PFRSRAVANAMM-GRFGAGRFRRDSRGVHDECCLKSCTMNEMRSYC</Hsp_hseq>
+      <Hsp_midline>MS +RL+ LVTL  A+ LL+     AQ D Y Q+  KR   S   KYCG++LSNALQ++C G YN MFKKS GQ                                                MEM DYP  YD S    PF SRA A  M+ GRF   R+RR+SRG+H+ECC+  CT+NE+ SYC</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>6</Hit_num>
+  <Hit_id>gi|383863364|ref|XP_003707151.1|</Hit_id>
+  <Hit_def>PREDICTED: LIRP-like [Megachile rotundata]</Hit_def>
+  <Hit_accession>XP_003707151</Hit_accession>
+  <Hit_len>106</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>88.1965</Hsp_bit-score>
+      <Hsp_score>217</Hsp_score>
+      <Hsp_evalue>2.18608e-19</Hsp_evalue>
+      <Hsp_query-from>32</Hsp_query-from>
+      <Hsp_query-to>186</Hsp_query-to>
+      <Hsp_hit-from>9</Hsp_hit-from>
+      <Hsp_hit-to>105</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>58</Hsp_identity>
+      <Hsp_positive>66</Hsp_positive>
+      <Hsp_gaps>58</Hsp_gaps>
+      <Hsp_align-len>155</Hsp_align-len>
+      <Hsp_qseq>LQFNPKRSAVSSPQKYCGKKLSNALQIICDGVYNSMFKKSGQDFPPQNKRHIAHRINGNEEESFTTLKSNFLNWCVEVYHRHYRFVFVSEMEMADYPLAYDISPYLPPFLSRARARGMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYCGP</Hsp_qseq>
+      <Hsp_hseq>FQKKLKRQTVSEVRQYCGESLSNTLGMICDSVYNSRFKKSNQ-----------------------------------------------EMEMNDYAFNYDIHPYK----SIKNARKML-------RFRRHSRGIYEECCVKSCSTEELRSYCGS</Hsp_hseq>
+      <Hsp_midline> Q   KR  VS  ++YCG+ LSN L +ICD VYNS FKKS Q                                               EMEM DY   YDI PY     S   AR ML       R+RR SRGI+EECC+  C+  EL SYCG </Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>7</Hit_num>
+  <Hit_id>gi|170285650|emb|CAP09890.1|</Hit_id>
+  <Hit_def>insulin-related peptide precursor transcript variant T1 [Schistocerca gregaria] &gt;gi|170285652|emb|CAP09891.1| insulin-related peptide precursor transcript variant T2 [Schistocerca gregaria]</Hit_def>
+  <Hit_accession>CAP09890</Hit_accession>
+  <Hit_len>142</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>87.8113</Hsp_bit-score>
+      <Hsp_score>216</Hsp_score>
+      <Hsp_evalue>7.30839e-19</Hsp_evalue>
+      <Hsp_query-from>7</Hsp_query-from>
+      <Hsp_query-to>185</Hsp_query-to>
+      <Hsp_hit-from>3</Hsp_hit-from>
+      <Hsp_hit-to>140</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>57</Hsp_identity>
+      <Hsp_positive>91</Hsp_positive>
+      <Hsp_gaps>47</Hsp_gaps>
+      <Hsp_align-len>182</Hsp_align-len>
+      <Hsp_qseq>NVLVTLMLAVALLVTESGNAQVDGYLQFNPKRSAVSSP-QKYCGKKLSNALQIICDGVYNSMFKKSGQDFPPQNKRHIAHRINGNEEESFTTLKSNFLNWCVEVYHRHYRFVFVSEMEMADYPLAYDISPYLPPF--LSRARARGMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYCG</Hsp_qseq>
+      <Hsp_hseq>KLCLRLLAVLAVCLCTATQAQSDLFL-LSPKRSGAPQPVARYCGEKLSNALKIVCRGNYNTMFKKASQDVS-----------DAESEDNYWSQSAD------------------EEVE----------APALPPYPVLARPSAGGLLTAAV----FRRRTRGVFDECCRKSCSISELQTYCG</Hsp_hseq>
+      <Hsp_midline> + + L+  +A+ +  +  AQ D +L  +PKRS    P  +YCG+KLSNAL+I+C G YN+MFKK+ QD             +   E+++ +  ++                   E+E          +P LPP+  L+R  A G+L        +RR +RG+ +ECC   C+I+EL +YCG</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>8</Hit_num>
+  <Hit_id>gi|126335|sp|P15131.2|LIRP_LOCMI</Hit_id>
+  <Hit_def>RecName: Full=LIRP; AltName: Full=Locusta insulin-related peptide; Contains: RecName: Full=LIRP B chain; Contains: RecName: Full=5 kDa peptide; AltName: Full=C chain; Contains: RecName: Full=LIRP A chain; Flags: Precursor</Hit_def>
+  <Hit_accession>P15131</Hit_accession>
+  <Hit_len>145</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>85.5001</Hsp_bit-score>
+      <Hsp_score>210</Hsp_score>
+      <Hsp_evalue>5.65057e-18</Hsp_evalue>
+      <Hsp_query-from>7</Hsp_query-from>
+      <Hsp_query-to>185</Hsp_query-to>
+      <Hsp_hit-from>3</Hsp_hit-from>
+      <Hsp_hit-to>143</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>59</Hsp_identity>
+      <Hsp_positive>90</Hsp_positive>
+      <Hsp_gaps>40</Hsp_gaps>
+      <Hsp_align-len>180</Hsp_align-len>
+      <Hsp_qseq>NVLVTLMLAVALLVTESGNAQVDGYLQFNPKRSAVSSP-QKYCGKKLSNALQIICDGVYNSMFKKSGQDFPPQNKRHIAHRINGNEEESFTTLKSNFLNWCVEVYHRHYRFVFVSEMEMADYPLAYDISPYLPPFLSRARARGMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYCG</Hsp_qseq>
+      <Hsp_hseq>KLCLRLLAVLAVCLSTATQAQSDLFL-LSPKRSGAPQPVARYCGEKLSNALKLVCRGNYNTMFKKASQD------------VSDSESE--------------DNYWSGQSADEAAEAAAAALP------PY--PILARPSAGGLLTGAV----FRRRTRGVFDECCRKSCSISELQTYCG</Hsp_hseq>
+      <Hsp_midline> + + L+  +A+ ++ +  AQ D +L  +PKRS    P  +YCG+KLSNAL+++C G YN+MFKK+ QD            ++ +E E              + Y         +E   A  P      PY  P L+R  A G+L G      +RR +RG+ +ECC   C+I+EL +YCG</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>9</Hit_num>
+  <Hit_id>gi|9530|emb|CAA34889.1|</Hit_id>
+  <Hit_def>precursor polypeptide (AA -31 to 114) [Locusta migratoria]</Hit_def>
+  <Hit_accession>CAA34889</Hit_accession>
+  <Hit_len>145</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>85.1149</Hsp_bit-score>
+      <Hsp_score>209</Hsp_score>
+      <Hsp_evalue>7.83974e-18</Hsp_evalue>
+      <Hsp_query-from>7</Hsp_query-from>
+      <Hsp_query-to>185</Hsp_query-to>
+      <Hsp_hit-from>3</Hsp_hit-from>
+      <Hsp_hit-to>143</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>59</Hsp_identity>
+      <Hsp_positive>90</Hsp_positive>
+      <Hsp_gaps>40</Hsp_gaps>
+      <Hsp_align-len>180</Hsp_align-len>
+      <Hsp_qseq>NVLVTLMLAVALLVTESGNAQVDGYLQFNPKRSAVSSP-QKYCGKKLSNALQIICDGVYNSMFKKSGQDFPPQNKRHIAHRINGNEEESFTTLKSNFLNWCVEVYHRHYRFVFVSEMEMADYPLAYDISPYLPPFLSRARARGMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYCG</Hsp_qseq>
+      <Hsp_hseq>KLCLRLLAVLAVCLSTATQAQSDLFL-LSPKRSGAPQPVARYCGEKLSNALKLVCRGNYNTMFKKASQD------------VSDSESE--------------DNYWSGQSADEAAEAAAAALP------PY--PILARPSAGGLLTGAV----FRRRTRGVFDECCRKTCSISELQTYCG</Hsp_hseq>
+      <Hsp_midline> + + L+  +A+ ++ +  AQ D +L  +PKRS    P  +YCG+KLSNAL+++C G YN+MFKK+ QD            ++ +E E              + Y         +E   A  P      PY  P L+R  A G+L G      +RR +RG+ +ECC   C+I+EL +YCG</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>10</Hit_num>
+  <Hit_id>gi|350424820|ref|XP_003493923.1|</Hit_id>
+  <Hit_def>PREDICTED: LIRP-like [Bombus impatiens]</Hit_def>
+  <Hit_accession>XP_003493923</Hit_accession>
+  <Hit_len>153</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>84.7297</Hsp_bit-score>
+      <Hsp_score>208</Hsp_score>
+      <Hsp_evalue>1.35695e-17</Hsp_evalue>
+      <Hsp_query-from>1</Hsp_query-from>
+      <Hsp_query-to>186</Hsp_query-to>
+      <Hsp_hit-from>3</Hsp_hit-from>
+      <Hsp_hit-to>152</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>65</Hsp_identity>
+      <Hsp_positive>86</Hsp_positive>
+      <Hsp_gaps>82</Hsp_gaps>
+      <Hsp_align-len>209</Hsp_align-len>
+      <Hsp_qseq>MSANRLNVLVTLMLAVALLVTESGNAQVDGYLQFN----------------------PKRSAVSSPQKYCGKKLSNALQIICDGVYNSMFKKSGQDFPPQNKRHIAHRINGNEEESFTTLKSNFLNWCVEVYHRHYRFVFVSEMEMADY-PLAYDISPYLPPFLSRARARGMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYCGP</Hsp_qseq>
+      <Hsp_hseq>MYANRLYALMSLILVIVILIPVAEHAS-DTYKQRNIHGSDVFQYGQKGQSRDQSRDQSRDQSMTEMHQYCGRILSSTLQIICGSVYNSRFKKSNQ-----------------------------------------------EMEMDDYMAFSYDLHPYK----SIKNAKKMI-------RFRRNGRGIHEECCLKSCTTEELRSYCGA</Hsp_hseq>
+      <Hsp_midline>M ANRL  L++L+L + +L+  + +A  D Y Q N                       +  +++   +YCG+ LS+ LQIIC  VYNS FKKS Q                                               EMEM DY   +YD+ PY     S   A+ M+       R+RR  RGIHEECC+  CT  EL SYCG </Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>11</Hit_num>
+  <Hit_id>gi|340724819|ref|XP_003400778.1|</Hit_id>
+  <Hit_def>PREDICTED: LIRP-like [Bombus terrestris]</Hit_def>
+  <Hit_accession>XP_003400778</Hit_accession>
+  <Hit_len>153</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>83.5741</Hsp_bit-score>
+      <Hsp_score>205</Hsp_score>
+      <Hsp_evalue>3.56642e-17</Hsp_evalue>
+      <Hsp_query-from>1</Hsp_query-from>
+      <Hsp_query-to>186</Hsp_query-to>
+      <Hsp_hit-from>3</Hsp_hit-from>
+      <Hsp_hit-to>152</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>65</Hsp_identity>
+      <Hsp_positive>86</Hsp_positive>
+      <Hsp_gaps>82</Hsp_gaps>
+      <Hsp_align-len>209</Hsp_align-len>
+      <Hsp_qseq>MSANRLNVLVTLMLAVALLVTESGNAQVDGYLQFN----------------------PKRSAVSSPQKYCGKKLSNALQIICDGVYNSMFKKSGQDFPPQNKRHIAHRINGNEEESFTTLKSNFLNWCVEVYHRHYRFVFVSEMEMADY-PLAYDISPYLPPFLSRARARGMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYCGP</Hsp_qseq>
+      <Hsp_hseq>MYANRLYALMSLILVIVILIPLAEHAS-DTYKQRNIHGSDVFQYGQKGQSRDQSRDQSRDQSMTEMHQYCGRILSSTLQIICGSVYNSRFKKSNQ-----------------------------------------------EMEMDDYMAYSYDLHPYK----SIKNAKKMI-------RFRRNGRGIHEECCLKSCTTEELRSYCGA</Hsp_hseq>
+      <Hsp_midline>M ANRL  L++L+L + +L+  + +A  D Y Q N                       +  +++   +YCG+ LS+ LQIIC  VYNS FKKS Q                                               EMEM DY   +YD+ PY     S   A+ M+       R+RR  RGIHEECC+  CT  EL SYCG </Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>12</Hit_num>
+  <Hit_id>gi|380012046|ref|XP_003690101.1|</Hit_id>
+  <Hit_def>PREDICTED: LIRP-like [Apis florea]</Hit_def>
+  <Hit_accession>XP_003690101</Hit_accession>
+  <Hit_len>130</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>79.7221</Hsp_bit-score>
+      <Hsp_score>195</Hsp_score>
+      <Hsp_evalue>5.69717e-16</Hsp_evalue>
+      <Hsp_query-from>32</Hsp_query-from>
+      <Hsp_query-to>186</Hsp_query-to>
+      <Hsp_hit-from>31</Hsp_hit-from>
+      <Hsp_hit-to>129</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>52</Hsp_identity>
+      <Hsp_positive>64</Hsp_positive>
+      <Hsp_gaps>56</Hsp_gaps>
+      <Hsp_align-len>155</Hsp_align-len>
+      <Hsp_qseq>LQFNPKRSAVSSPQKYCGKKLSNALQIICDGVYNSMFKKSGQDFPPQNKRHIAHRINGNEEESFTTLKSNFLNWCVEVYHRHYRFVFVSEMEMADYPLAYDISPYLPPFLSRARARGMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYCGP</Hsp_qseq>
+      <Hsp_hseq>FQYGQKGQTVTEMHQYCGRTLSSTLQIMCGSVYNSRFKKSNQ-----------------------------------------------EMEMDDYMAFYGYDLY--PYKSIKNAKKMI-------RFRRNSKGIHEECCLKSCTTEELRSYCGA</Hsp_hseq>
+      <Hsp_midline> Q+  K   V+   +YCG+ LS+ LQI+C  VYNS FKKS Q                                               EMEM DY   Y    Y  P+ S   A+ M+       R+RR S+GIHEECC+  CT  EL SYCG </Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>13</Hit_num>
+  <Hit_id>gi|454239|emb|CAA82851.1|</Hit_id>
+  <Hit_def>insulin related peptide, fragment 1 [Locusta migratoria]</Hit_def>
+  <Hit_accession>CAA82851</Hit_accession>
+  <Hit_len>69</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>58.9214</Hsp_bit-score>
+      <Hsp_score>141</Hsp_score>
+      <Hsp_evalue>5.01657e-09</Hsp_evalue>
+      <Hsp_query-from>12</Hsp_query-from>
+      <Hsp_query-to>73</Hsp_query-to>
+      <Hsp_hit-from>8</Hsp_hit-from>
+      <Hsp_hit-to>69</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>29</Hsp_identity>
+      <Hsp_positive>44</Hsp_positive>
+      <Hsp_gaps>2</Hsp_gaps>
+      <Hsp_align-len>63</Hsp_align-len>
+      <Hsp_qseq>LMLAVALLVTESGNAQVDGYLQFNPKRSAVSSP-QKYCGKKLSNALQIICDGVYNSMFKKSGQ</Hsp_qseq>
+      <Hsp_hseq>LLAVLAVCLSTATQAQSDLFL-LSPKRSGAPQPVARYCGEKLSNALKLVCRGNYNTMFKKASQ</Hsp_hseq>
+      <Hsp_midline>L+  +A+ ++ +  AQ D +L  +PKRS    P  +YCG+KLSNAL+++C G YN+MFKK+ Q</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>14</Hit_num>
+  <Hit_id>gi|295444925|ref|NP_001171374.1|</Hit_id>
+  <Hit_def>insulin-like peptide 2 [Apis mellifera] &gt;gi|293573240|gb|ADE45319.1| bombyxin [Apis mellifera]</Hit_def>
+  <Hit_accession>NP_001171374</Hit_accession>
+  <Hit_len>73</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>58.151</Hsp_bit-score>
+      <Hsp_score>139</Hsp_score>
+      <Hsp_evalue>1.14799e-08</Hsp_evalue>
+      <Hsp_query-from>121</Hsp_query-from>
+      <Hsp_query-to>186</Hsp_query-to>
+      <Hsp_hit-from>16</Hsp_hit-from>
+      <Hsp_hit-to>72</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>31</Hsp_identity>
+      <Hsp_positive>37</Hsp_positive>
+      <Hsp_gaps>9</Hsp_gaps>
+      <Hsp_align-len>66</Hsp_align-len>
+      <Hsp_qseq>EMEMADYPLAYDISPYLPPFLSRARARGMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYCGP</Hsp_qseq>
+      <Hsp_hseq>EMEMDDYMAFYGYDLY--PYKSIKNAKKMI-------RFRRNSKGIHEECCLKSCTTEELRSYCGA</Hsp_hseq>
+      <Hsp_midline>EMEM DY   Y    Y  P+ S   A+ M+       R+RR S+GIHEECC+  CT  EL SYCG </Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>15</Hit_num>
+  <Hit_id>gi|498986479|ref|XP_004530866.1|</Hit_id>
+  <Hit_def>PREDICTED: probable insulin-like peptide 3-like [Ceratitis capitata]</Hit_def>
+  <Hit_accession>XP_004530866</Hit_accession>
+  <Hit_len>120</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>52.7582</Hsp_bit-score>
+      <Hsp_score>125</Hsp_score>
+      <Hsp_evalue>1.55625e-06</Hsp_evalue>
+      <Hsp_query-from>42</Hsp_query-from>
+      <Hsp_query-to>184</Hsp_query-to>
+      <Hsp_hit-from>24</Hsp_hit-from>
+      <Hsp_hit-to>119</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>40</Hsp_identity>
+      <Hsp_positive>57</Hsp_positive>
+      <Hsp_gaps>47</Hsp_gaps>
+      <Hsp_align-len>143</Hsp_align-len>
+      <Hsp_qseq>SSPQKYCGKKLSNALQIICDGVYNSMFKKSGQDFPPQNKRHIAHRINGNEEESFTTLKSNFLNWCVEVYHRHYRFVFVSEMEMADYPLAYDISPYLPPFLSRARARGMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYC</Hsp_qseq>
+      <Hsp_hseq>SGSQRICGRELSDALDEICWNGYNAKVKKS---------------LQWQEDESSKDVASDLL------------------------PYPYADSPFMAKILG--------DEFNVLTKYRARRQGVYDECCLKACTRNELLSYC</Hsp_hseq>
+      <Hsp_midline>S  Q+ CG++LS+AL  IC   YN+  KKS               +   E+ES   + S+ L                        P  Y  SP++   L         D      +YR   +G+++ECC+  CT NEL SYC</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>16</Hit_num>
+  <Hit_id>gi|307177923|gb|EFN66841.1|</Hit_id>
+  <Hit_def>hypothetical protein EAG_07135 [Camponotus floridanus]</Hit_def>
+  <Hit_accession>EFN66841</Hit_accession>
+  <Hit_len>156</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>51.9878</Hsp_bit-score>
+      <Hsp_score>123</Hsp_score>
+      <Hsp_evalue>6.43483e-06</Hsp_evalue>
+      <Hsp_query-from>1</Hsp_query-from>
+      <Hsp_query-to>185</Hsp_query-to>
+      <Hsp_hit-from>27</Hsp_hit-from>
+      <Hsp_hit-to>152</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>47</Hsp_identity>
+      <Hsp_positive>77</Hsp_positive>
+      <Hsp_gaps>59</Hsp_gaps>
+      <Hsp_align-len>185</Hsp_align-len>
+      <Hsp_qseq>MSANRLNVLVTLMLAVALLVTESGNAQVDGYLQFNPKRSAVSSPQKYCGKKLSNALQIICDGVYNSMFKKSGQDFPPQNKRHIAHRINGNEEESFTTLKSNFLNWCVEVYHRHYRFVFVSEMEMADYPLAYDISPYLPPFLSRARARGMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYCG</Hsp_qseq>
+      <Hsp_hseq>MSTSQLNVIVSLIIPLMLFVLEA-NAQ---------------QPRRYCGKELSDALNLVCGGVFNTP--------KPYNRDYQSNDPNNS---------------------------LVQEKEA-----VCDPSRNMSEKTCYQQERGYQDTK---KSKVAKKVGVADECCSNKCTLQNLSMYCA</Hsp_hseq>
+      <Hsp_midline>MS ++LNV+V+L++ + L V E+ NAQ                P++YCGK+LS+AL ++C GV+N+          P N+ + ++  N +                            V E E        D S  +       + RG  D +   +    +  G+ +ECC N CT+  L+ YC </Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>17</Hit_num>
+  <Hit_id>gi|321458964|gb|EFX70023.1|</Hit_id>
+  <Hit_def>Insulin/IGF/relaxin-like peptide 2 [Daphnia pulex]</Hit_def>
+  <Hit_accession>EFX70023</Hit_accession>
+  <Hit_len>216</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>50.8322</Hsp_bit-score>
+      <Hsp_score>120</Hsp_score>
+      <Hsp_evalue>3.78744e-05</Hsp_evalue>
+      <Hsp_query-from>139</Hsp_query-from>
+      <Hsp_query-to>184</Hsp_query-to>
+      <Hsp_hit-from>170</Hsp_hit-from>
+      <Hsp_hit-to>212</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>21</Hsp_identity>
+      <Hsp_positive>29</Hsp_positive>
+      <Hsp_gaps>3</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>PFLSRARARGMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYC</Hsp_qseq>
+      <Hsp_hseq>PFINDDKAHSILSNHHLFHRY---TRGVHDECCVKGCTFKELTSYC</Hsp_hseq>
+      <Hsp_midline>PF++  +A  +L       RY   +RG+H+ECC+ GCT  ELTSYC</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>18</Hit_num>
+  <Hit_id>gi|1335707|emb|CAA82852.1|</Hit_id>
+  <Hit_def>insulin related peptide, fragment 2 [Locusta migratoria]</Hit_def>
+  <Hit_accession>CAA82852</Hit_accession>
+  <Hit_len>75</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>47.3654</Hsp_bit-score>
+      <Hsp_score>111</Hsp_score>
+      <Hsp_evalue>9.07304e-05</Hsp_evalue>
+      <Hsp_query-from>133</Hsp_query-from>
+      <Hsp_query-to>185</Hsp_query-to>
+      <Hsp_hit-from>27</Hsp_hit-from>
+      <Hsp_hit-to>73</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>23</Hsp_identity>
+      <Hsp_positive>33</Hsp_positive>
+      <Hsp_gaps>6</Hsp_gaps>
+      <Hsp_align-len>53</Hsp_align-len>
+      <Hsp_qseq>ISPYLPPFLSRARARGMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYCG</Hsp_qseq>
+      <Hsp_hseq>LPPY--PILARPSAGGLLTGAV----FRRRTRGVFDECCRKSCSISELQTYCG</Hsp_hseq>
+      <Hsp_midline>+ PY  P L+R  A G+L G      +RR +RG+ +ECC   C+I+EL +YCG</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>19</Hit_num>
+  <Hit_id>gi|195012516|ref|XP_001983682.1|</Hit_id>
+  <Hit_def>GH15431 [Drosophila grimshawi] &gt;gi|193897164|gb|EDV96030.1| GH15431 [Drosophila grimshawi]</Hit_def>
+  <Hit_accession>XP_001983682</Hit_accession>
+  <Hit_len>156</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>48.521</Hsp_bit-score>
+      <Hsp_score>114</Hsp_score>
+      <Hsp_evalue>0.000114396</Hsp_evalue>
+      <Hsp_query-from>46</Hsp_query-from>
+      <Hsp_query-to>184</Hsp_query-to>
+      <Hsp_hit-from>51</Hsp_hit-from>
+      <Hsp_hit-to>154</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>36</Hsp_identity>
+      <Hsp_positive>54</Hsp_positive>
+      <Hsp_gaps>35</Hsp_gaps>
+      <Hsp_align-len>139</Hsp_align-len>
+      <Hsp_qseq>KYCGKKLSNALQIICDGVYNSMFKKSGQDFPPQNKRHIAHRINGNEEESFTTLKSNFLNWCVEVYHRHYRFVFVSEMEMADYPLAYDISPYLPPFLSRARARGMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYC</Hsp_qseq>
+      <Hsp_hseq>KLCGPALNEAMSMVCVNGYNTIPKK---------------RMDSNQASLVDVVG-----------------VVAAEQTQLQQPRGSDDGYALSPLLSSIYGTEVL---IKTRRLRRQRAGIYDECCVNSCSYPELLAYC</Hsp_hseq>
+      <Hsp_midline>K CG  L+ A+ ++C   YN++ KK               R++ N+      +                  V  +E      P   D    L P LS      +L      RR RR+  GI++ECC+N C+  EL +YC</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>20</Hit_num>
+  <Hit_id>gi|189236866|ref|XP_001814181.1|</Hit_id>
+  <Hit_def>PREDICTED: similar to LIRP precursor (Locusta insulin-related peptide) [Tribolium castaneum] &gt;gi|270006348|gb|EFA02796.1| insulin-like peptide [Tribolium castaneum]</Hit_def>
+  <Hit_accession>XP_001814181</Hit_accession>
+  <Hit_len>131</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>46.2098</Hsp_bit-score>
+      <Hsp_score>108</Hsp_score>
+      <Hsp_evalue>0.000471973</Hsp_evalue>
+      <Hsp_query-from>47</Hsp_query-from>
+      <Hsp_query-to>185</Hsp_query-to>
+      <Hsp_hit-from>37</Hsp_hit-from>
+      <Hsp_hit-to>127</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>35</Hsp_identity>
+      <Hsp_positive>55</Hsp_positive>
+      <Hsp_gaps>48</Hsp_gaps>
+      <Hsp_align-len>139</Hsp_align-len>
+      <Hsp_qseq>YCGKKLSNALQIICDGVYNSMFKKSGQDFPPQNKRHIAHRINGNEEESFTTLKSNFLNWCVEVYHRHYRFVFVSEMEMADYPLAYDISPYLPPFLSRARARGMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYCG</Hsp_qseq>
+      <Hsp_hseq>YCGRRLSETLSTVCKGNYNTLNKKSD-----------IHEMGASRRPGYPSLSQHSLDY---------------------------------PYQSKANA---ASHHMSGFR-RRKRRGVFNECCEKPCSLEELSQYCG</Hsp_hseq>
+      <Hsp_midline>YCG++LS  L  +C G YN++ KKS             H +  +    + +L  + L++                                 P+ S+A A        +G R RR+ RG+  ECC   C++ EL+ YCG</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>21</Hit_num>
+  <Hit_id>gi|157112304|ref|XP_001657486.1|</Hit_id>
+  <Hit_def>hypothetical protein AaeL_AAEL000960 [Aedes aegypti] &gt;gi|108883759|gb|EAT47984.1| AAEL000960-PA [Aedes aegypti]</Hit_def>
+  <Hit_accession>XP_001657486</Hit_accession>
+  <Hit_len>167</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>46.2098</Hsp_bit-score>
+      <Hsp_score>108</Hsp_score>
+      <Hsp_evalue>0.000823244</Hsp_evalue>
+      <Hsp_query-from>42</Hsp_query-from>
+      <Hsp_query-to>184</Hsp_query-to>
+      <Hsp_hit-from>34</Hsp_hit-from>
+      <Hsp_hit-to>163</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>38</Hsp_identity>
+      <Hsp_positive>64</Hsp_positive>
+      <Hsp_gaps>17</Hsp_gaps>
+      <Hsp_align-len>145</Hsp_align-len>
+      <Hsp_qseq>SSPQKYCGKKLSNALQIICDGVYNSMF--KKSGQDFPPQNKRHIAHRINGNEEESFTTLKSNFLNWCVEVYHRHYRFVFVSEMEMADYPLAYDISPYLPPFLSRARARGMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYC</Hsp_qseq>
+      <Hsp_hseq>AADQRFCGKQLVLTLSMLCDEFPDLHYGAKKSMNDYDKDYSTDEWLAMIGQDPESI--MSTDLMVPHMDQQTVQQQQKVPLWMAMM-YPQGYG-------FRSSASRNDLIPPRF-----RKSPRGIVDECCLRPCSINQLLKYC</Hsp_hseq>
+      <Hsp_midline>++ Q++CGK+L   L ++CD   +  +  KKS  D+           + G + ES   + ++ +   ++      +      M M  YP  Y        F S A    ++  RF     R+  RGI +ECC+  C+IN+L  YC</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>22</Hit_num>
+  <Hit_id>gi|325303902|tpg|DAA34625.1|</Hit_id>
+  <Hit_def>TPA_inf: insulin precursor [Amblyomma variegatum]</Hit_def>
+  <Hit_accession>DAA34625</Hit_accession>
+  <Hit_len>134</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>45.4394</Hsp_bit-score>
+      <Hsp_score>106</Hsp_score>
+      <Hsp_evalue>0.000937461</Hsp_evalue>
+      <Hsp_query-from>135</Hsp_query-from>
+      <Hsp_query-to>185</Hsp_query-to>
+      <Hsp_hit-from>66</Hsp_hit-from>
+      <Hsp_hit-to>126</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>25</Hsp_identity>
+      <Hsp_positive>36</Hsp_positive>
+      <Hsp_gaps>10</Hsp_gaps>
+      <Hsp_align-len>61</Hsp_align-len>
+      <Hsp_qseq>PYLPPFLS----RARARGMLDGRFAGRRYR------RESRGIHEECCINGCTINELTSYCG</Hsp_qseq>
+      <Hsp_hseq>PILPPWMTILEGGSPKLGFLDAKTALQLLRPSAHFGRQTRGIIEECCHKSCSISELSSYCG</Hsp_hseq>
+      <Hsp_midline>P LPP+++     +   G LD + A +  R      R++RGI EECC   C+I+EL+SYCG</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>23</Hit_num>
+  <Hit_id>gi|170066878|ref|XP_001868258.1|</Hit_id>
+  <Hit_def>conserved hypothetical protein [Culex quinquefasciatus] &gt;gi|167863066|gb|EDS26449.1| conserved hypothetical protein [Culex quinquefasciatus]</Hit_def>
+  <Hit_accession>XP_001868258</Hit_accession>
+  <Hit_len>158</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>45.8246</Hsp_bit-score>
+      <Hsp_score>107</Hsp_score>
+      <Hsp_evalue>0.00104697</Hsp_evalue>
+      <Hsp_query-from>42</Hsp_query-from>
+      <Hsp_query-to>184</Hsp_query-to>
+      <Hsp_hit-from>24</Hsp_hit-from>
+      <Hsp_hit-to>153</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>36</Hsp_identity>
+      <Hsp_positive>64</Hsp_positive>
+      <Hsp_gaps>17</Hsp_gaps>
+      <Hsp_align-len>145</Hsp_align-len>
+      <Hsp_qseq>SSPQKYCGKKLSNALQIICDGVYNSMF--KKSGQDFPPQNKRHIAHRINGNEEESFTTLKSNFLNWCVEVYHRHYRFVFVSEMEMADYPLAYDISPYLPPFLSRARARGMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYC</Hsp_qseq>
+      <Hsp_hseq>AAEQRLCGRHLVNALAMLCDEFPDLHFGVKKSTIDFDRMVDYPVDDWMASMMDSSATNSVDSMMDPSMQSQQQTKMPVWMTMM----YPQNYG-------FRAASNRNDLIPARFRKSVHS----GIVDECCLRSCSINQLMKYC</Hsp_hseq>
+      <Hsp_midline>++ Q+ CG+ L NAL ++CD   +  F  KKS  DF       +   +    + S T    + ++  ++   +    V+++ M    YP  Y        F + +    ++  RF    +     GI +ECC+  C+IN+L  YC</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>24</Hit_num>
+  <Hit_id>gi|290766501|gb|ABI64117.2|</Hit_id>
+  <Hit_def>insulin-like peptide 3 precursor [Aedes aegypti]</Hit_def>
+  <Hit_accession>ABI64117</Hit_accession>
+  <Hit_len>167</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>45.8246</Hsp_bit-score>
+      <Hsp_score>107</Hsp_score>
+      <Hsp_evalue>0.0012295</Hsp_evalue>
+      <Hsp_query-from>42</Hsp_query-from>
+      <Hsp_query-to>184</Hsp_query-to>
+      <Hsp_hit-from>34</Hsp_hit-from>
+      <Hsp_hit-to>163</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>38</Hsp_identity>
+      <Hsp_positive>64</Hsp_positive>
+      <Hsp_gaps>17</Hsp_gaps>
+      <Hsp_align-len>145</Hsp_align-len>
+      <Hsp_qseq>SSPQKYCGKKLSNALQIICDGVYNSMF--KKSGQDFPPQNKRHIAHRINGNEEESFTTLKSNFLNWCVEVYHRHYRFVFVSEMEMADYPLAYDISPYLPPFLSRARARGMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYC</Hsp_qseq>
+      <Hsp_hseq>AADQRFCGKQLVLTLSMLCDEFPDLHYGAKKSLNDYDKDYSTDEWLAMIGQDPESIVS--TDLMVPHMDQQTVQQQQKVPLWMAMM-YPQGYG-------FRSSASRNDLIPPRF-----RKSPRGIVDECCLRPCSINQLLKYC</Hsp_hseq>
+      <Hsp_midline>++ Q++CGK+L   L ++CD   +  +  KKS  D+           + G + ES  +  ++ +   ++      +      M M  YP  Y        F S A    ++  RF     R+  RGI +ECC+  C+IN+L  YC</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>25</Hit_num>
+  <Hit_id>gi|357618565|gb|EHJ71503.1|</Hit_id>
+  <Hit_def>Bombyxin A3-like protein [Danaus plexippus]</Hit_def>
+  <Hit_accession>EHJ71503</Hit_accession>
+  <Hit_len>122</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>43.1282</Hsp_bit-score>
+      <Hsp_score>100</Hsp_score>
+      <Hsp_evalue>0.00590433</Hsp_evalue>
+      <Hsp_query-from>43</Hsp_query-from>
+      <Hsp_query-to>184</Hsp_query-to>
+      <Hsp_hit-from>34</Hsp_hit-from>
+      <Hsp_hit-to>122</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>40</Hsp_identity>
+      <Hsp_positive>56</Hsp_positive>
+      <Hsp_gaps>55</Hsp_gaps>
+      <Hsp_align-len>143</Hsp_align-len>
+      <Hsp_qseq>SPQKYCGKKLSNALQIIC-DGVYNSMFKKSGQDFPPQNKRHIAHRINGNEEESFTTLKSNFLNWCVEVYHRHYRFVFVSEMEMADYPLAYDISPYLPPFLSRARARGMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYC</Hsp_qseq>
+      <Hsp_hseq>SPQVYCGRTLARVLAMLCYDEVSNEKRSESGTMF-----NSLLTPYNKDQE--------NQLGW-----------------------------PWIPP----QKARGM--GMSRGKRF------VVSECCDKACSISELMSYC</Hsp_hseq>
+      <Hsp_midline>SPQ YCG+ L+  L ++C D V N    +SG  F       +    N ++E        N L W                             P++PP     +ARGM  G   G+R+      +  ECC   C+I+EL SYC</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>26</Hit_num>
+  <Hit_id>gi|345785392|ref|XP_533544.3|</Hit_id>
+  <Hit_def>PREDICTED: insulin-like 6 isoform 2 [Canis lupus familiaris]</Hit_def>
+  <Hit_accession>XP_533544</Hit_accession>
+  <Hit_len>212</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>43.8986</Hsp_bit-score>
+      <Hsp_score>102</Hsp_score>
+      <Hsp_evalue>0.0100742</Hsp_evalue>
+      <Hsp_query-from>34</Hsp_query-from>
+      <Hsp_query-to>186</Hsp_query-to>
+      <Hsp_hit-from>19</Hsp_hit-from>
+      <Hsp_hit-to>193</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>47</Hsp_identity>
+      <Hsp_positive>68</Hsp_positive>
+      <Hsp_gaps>32</Hsp_gaps>
+      <Hsp_align-len>180</Hsp_align-len>
+      <Hsp_qseq>FNPKRSAVSSPQKYCGKKLSNALQIICDGVYNSMFKKSGQDFP--PQNKRHIAHRINGNEEESFTTLKSNFLNWC---VEVYHRHYRFVFVSEMEMADYPLAYDISPYLPPFLSRARARGM----------------------LDGRFAGRRYRRESRGIHEECCINGCTINELTSYCGP</Hsp_qseq>
+      <Hsp_hseq>FSRELSDISKARRLCGRHLLKEIIKLCGNVNWSYFEEETPVPPLFPQDN-EIETFIPDRSESS----QSTFPAWARGTSPVSTSAYEEEAVSSLEMPSLPEYRYKRANLPPDKTREFSSSQDINQYIHEISEFQKKSTNKIKTLSNMFWGNHPQRKRRGYSEKCCLTGCTVEELSIACFP</Hsp_hseq>
+      <Hsp_midline>F+ + S +S  ++ CG+ L   +  +C  V  S F++     P  PQ+   I   I    E S    +S F  W      V    Y    VS +EM   P        LPP  +R  +                         L   F G   +R+ RG  E+CC+ GCT+ EL+  C P</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>27</Hit_num>
+  <Hit_id>gi|443694411|gb|ELT95557.1|</Hit_id>
+  <Hit_def>hypothetical protein CAPTEDRAFT_196578 [Capitella teleta]</Hit_def>
+  <Hit_accession>ELT95557</Hit_accession>
+  <Hit_len>240</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>43.8986</Hsp_bit-score>
+      <Hsp_score>102</Hsp_score>
+      <Hsp_evalue>0.0107301</Hsp_evalue>
+      <Hsp_query-from>8</Hsp_query-from>
+      <Hsp_query-to>185</Hsp_query-to>
+      <Hsp_hit-from>67</Hsp_hit-from>
+      <Hsp_hit-to>217</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>42</Hsp_identity>
+      <Hsp_positive>71</Hsp_positive>
+      <Hsp_gaps>31</Hsp_gaps>
+      <Hsp_align-len>180</Hsp_align-len>
+      <Hsp_qseq>VLVTLMLAVALLVTESG--NAQVDGYLQFNPKRSAVSSPQKYCGKKLSNALQIICDGVYNSMFKKSGQDFPPQNKRHIAHRINGNEEESFTTLKSNFLNWCVEVYHRHYRFVFVSEMEMADYPLAYDISPYLPPFLSRARARGMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYCG</Hsp_qseq>
+      <Hsp_hseq>LCVTVVLTLTFISVEAGRRKCSMDDYRAGAPKRGFI------CGNQIPQTLSLVCGGSYRRPGKRNTDSL-----RSEWSFLGGRGDEDSHKDQENALN--------------ADDLDRASIDDLDPAAIWDNVFLPRANALSVL----RSKRSNMKEGGVYCECCVHRCTYPELLSYCA</Hsp_hseq>
+      <Hsp_midline>+ VT++L +  +  E+G     +D Y    PKR  +      CG ++   L ++C G Y    K++         R     + G  +E     + N LN                +++ A        + +   FL RA A  +L      +R   +  G++ ECC++ CT  EL SYC </Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>28</Hit_num>
+  <Hit_id>gi|194034141|ref|XP_001926048.1|</Hit_id>
+  <Hit_def>PREDICTED: insulin-like peptide INSL6-like [Sus scrofa]</Hit_def>
+  <Hit_accession>XP_001926048</Hit_accession>
+  <Hit_len>213</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>43.1282</Hsp_bit-score>
+      <Hsp_score>100</Hsp_score>
+      <Hsp_evalue>0.0197956</Hsp_evalue>
+      <Hsp_query-from>32</Hsp_query-from>
+      <Hsp_query-to>186</Hsp_query-to>
+      <Hsp_hit-from>17</Hsp_hit-from>
+      <Hsp_hit-to>194</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>41</Hsp_identity>
+      <Hsp_positive>76</Hsp_positive>
+      <Hsp_gaps>37</Hsp_gaps>
+      <Hsp_align-len>185</Hsp_align-len>
+      <Hsp_qseq>LQFNPKRSAVSSPQKYCGKKLSNALQIICDGVYNSMFKKSG------------QDFPP--------------QNKRHIAHRINGNEEESFTTLKSNFLNWCVEVYHRHYRFVFVSEMEMADYPLAYDISPYLPPFLSRARAR----GMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYCGP</Hsp_qseq>
+      <Hsp_hseq>VRFSRELNDISRARKLCGRHLLKEIVRLCGNVSWSQFEEENPLTHLLSQAEQVETFIPDRLESSQTTFSVWGRGSRQVS--TSASQEEAINNLKMKSLH---EYQYKKANLPFKTRQEI--FSSTQDINPYIREIVEFQKKNTNNFKTLSNLFWGYHPQRKRRGYSEKCCLKGCTKEELSIACLP</Hsp_hseq>
+      <Hsp_midline>++F+ + + +S  +K CG+ L   +  +C  V  S F++              + F P              +  R ++   + ++EE+   LK   L+   E  ++     F +  E+  +    DI+PY+   +   +        L   F G   +R+ RG  E+CC+ GCT  EL+  C P</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>29</Hit_num>
+  <Hit_id>gi|301776597|ref|XP_002923717.1|</Hit_id>
+  <Hit_def>PREDICTED: insulin-like peptide INSL6-like [Ailuropoda melanoleuca] &gt;gi|281338246|gb|EFB13830.1| hypothetical protein PANDA_012909 [Ailuropoda melanoleuca]</Hit_def>
+  <Hit_accession>XP_002923717</Hit_accession>
+  <Hit_len>212</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>43.1282</Hsp_bit-score>
+      <Hsp_score>100</Hsp_score>
+      <Hsp_evalue>0.0204647</Hsp_evalue>
+      <Hsp_query-from>32</Hsp_query-from>
+      <Hsp_query-to>186</Hsp_query-to>
+      <Hsp_hit-from>17</Hsp_hit-from>
+      <Hsp_hit-to>193</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>48</Hsp_identity>
+      <Hsp_positive>70</Hsp_positive>
+      <Hsp_gaps>34</Hsp_gaps>
+      <Hsp_align-len>183</Hsp_align-len>
+      <Hsp_qseq>LQFNPKRSAVSSPQKYCGKKLSNALQIICDGVYNSMFKKSGQD---FPPQNKRHIAHRINGNEEESFTTLKSNFLNWCV---EVYHRHYRFVFVSEMEMADYPLAYDISPYLPPFLSRARARG----------------------MLDGRFAGRRYRRESRGIHEECCINGCTINELTSYCGP</Hsp_qseq>
+      <Hsp_hseq>FRFSRELSEISRARRLCGRHLLKEIIKLCGNVNWSYFEEETPMPPLFPQDNK--IETFIPDRWESSQTT----FPAWARGTNPVSTSASEEEVINSLEMSSLPEYRYIRANLPPDKTREFSSSKDTNQYIHEISEFQKKDTNKIKTLRNVFWGNHPQRKRRGYSEKCCLKGCTIEELSIACFP</Hsp_hseq>
+      <Hsp_midline> +F+ + S +S  ++ CG+ L   +  +C  V  S F++       FP  NK  I   I    E S TT    F  W      V         ++ +EM+  P    I   LPP  +R  +                         L   F G   +R+ RG  E+CC+ GCTI EL+  C P</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>30</Hit_num>
+  <Hit_id>gi|443694410|gb|ELT95556.1|</Hit_id>
+  <Hit_def>hypothetical protein CAPTEDRAFT_222461 [Capitella teleta]</Hit_def>
+  <Hit_accession>ELT95556</Hit_accession>
+  <Hit_len>195</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>42.743</Hsp_bit-score>
+      <Hsp_score>99</Hsp_score>
+      <Hsp_evalue>0.0244403</Hsp_evalue>
+      <Hsp_query-from>10</Hsp_query-from>
+      <Hsp_query-to>185</Hsp_query-to>
+      <Hsp_hit-from>18</Hsp_hit-from>
+      <Hsp_hit-to>166</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>44</Hsp_identity>
+      <Hsp_positive>68</Hsp_positive>
+      <Hsp_gaps>39</Hsp_gaps>
+      <Hsp_align-len>182</Hsp_align-len>
+      <Hsp_qseq>VTLMLAVALLVTESG--NAQVDGYLQFNPKRSAVSSPQKYCGKKLSNALQIICDGVYNSMFKKS-GQDFPPQNKRHIAHRINGNEEESFTTLKSNFLNWCVEVYHRHYRFVFVSEMEMADYPLAYDISP---YLPPFLSRARARGMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYCG</Hsp_qseq>
+      <Hsp_hseq>AAFVLILTFISVDAGRRKCSADDYRAGAPKRGFI------CGSQIPQTLSLVCGGSYQSPGKRDLGSSRSPWN--------------SFLTTSDDDDPW---------RKKTTNPVDDLDPAAIDDFDPAAIWDNVFLPRANALSVL----RSKRSNMKEGGVYCECCVHRCTYPELQAYCG</Hsp_hseq>
+      <Hsp_midline>   +L +  +  ++G      D Y    PKR  +      CG ++   L ++C G Y S  K+  G    P N              SF T   +   W         R    + ++  D     D  P   +   FL RA A  +L      +R   +  G++ ECC++ CT  EL +YCG</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>31</Hit_num>
+  <Hit_id>gi|195126317|ref|XP_002007617.1|</Hit_id>
+  <Hit_def>GI12281 [Drosophila mojavensis] &gt;gi|193919226|gb|EDW18093.1| GI12281 [Drosophila mojavensis]</Hit_def>
+  <Hit_accession>XP_002007617</Hit_accession>
+  <Hit_len>123</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>41.5874</Hsp_bit-score>
+      <Hsp_score>96</Hsp_score>
+      <Hsp_evalue>0.0270167</Hsp_evalue>
+      <Hsp_query-from>131</Hsp_query-from>
+      <Hsp_query-to>184</Hsp_query-to>
+      <Hsp_hit-from>70</Hsp_hit-from>
+      <Hsp_hit-to>122</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>20</Hsp_identity>
+      <Hsp_positive>29</Hsp_positive>
+      <Hsp_gaps>1</Hsp_gaps>
+      <Hsp_align-len>54</Hsp_align-len>
+      <Hsp_qseq>YDISPYLPPFLSRARARGMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYC</Hsp_qseq>
+      <Hsp_hseq>YGVYPHMN-LDSQPLMRALISESAHQLQIRRRRYGIHDECCMKSCTFNELLSYC</Hsp_hseq>
+      <Hsp_midline>Y + P++    S+   R ++       + RR   GIH+ECC+  CT NEL SYC</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>32</Hit_num>
+  <Hit_id>gi|170066876|ref|XP_001868257.1|</Hit_id>
+  <Hit_def>conserved hypothetical protein [Culex quinquefasciatus] &gt;gi|167863065|gb|EDS26448.1| conserved hypothetical protein [Culex quinquefasciatus]</Hit_def>
+  <Hit_accession>XP_001868257</Hit_accession>
+  <Hit_len>139</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>41.5874</Hsp_bit-score>
+      <Hsp_score>96</Hsp_score>
+      <Hsp_evalue>0.0285961</Hsp_evalue>
+      <Hsp_query-from>46</Hsp_query-from>
+      <Hsp_query-to>184</Hsp_query-to>
+      <Hsp_hit-from>51</Hsp_hit-from>
+      <Hsp_hit-to>138</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>36</Hsp_identity>
+      <Hsp_positive>54</Hsp_positive>
+      <Hsp_gaps>51</Hsp_gaps>
+      <Hsp_align-len>139</Hsp_align-len>
+      <Hsp_qseq>KYCGKKLSNALQIICDGVYNSMFKKSGQDFPPQNKRHIAHRINGNEEESFTTLKSNFLNWCVEVYHRHYRFVFVSEMEMADYPLAYDISPYLPPFLSRARARGMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYC</Hsp_qseq>
+      <Hsp_hseq>RYCGRKLTETLAMLCQGRYPMMS--------------------------------------------HHRSEYLSDQPQQ--PVEVEVA-TLPD--SGVTSRGYPHSRSAHRRVRRE--GIYDECCKKSCSYTQLKSYC</Hsp_hseq>
+      <Hsp_midline>+YCG+KL+  L ++C G Y  M                                             H+R  ++S+      P+  +++  LP   S   +RG    R A RR RRE  GI++ECC   C+  +L SYC</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>33</Hit_num>
+  <Hit_id>gi|470604932|ref|XP_004313649.1|</Hit_id>
+  <Hit_def>PREDICTED: LOW QUALITY PROTEIN: insulin-like peptide INSL6 [Tursiops truncatus]</Hit_def>
+  <Hit_accession>XP_004313649</Hit_accession>
+  <Hit_len>205</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>42.3578</Hsp_bit-score>
+      <Hsp_score>98</Hsp_score>
+      <Hsp_evalue>0.033139</Hsp_evalue>
+      <Hsp_query-from>89</Hsp_query-from>
+      <Hsp_query-to>186</Hsp_query-to>
+      <Hsp_hit-from>96</Hsp_hit-from>
+      <Hsp_hit-to>192</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>29</Hsp_identity>
+      <Hsp_positive>46</Hsp_positive>
+      <Hsp_gaps>9</Hsp_gaps>
+      <Hsp_align-len>102</Hsp_align-len>
+      <Hsp_qseq>GNEEESFTTLKSNFLNWCVEVYHRHYRFVFVSEMEMADYPLAYDISPYLPPFLSRARAR----GMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYCGP</Hsp_qseq>
+      <Hsp_hseq>ASQEEALNNLKMQSLS---EHQYKKANLPFKTRQEI--FSSSQDISPYIHEIVEFQKKNTNKIKTLSNLFWGNHPQRKCRGYSEKCCLKGCTKXELIIACLP</Hsp_hseq>
+      <Hsp_midline> ++EE+   LK   L+   E  ++     F +  E+  +  + DISPY+   +   +        L   F G   +R+ RG  E+CC+ GCT  EL   C P</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>34</Hit_num>
+  <Hit_id>gi|466055178|ref|XP_004279192.1|</Hit_id>
+  <Hit_def>PREDICTED: LOW QUALITY PROTEIN: insulin-like peptide INSL6 [Orcinus orca]</Hit_def>
+  <Hit_accession>XP_004279192</Hit_accession>
+  <Hit_len>204</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>42.3578</Hsp_bit-score>
+      <Hsp_score>98</Hsp_score>
+      <Hsp_evalue>0.0355882</Hsp_evalue>
+      <Hsp_query-from>89</Hsp_query-from>
+      <Hsp_query-to>186</Hsp_query-to>
+      <Hsp_hit-from>96</Hsp_hit-from>
+      <Hsp_hit-to>192</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>29</Hsp_identity>
+      <Hsp_positive>46</Hsp_positive>
+      <Hsp_gaps>9</Hsp_gaps>
+      <Hsp_align-len>102</Hsp_align-len>
+      <Hsp_qseq>GNEEESFTTLKSNFLNWCVEVYHRHYRFVFVSEMEMADYPLAYDISPYLPPFLSRARAR----GMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYCGP</Hsp_qseq>
+      <Hsp_hseq>ASQEEALNNLKMQSLS---EHQYKKANLPFKTRQEI--FSSSQDISPYIHEIVEFQKKNTNKIKTLSNLFWGNHPQRKCRGYSEKCCLKGCTKXELIIACLP</Hsp_hseq>
+      <Hsp_midline> ++EE+   LK   L+   E  ++     F +  E+  +  + DISPY+   +   +        L   F G   +R+ RG  E+CC+ GCT  EL   C P</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>35</Hit_num>
+  <Hit_id>gi|238181|gb|AAB20201.1|</Hit_id>
+  <Hit_def>insulin B chain [Locusta migratoria, Peptide Partial, 31 aa]</Hit_def>
+  <Hit_accession>AAB20201</Hit_accession>
+  <Hit_len>31</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>39.6614</Hsp_bit-score>
+      <Hsp_score>91</Hsp_score>
+      <Hsp_evalue>0.0430491</Hsp_evalue>
+      <Hsp_query-from>43</Hsp_query-from>
+      <Hsp_query-to>68</Hsp_query-to>
+      <Hsp_hit-from>3</Hsp_hit-from>
+      <Hsp_hit-to>31</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>17</Hsp_identity>
+      <Hsp_positive>24</Hsp_positive>
+      <Hsp_gaps>3</Hsp_gaps>
+      <Hsp_align-len>29</Hsp_align-len>
+      <Hsp_qseq>SPQ---KYCGKKLSNALQIICDGVYNSMF</Hsp_qseq>
+      <Hsp_hseq>APQPVARYCGEKLSNALKLVCRGNYNTMF</Hsp_hseq>
+      <Hsp_midline>+PQ   +YCG+KLSNAL+++C G YN+MF</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>36</Hit_num>
+  <Hit_id>gi|296189879|ref|XP_002742954.1|</Hit_id>
+  <Hit_def>PREDICTED: insulin-like peptide INSL6 [Callithrix jacchus]</Hit_def>
+  <Hit_accession>XP_002742954</Hit_accession>
+  <Hit_len>215</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>41.9726</Hsp_bit-score>
+      <Hsp_score>97</Hsp_score>
+      <Hsp_evalue>0.0488922</Hsp_evalue>
+      <Hsp_query-from>32</Hsp_query-from>
+      <Hsp_query-to>186</Hsp_query-to>
+      <Hsp_hit-from>17</Hsp_hit-from>
+      <Hsp_hit-to>196</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>36</Hsp_identity>
+      <Hsp_positive>73</Hsp_positive>
+      <Hsp_gaps>25</Hsp_gaps>
+      <Hsp_align-len>180</Hsp_align-len>
+      <Hsp_qseq>LQFNPKRSAVSSPQKYCGKKLSNALQIICDGVYNSMFKKSGQDFPPQNKRHIAHRINGNEEESFTTLKSNFLNWC---------------------VEVYHRHYRFVFVSEMEMADYPLAYDISPYL---PPFLSRARAR-GMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYCGP</Hsp_qseq>
+      <Hsp_hseq>VRFSGELSDISSARKLCGRYLVKEIENLCGHANWSRFHSEEETPFTRLLAQTSEKVEAFIPDQFESPQTTFPVWSRGTNPVSTSASWEEAVNSWELQSLPEYQYKKAYSPLDKTREFSSSHNINPYIRENAKFQKKGRNKIKTLSNLFWGNHPQRKRRGYSEKCCLTGCTREELSIACLP</Hsp_hseq>
+      <Hsp_midline>++F+ + S +SS +K CG+ L   ++ +C     S F    +    +     + ++     + F + ++ F  W                        +    Y+  +    +  ++  +++I+PY+     F  + R +   L   F G   +R+ RG  E+CC+ GCT  EL+  C P</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>37</Hit_num>
+  <Hit_id>gi|195326451|ref|XP_002029942.1|</Hit_id>
+  <Hit_def>GM25185 [Drosophila sechellia] &gt;gi|194118885|gb|EDW40928.1| GM25185 [Drosophila sechellia]</Hit_def>
+  <Hit_accession>XP_002029942</Hit_accession>
+  <Hit_len>157</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>41.2022</Hsp_bit-score>
+      <Hsp_score>95</Hsp_score>
+      <Hsp_evalue>0.0490701</Hsp_evalue>
+      <Hsp_query-from>45</Hsp_query-from>
+      <Hsp_query-to>186</Hsp_query-to>
+      <Hsp_hit-from>46</Hsp_hit-from>
+      <Hsp_hit-to>156</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>35</Hsp_identity>
+      <Hsp_positive>61</Hsp_positive>
+      <Hsp_gaps>39</Hsp_gaps>
+      <Hsp_align-len>146</Hsp_align-len>
+      <Hsp_qseq>QKYCGKKLSNALQIICDGVYNSMFKKSGQDFPPQNKRHIAHRINGNEEESFTTLKSNFLNWCVEVYHRHYRFVFVSEMEMADY---PLAYDISPYLPPFLSRARARGMLDGRFAGRRYRRE-SRGIHEECCINGCTINELTSYCGP</Hsp_qseq>
+      <Hsp_hseq>HKLCGPALSDAMDVVCPHGFNTM--------PKKRESLLLANSNDDDEDAKQEEEDDSSMW--------------QTLDGAGYSFSPLLTNL--YGSEVLIKTR-----------RRYRRHLTGGVYDECCVKTCSYLELAIYCLP</Hsp_hseq>
+      <Hsp_midline> K CG  LS+A+ ++C   +N+M        P + +  +    N ++E++    + +   W                ++ A Y   PL  ++  Y    L + R           RRYRR  + G+++ECC+  C+  EL  YC P</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>38</Hit_num>
+  <Hit_id>gi|328709980|ref|XP_003244126.1|</Hit_id>
+  <Hit_def>PREDICTED: LIRP-like [Acyrthosiphon pisum]</Hit_def>
+  <Hit_accession>XP_003244126</Hit_accession>
+  <Hit_len>123</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>40.817</Hsp_bit-score>
+      <Hsp_score>94</Hsp_score>
+      <Hsp_evalue>0.0526502</Hsp_evalue>
+      <Hsp_query-from>43</Hsp_query-from>
+      <Hsp_query-to>185</Hsp_query-to>
+      <Hsp_hit-from>28</Hsp_hit-from>
+      <Hsp_hit-to>121</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>36</Hsp_identity>
+      <Hsp_positive>52</Hsp_positive>
+      <Hsp_gaps>53</Hsp_gaps>
+      <Hsp_align-len>145</Hsp_align-len>
+      <Hsp_qseq>SPQKYCGKKLSNALQIICDGVYNS--MFKKSGQDFPPQNKRHIAHRINGNEEESFTTLKSNFLNWCVEVYHRHYRFVFVSEMEMADYPLAYDISPYLPPFLSRARARGMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYCG</Hsp_qseq>
+      <Hsp_hseq>SPQQYCGSKLADIMKALCKSNYNSPNLQKKSQID-----------------------------------------------SDVWDYKDLEDYNAIDYPYLPKKEAMSFMPSRLL----RSVKRSIIDECCNRPCYLSELKSYCG</Hsp_hseq>
+      <Hsp_midline>SPQ+YCG KL++ ++ +C   YNS  + KKS  D                                                ++ DY    D +    P+L +  A   +  R      R   R I +ECC   C ++EL SYCG</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>39</Hit_num>
+  <Hit_id>gi|443723424|gb|ELU11855.1|</Hit_id>
+  <Hit_def>hypothetical protein CAPTEDRAFT_188664 [Capitella teleta]</Hit_def>
+  <Hit_accession>ELU11855</Hit_accession>
+  <Hit_len>265</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>41.9726</Hsp_bit-score>
+      <Hsp_score>97</Hsp_score>
+      <Hsp_evalue>0.0528996</Hsp_evalue>
+      <Hsp_query-from>140</Hsp_query-from>
+      <Hsp_query-to>184</Hsp_query-to>
+      <Hsp_hit-from>219</Hsp_hit-from>
+      <Hsp_hit-to>264</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>22</Hsp_identity>
+      <Hsp_positive>26</Hsp_positive>
+      <Hsp_gaps>1</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>FLSRARARGML-DGRFAGRRYRRESRGIHEECCINGCTINELTSYC</Hsp_qseq>
+      <Hsp_hseq>FLPRAAASSMLVSKRSFGRHPRMRDRGVVCECCVNSCTLYEMREYC</Hsp_hseq>
+      <Hsp_midline>FL RA A  ML   R  GR  R   RG+  ECC+N CT+ E+  YC</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>40</Hit_num>
+  <Hit_id>gi|194868136|ref|XP_001972228.1|</Hit_id>
+  <Hit_def>GG15411 [Drosophila erecta] &gt;gi|190654011|gb|EDV51254.1| GG15411 [Drosophila erecta]</Hit_def>
+  <Hit_accession>XP_001972228</Hit_accession>
+  <Hit_len>151</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>41.2022</Hsp_bit-score>
+      <Hsp_score>95</Hsp_score>
+      <Hsp_evalue>0.0538743</Hsp_evalue>
+      <Hsp_query-from>45</Hsp_query-from>
+      <Hsp_query-to>186</Hsp_query-to>
+      <Hsp_hit-from>47</Hsp_hit-from>
+      <Hsp_hit-to>150</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>31</Hsp_identity>
+      <Hsp_positive>53</Hsp_positive>
+      <Hsp_gaps>40</Hsp_gaps>
+      <Hsp_align-len>143</Hsp_align-len>
+      <Hsp_qseq>QKYCGKKLSNALQIICDGVYNSMFKKSGQDFPPQNKRHIAHRINGNEEESFTTLKSNFLNWCVEVYHRHYRFVFVSEMEMADYPLAYDISPYLPPFLSRARARGMLDGRFAGRRYRRE-SRGIHEECCINGCTINELTSYCGP</Hsp_qseq>
+      <Hsp_hseq>HKLCGPALSDAMDVVCSNGFNTLPRKRGSLLASNN----------------------------DVQGDDDDDGMWQTLDGAGYSFS--------PLLTNLYGSEVL---IKTRRHRRHLTGGVYDECCVKSCSYEELATYCLP</Hsp_hseq>
+      <Hsp_midline> K CG  LS+A+ ++C   +N++ +K G      N                            +V            ++ A Y  +        P L+      +L      RR+RR  + G+++ECC+  C+  EL +YC P</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>41</Hit_num>
+  <Hit_id>gi|195174113|ref|XP_002027825.1|</Hit_id>
+  <Hit_def>GL16295 [Drosophila persimilis] &gt;gi|194115501|gb|EDW37544.1| GL16295 [Drosophila persimilis]</Hit_def>
+  <Hit_accession>XP_002027825</Hit_accession>
+  <Hit_len>133</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>40.4318</Hsp_bit-score>
+      <Hsp_score>93</Hsp_score>
+      <Hsp_evalue>0.0742793</Hsp_evalue>
+      <Hsp_query-from>45</Hsp_query-from>
+      <Hsp_query-to>186</Hsp_query-to>
+      <Hsp_hit-from>42</Hsp_hit-from>
+      <Hsp_hit-to>132</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>35</Hsp_identity>
+      <Hsp_positive>57</Hsp_positive>
+      <Hsp_gaps>55</Hsp_gaps>
+      <Hsp_align-len>144</Hsp_align-len>
+      <Hsp_qseq>QKYCGKKLSNALQIICDGVYNSMFKKSGQDFPPQNKRHIAHRINGNEEESFTTLKSNFLNWCVEVYHRHYRFVFVSEMEMADYPLAYDISPYLPPFLSRARARGMLDGRFAGRRYRRE--SRGIHEECCINGCTINELTSYCGP</Hsp_qseq>
+      <Hsp_hseq>HKLCGQALSDAMDVVCAHGYNTL---------PQKK---SSTVDAQDDDA------------------------------PEYALS--------PLLSSLYGAEVL---IKTRRHRRQRSSGGIYDECCVYSCRYEELASYCLP</Hsp_hseq>
+      <Hsp_midline> K CG+ LS+A+ ++C   YN++         PQ K   +  ++  ++++                               +Y L+        P LS      +L      RR+RR+  S GI++ECC+  C   EL SYC P</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>42</Hit_num>
+  <Hit_id>gi|307938338|ref|NP_001182754.1|</Hit_id>
+  <Hit_def>insulin-like growth factor II isoform a precursor [Canis lupus familiaris] &gt;gi|307938340|ref|NP_001182755.1| insulin-like growth factor II isoform a precursor [Canis lupus familiaris]</Hit_def>
+  <Hit_accession>NP_001182754</Hit_accession>
+  <Hit_len>187</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>41.2022</Hsp_bit-score>
+      <Hsp_score>95</Hsp_score>
+      <Hsp_evalue>0.0815621</Hsp_evalue>
+      <Hsp_query-from>150</Hsp_query-from>
+      <Hsp_query-to>185</Hsp_query-to>
+      <Hsp_hit-from>56</Hsp_hit-from>
+      <Hsp_hit-to>91</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>19</Hsp_identity>
+      <Hsp_positive>21</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>36</Hsp_align-len>
+      <Hsp_qseq>LDGRFAGRRYRRESRGIHEECCINGCTINELTSYCG</Hsp_qseq>
+      <Hsp_hseq>LPGRPASRVTRRSSRGIVEECCFRSCDLALLETYCA</Hsp_hseq>
+      <Hsp_midline>L GR A R  RR SRGI EECC   C +  L +YC </Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>43</Hit_num>
+  <Hit_id>gi|225216807|gb|ACN85152.1|</Hit_id>
+  <Hit_def>insulin-like growth factor 2 splice variant 2 [Canis lupus familiaris] &gt;gi|225216809|gb|ACN85153.1| insulin-like growth factor 2 splice variant 2 [Canis lupus familiaris]</Hit_def>
+  <Hit_accession>ACN85152</Hit_accession>
+  <Hit_len>185</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>41.2022</Hsp_bit-score>
+      <Hsp_score>95</Hsp_score>
+      <Hsp_evalue>0.0875544</Hsp_evalue>
+      <Hsp_query-from>150</Hsp_query-from>
+      <Hsp_query-to>185</Hsp_query-to>
+      <Hsp_hit-from>54</Hsp_hit-from>
+      <Hsp_hit-to>89</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>19</Hsp_identity>
+      <Hsp_positive>21</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>36</Hsp_align-len>
+      <Hsp_qseq>LDGRFAGRRYRRESRGIHEECCINGCTINELTSYCG</Hsp_qseq>
+      <Hsp_hseq>LPGRPASRVTRRSSRGIVEECCFRSCDLALLETYCA</Hsp_hseq>
+      <Hsp_midline>L GR A R  RR SRGI EECC   C +  L +YC </Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>44</Hit_num>
+  <Hit_id>gi|195493037|ref|XP_002094247.1|</Hit_id>
+  <Hit_def>GE21719 [Drosophila yakuba] &gt;gi|194180348|gb|EDW93959.1| GE21719 [Drosophila yakuba]</Hit_def>
+  <Hit_accession>XP_002094247</Hit_accession>
+  <Hit_len>154</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>40.4318</Hsp_bit-score>
+      <Hsp_score>93</Hsp_score>
+      <Hsp_evalue>0.0997238</Hsp_evalue>
+      <Hsp_query-from>8</Hsp_query-from>
+      <Hsp_query-to>186</Hsp_query-to>
+      <Hsp_hit-from>18</Hsp_hit-from>
+      <Hsp_hit-to>153</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>37</Hsp_identity>
+      <Hsp_positive>67</Hsp_positive>
+      <Hsp_gaps>45</Hsp_gaps>
+      <Hsp_align-len>180</Hsp_align-len>
+      <Hsp_qseq>VLVTLMLAVALLVTESGNAQVDGYLQFNPKRSAVSSPQKYCGKKLSNALQIICDGVYNSMFKKSGQDFPPQNKRHIAHRINGNEEESFTTLKSNFLNWCVEVYHRHYRFVFVSEMEMADYPLAYDISPYLPPFLSRARARGMLDGRFAGRRYRRE-SRGIHEECCINGCTINELTSYCGP</Hsp_qseq>
+      <Hsp_hseq>LLIAAMLTASVALATPGGS---GHQLLPPGN------HKLCGPALSDAMDVVCPHGFNTLPRKRESLLANNNDVQLEVEAEMEDDGMWQTLDGA----------------------------GYSFSP----LLTQLYGSEVL---IKTRRHRRHLTGGVYDECCVKSCSYEELATYCLP</Hsp_hseq>
+      <Hsp_midline>+L+  ML  ++ +   G +   G+    P         K CG  LS+A+ ++C   +N++ +K        N   +       ++  + TL                                Y  SP     L++     +L      RR+RR  + G+++ECC+  C+  EL +YC P</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>45</Hit_num>
+  <Hit_id>gi|198466054|ref|XP_001353876.2|</Hit_id>
+  <Hit_def>GA12803 [Drosophila pseudoobscura pseudoobscura] &gt;gi|198150425|gb|EAL29611.2| GA12803 [Drosophila pseudoobscura pseudoobscura]</Hit_def>
+  <Hit_accession>XP_001353876</Hit_accession>
+  <Hit_len>133</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>39.6614</Hsp_bit-score>
+      <Hsp_score>91</Hsp_score>
+      <Hsp_evalue>0.134511</Hsp_evalue>
+      <Hsp_query-from>45</Hsp_query-from>
+      <Hsp_query-to>186</Hsp_query-to>
+      <Hsp_hit-from>42</Hsp_hit-from>
+      <Hsp_hit-to>132</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>34</Hsp_identity>
+      <Hsp_positive>50</Hsp_positive>
+      <Hsp_gaps>55</Hsp_gaps>
+      <Hsp_align-len>144</Hsp_align-len>
+      <Hsp_qseq>QKYCGKKLSNALQIICDGVYNSMFKKSGQDFPPQNKRHIAHRINGNEEESFTTLKSNFLNWCVEVYHRHYRFVFVSEMEMADYPLAYDISPYLPPFLSRARARGMLDGRFAGRRYRRE--SRGIHEECCINGCTINELTSYCGP</Hsp_qseq>
+      <Hsp_hseq>HKLCGQALSDAMDVVCAHGYNTLPQKKSSTVDAQDD---------------------------------------------DAP-EYALSPLLTSLYGA-------EVLIKTRRHRRQRSSGGIYDECCVYSCRYEELASYCLP</Hsp_hseq>
+      <Hsp_midline> K CG+ LS+A+ ++C   YN++ +K       Q+                                              D P  Y +SP L             +     RR+RR+  S GI++ECC+  C   EL SYC P</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>46</Hit_num>
+  <Hit_id>gi|195440298|ref|XP_002067979.1|</Hit_id>
+  <Hit_def>GK11757 [Drosophila willistoni] &gt;gi|194164064|gb|EDW78965.1| GK11757 [Drosophila willistoni]</Hit_def>
+  <Hit_accession>XP_002067979</Hit_accession>
+  <Hit_len>139</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>39.6614</Hsp_bit-score>
+      <Hsp_score>91</Hsp_score>
+      <Hsp_evalue>0.138044</Hsp_evalue>
+      <Hsp_query-from>41</Hsp_query-from>
+      <Hsp_query-to>184</Hsp_query-to>
+      <Hsp_hit-from>27</Hsp_hit-from>
+      <Hsp_hit-to>138</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>36</Hsp_identity>
+      <Hsp_positive>51</Hsp_positive>
+      <Hsp_gaps>40</Hsp_gaps>
+      <Hsp_align-len>148</Hsp_align-len>
+      <Hsp_qseq>VSSPQKYCGKKLSNALQIICDGVYNSMFKKSGQDFPPQNKRHIAHRINGNEEESFTTL----KSNFLNWCVEVYHRHYRFVFVSEMEMADYPLAYDISPYLPPFLSRARARGMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYC</Hsp_qseq>
+      <Hsp_hseq>VHGRQKLCGEALNRALDLICV-----------NGFSRRIKRDLKQTANGAPNHSGTSTNHQDQAILRKW----------MAFLHKTELAERQRLASMES---------------DRTFGGTNLRRHRRRIAHECCREGCTYEDIMEYC</Hsp_hseq>
+      <Hsp_midline>V   QK CG+ L+ AL +IC              F  + KR +    NG    S T+     ++    W            F+ + E+A+      +                 D  F G   RR  R I  ECC  GCT  ++  YC</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>47</Hit_num>
+  <Hit_id>gi|507933646|ref|XP_004678059.1|</Hit_id>
+  <Hit_def>PREDICTED: LOW QUALITY PROTEIN: insulin-like peptide INSL6 [Condylura cristata]</Hit_def>
+  <Hit_accession>XP_004678059</Hit_accession>
+  <Hit_len>210</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>40.4318</Hsp_bit-score>
+      <Hsp_score>93</Hsp_score>
+      <Hsp_evalue>0.161955</Hsp_evalue>
+      <Hsp_query-from>132</Hsp_query-from>
+      <Hsp_query-to>186</Hsp_query-to>
+      <Hsp_hit-from>133</Hsp_hit-from>
+      <Hsp_hit-to>191</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>20</Hsp_identity>
+      <Hsp_positive>29</Hsp_positive>
+      <Hsp_gaps>4</Hsp_gaps>
+      <Hsp_align-len>59</Hsp_align-len>
+      <Hsp_qseq>DISPYLPPFLSRARARG----MLDGRFAGRRYRRESRGIHEECCINGCTINELTSYCGP</Hsp_qseq>
+      <Hsp_hseq>DINPYIHKLVEFQKKNAYKIKTLSNLFWGDHPQRKRRGYSEKCCLKGCTKEELSIACRP</Hsp_hseq>
+      <Hsp_midline>DI+PY+   +   +        L   F G   +R+ RG  E+CC+ GCT  EL+  C P</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>48</Hit_num>
+  <Hit_id>gi|478533168|ref|XP_004440727.1|</Hit_id>
+  <Hit_def>PREDICTED: insulin-like peptide INSL6 [Ceratotherium simum simum]</Hit_def>
+  <Hit_accession>XP_004440727</Hit_accession>
+  <Hit_len>212</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>40.4318</Hsp_bit-score>
+      <Hsp_score>93</Hsp_score>
+      <Hsp_evalue>0.19174</Hsp_evalue>
+      <Hsp_query-from>34</Hsp_query-from>
+      <Hsp_query-to>186</Hsp_query-to>
+      <Hsp_hit-from>19</Hsp_hit-from>
+      <Hsp_hit-to>193</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>66</Hsp_positive>
+      <Hsp_gaps>28</Hsp_gaps>
+      <Hsp_align-len>178</Hsp_align-len>
+      <Hsp_qseq>FNPKRSAVSSPQKYCGKKLSNALQIICDGVYNSMFKKSGQDFPPQNKRHIAHRINGNEEESFTTLKSNFLNW---CVEVYHRHYRFVFVSEMEMADYPLAYDISPYLPPFLSRARARG----------------------MLDGRFAGRRYRRESRGIHEECCINGCTINELTSYCGP</Hsp_qseq>
+      <Hsp_hseq>FSVQLSDISRARKLCGRHLLKEIVKLCGNASWSQFE---EETPTPLLSQATERVDTFIPDRLESSQTAFPVWGRGTNPVLTSASQEEAINSLEMLSLPEYQYKKANLPPDTTRKFSSSQDINSYIEETVEFQKKNTNKIKILSNLFWGNRPQRKRRGYSEKCCLKGCTKEELRIACLP</Hsp_hseq>
+      <Hsp_midline>F+ + S +S  +K CG+ L   +  +C     S F+   ++ P         R++    +   + ++ F  W      V     +   ++ +EM   P        LPP  +R  +                        +L   F G R +R+ RG  E+CC+ GCT  EL   C P</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>49</Hit_num>
+  <Hit_id>gi|118785366|ref|XP_001237579.1|</Hit_id>
+  <Hit_def>AGAP010602-PA [Anopheles gambiae str. PEST] &gt;gi|37220722|gb|AAQ89694.1| insulin-like peptide 3 precursor [Anopheles gambiae] &gt;gi|116128050|gb|EAU76770.1| AGAP010602-PA [Anopheles gambiae str. PEST]</Hit_def>
+  <Hit_accession>XP_001237579</Hit_accession>
+  <Hit_len>160</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>39.6614</Hsp_bit-score>
+      <Hsp_score>91</Hsp_score>
+      <Hsp_evalue>0.210319</Hsp_evalue>
+      <Hsp_query-from>41</Hsp_query-from>
+      <Hsp_query-to>184</Hsp_query-to>
+      <Hsp_hit-from>27</Hsp_hit-from>
+      <Hsp_hit-to>154</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>36</Hsp_identity>
+      <Hsp_positive>56</Hsp_positive>
+      <Hsp_gaps>20</Hsp_gaps>
+      <Hsp_align-len>146</Hsp_align-len>
+      <Hsp_qseq>VSSPQKYCGKKLSNALQIICDGV--YNSMFKKSGQDFPPQNKRHIAHRINGNEEESFTTLKSNFLNWCVEVYHRHYRFVFVSEMEMADYPLAYDISPYLPPFLSRARARGMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYC</Hsp_qseq>
+      <Hsp_hseq>VSANKRYCGAELVKVLSFLCDEFPDLHTTSKRSADNFAKPSDMATEDWMNA-EDNTQQILDQQLQS----VGMPDDRAAVPAWMNMV-YPTNY------------MYRHGAGHNELIPARFRKNRGGIVEECCLRPCGMNQLLQYC</Hsp_hseq>
+      <Hsp_midline>VS+ ++YCG +L   L  +CD     ++  K+S  +F   +       +N  E+ +   L     +    V     R    + M M  YP  Y                G         R+R+   GI EECC+  C +N+L  YC</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>50</Hit_num>
+  <Hit_id>gi|410974816|ref|XP_003993836.1|</Hit_id>
+  <Hit_def>PREDICTED: insulin-like growth factor II [Felis catus]</Hit_def>
+  <Hit_accession>XP_003993836</Hit_accession>
+  <Hit_len>133</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>39.2762</Hsp_bit-score>
+      <Hsp_score>90</Hsp_score>
+      <Hsp_evalue>0.222081</Hsp_evalue>
+      <Hsp_query-from>147</Hsp_query-from>
+      <Hsp_query-to>185</Hsp_query-to>
+      <Hsp_hit-from>50</Hsp_hit-from>
+      <Hsp_hit-to>88</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>19</Hsp_identity>
+      <Hsp_positive>21</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>39</Hsp_align-len>
+      <Hsp_qseq>RGMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYCG</Hsp_qseq>
+      <Hsp_hseq>RGFYFSRPASRVNRRSSRGIVEECCFRSCDLALLETYCA</Hsp_hseq>
+      <Hsp_midline>RG    R A R  RR SRGI EECC   C +  L +YC </Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>51</Hit_num>
+  <Hit_id>gi|426220408|ref|XP_004004408.1|</Hit_id>
+  <Hit_def>PREDICTED: insulin-like peptide INSL6 [Ovis aries]</Hit_def>
+  <Hit_accession>XP_004004408</Hit_accession>
+  <Hit_len>205</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>40.0466</Hsp_bit-score>
+      <Hsp_score>92</Hsp_score>
+      <Hsp_evalue>0.231594</Hsp_evalue>
+      <Hsp_query-from>88</Hsp_query-from>
+      <Hsp_query-to>186</Hsp_query-to>
+      <Hsp_hit-from>95</Hsp_hit-from>
+      <Hsp_hit-to>192</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>29</Hsp_identity>
+      <Hsp_positive>44</Hsp_positive>
+      <Hsp_gaps>9</Hsp_gaps>
+      <Hsp_align-len>103</Hsp_align-len>
+      <Hsp_qseq>NGNEEESFTTLKSNFLNWCVEVYHRHYRFVFVSEMEMADYPLAYDISPYLPPFLSRARAR----GMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYCGP</Hsp_qseq>
+      <Hsp_hseq>SASQEEAINNMKVQSL---PEYQYKKANLPFKTRQE--DSSSSQDISPYIHEIIEFQKKNTNKIKTLSNLFWGNHPQRKRRGYSEKCCQKGCTKEELIIACLP</Hsp_hseq>
+      <Hsp_midline>+ ++EE+   +K   L    E  ++     F +  E  D   + DISPY+   +   +        L   F G   +R+ RG  E+CC  GCT  EL   C P</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>52</Hit_num>
+  <Hit_id>gi|307938336|ref|NP_001182332.1|</Hit_id>
+  <Hit_def>insulin-like growth factor II isoform b precursor [Canis lupus familiaris] &gt;gi|307938342|ref|NP_001182756.1| insulin-like growth factor II isoform b precursor [Canis lupus familiaris]</Hit_def>
+  <Hit_accession>NP_001182332</Hit_accession>
+  <Hit_len>184</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>39.6614</Hsp_bit-score>
+      <Hsp_score>91</Hsp_score>
+      <Hsp_evalue>0.249892</Hsp_evalue>
+      <Hsp_query-from>147</Hsp_query-from>
+      <Hsp_query-to>185</Hsp_query-to>
+      <Hsp_hit-from>50</Hsp_hit-from>
+      <Hsp_hit-to>88</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>19</Hsp_identity>
+      <Hsp_positive>21</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>39</Hsp_align-len>
+      <Hsp_qseq>RGMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYCG</Hsp_qseq>
+      <Hsp_hseq>RGFYFSRPASRVTRRSSRGIVEECCFRSCDLALLETYCA</Hsp_hseq>
+      <Hsp_midline>RG    R A R  RR SRGI EECC   C +  L +YC </Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>53</Hit_num>
+  <Hit_id>gi|511893153|ref|XP_004766234.1|</Hit_id>
+  <Hit_def>PREDICTED: insulin-like peptide INSL6-like [Mustela putorius furo] &gt;gi|511970032|ref|XP_004803074.1| PREDICTED: insulin-like peptide INSL6-like [Mustela putorius furo]</Hit_def>
+  <Hit_accession>XP_004766234</Hit_accession>
+  <Hit_len>205</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>39.6614</Hsp_bit-score>
+      <Hsp_score>91</Hsp_score>
+      <Hsp_evalue>0.259464</Hsp_evalue>
+      <Hsp_query-from>150</Hsp_query-from>
+      <Hsp_query-to>186</Hsp_query-to>
+      <Hsp_hit-from>157</Hsp_hit-from>
+      <Hsp_hit-to>193</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>17</Hsp_identity>
+      <Hsp_positive>22</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>37</Hsp_align-len>
+      <Hsp_qseq>LDGRFAGRRYRRESRGIHEECCINGCTINELTSYCGP</Hsp_qseq>
+      <Hsp_hseq>LSNVFWGNHPQRKRRGFSEKCCLKGCTIEELSIACFP</Hsp_hseq>
+      <Hsp_midline>L   F G   +R+ RG  E+CC+ GCTI EL+  C P</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>54</Hit_num>
+  <Hit_id>gi|225216803|gb|ACN85150.1|</Hit_id>
+  <Hit_def>insulin-like growth factor 2 splice variant 1 [Canis lupus familiaris] &gt;gi|225216805|gb|ACN85151.1| insulin-like growth factor 2 splice variant 1 [Canis lupus familiaris]</Hit_def>
+  <Hit_accession>ACN85150</Hit_accession>
+  <Hit_len>182</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>39.6614</Hsp_bit-score>
+      <Hsp_score>91</Hsp_score>
+      <Hsp_evalue>0.28709</Hsp_evalue>
+      <Hsp_query-from>147</Hsp_query-from>
+      <Hsp_query-to>185</Hsp_query-to>
+      <Hsp_hit-from>48</Hsp_hit-from>
+      <Hsp_hit-to>86</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>19</Hsp_identity>
+      <Hsp_positive>21</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>39</Hsp_align-len>
+      <Hsp_qseq>RGMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYCG</Hsp_qseq>
+      <Hsp_hseq>RGFYFSRPASRVTRRSSRGIVEECCFRSCDLALLETYCA</Hsp_hseq>
+      <Hsp_midline>RG    R A R  RR SRGI EECC   C +  L +YC </Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>55</Hit_num>
+  <Hit_id>gi|410977978|ref|XP_003995375.1|</Hit_id>
+  <Hit_def>PREDICTED: insulin-like peptide INSL6-like [Felis catus]</Hit_def>
+  <Hit_accession>XP_003995375</Hit_accession>
+  <Hit_len>213</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>39.6614</Hsp_bit-score>
+      <Hsp_score>91</Hsp_score>
+      <Hsp_evalue>0.323125</Hsp_evalue>
+      <Hsp_query-from>32</Hsp_query-from>
+      <Hsp_query-to>186</Hsp_query-to>
+      <Hsp_hit-from>17</Hsp_hit-from>
+      <Hsp_hit-to>194</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>46</Hsp_identity>
+      <Hsp_positive>71</Hsp_positive>
+      <Hsp_gaps>33</Hsp_gaps>
+      <Hsp_align-len>183</Hsp_align-len>
+      <Hsp_qseq>LQFNPKRSAVSSPQKYCGKKLSNALQIICDGVYNSMFKKSG---QDFPPQNKRHIAHRINGNEEESFTTLKSNFLNWCV---EVYHRHYRFVFVSEMEMADYPL------------------AYDISPYLPPFLSRARAR----GMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYCGP</Hsp_qseq>
+      <Hsp_hseq>VRFSRELSDISRARRLCGRHLMKEIIKLCGNVSWHFLKEETPKIQLFPQANEK-IETFIPDRLESSQTT----FPAWARGTNPVSTSASEEEAVNSLEMSSLPKYRYKRANLPPDKTRELSSSQDINQYIHEILELQKINRNKIKTLSSVFWGNHPQRKRRGYSEKCCLKGCTKEELSIACFP</Hsp_hseq>
+      <Hsp_midline>++F+ + S +S  ++ CG+ L   +  +C  V     K+     Q FP  N++ I   I    E S TT    F  W      V         V+ +EM+  P                   + DI+ Y+   L   +        L   F G   +R+ RG  E+CC+ GCT  EL+  C P</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>56</Hit_num>
+  <Hit_id>gi|195126311|ref|XP_002007614.1|</Hit_id>
+  <Hit_def>GI13033 [Drosophila mojavensis] &gt;gi|193919223|gb|EDW18090.1| GI13033 [Drosophila mojavensis]</Hit_def>
+  <Hit_accession>XP_002007614</Hit_accession>
+  <Hit_len>129</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>38.5058</Hsp_bit-score>
+      <Hsp_score>88</Hsp_score>
+      <Hsp_evalue>0.33303</Hsp_evalue>
+      <Hsp_query-from>157</Hsp_query-from>
+      <Hsp_query-to>184</Hsp_query-to>
+      <Hsp_hit-from>101</Hsp_hit-from>
+      <Hsp_hit-to>128</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>16</Hsp_identity>
+      <Hsp_positive>21</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>28</Hsp_align-len>
+      <Hsp_qseq>RRYRRESRGIHEECCINGCTINELTSYC</Hsp_qseq>
+      <Hsp_hseq>RRLRRQGGGIYDECCRNSCTRSELLAYC</Hsp_hseq>
+      <Hsp_midline>RR RR+  GI++ECC N CT +EL +YC</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>57</Hit_num>
+  <Hit_id>gi|118785370|ref|XP_314567.3|</Hit_id>
+  <Hit_def>AGAP010604-PA [Anopheles gambiae str. PEST] &gt;gi|116128052|gb|EAA09943.3| AGAP010604-PA [Anopheles gambiae str. PEST]</Hit_def>
+  <Hit_accession>XP_314567</Hit_accession>
+  <Hit_len>160</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>38.891</Hsp_bit-score>
+      <Hsp_score>89</Hsp_score>
+      <Hsp_evalue>0.344256</Hsp_evalue>
+      <Hsp_query-from>41</Hsp_query-from>
+      <Hsp_query-to>184</Hsp_query-to>
+      <Hsp_hit-from>27</Hsp_hit-from>
+      <Hsp_hit-to>154</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>36</Hsp_identity>
+      <Hsp_positive>56</Hsp_positive>
+      <Hsp_gaps>20</Hsp_gaps>
+      <Hsp_align-len>146</Hsp_align-len>
+      <Hsp_qseq>VSSPQKYCGKKLSNALQIICDGV--YNSMFKKSGQDFPPQNKRHIAHRINGNEEESFTTLKSNFLNWCVEVYHRHYRFVFVSEMEMADYPLAYDISPYLPPFLSRARARGMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYC</Hsp_qseq>
+      <Hsp_hseq>VSANKRYCGAELVKVLSFLCDEFPDLHTTSKRSADNFAKPSDMATEDWMNA-EDNTQQILDQQLQS----VGMPDDRATVPAWMNMV-YPSNY------------MYRHGAGHNELIPARFRKNRGGIVEECCLRPCGMNQLLQYC</Hsp_hseq>
+      <Hsp_midline>VS+ ++YCG +L   L  +CD     ++  K+S  +F   +       +N  E+ +   L     +    V     R    + M M  YP  Y                G         R+R+   GI EECC+  C +N+L  YC</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>58</Hit_num>
+  <Hit_id>gi|195012510|ref|XP_001983679.1|</Hit_id>
+  <Hit_def>GH16017 [Drosophila grimshawi] &gt;gi|193897161|gb|EDV96027.1| GH16017 [Drosophila grimshawi]</Hit_def>
+  <Hit_accession>XP_001983679</Hit_accession>
+  <Hit_len>127</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>38.1206</Hsp_bit-score>
+      <Hsp_score>87</Hsp_score>
+      <Hsp_evalue>0.401516</Hsp_evalue>
+      <Hsp_query-from>46</Hsp_query-from>
+      <Hsp_query-to>186</Hsp_query-to>
+      <Hsp_hit-from>26</Hsp_hit-from>
+      <Hsp_hit-to>123</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>35</Hsp_identity>
+      <Hsp_positive>54</Hsp_positive>
+      <Hsp_gaps>43</Hsp_gaps>
+      <Hsp_align-len>141</Hsp_align-len>
+      <Hsp_qseq>KYCGKKLSNALQIICDGVYNSMFKKSGQDFPPQNKRHIAHRINGNEEESFTTLKSNFLNWCVEVYHRHYRFVFVSEMEMADYPLAYDISPYLPPFLSRARARGMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYCGP</Hsp_qseq>
+      <Hsp_hseq>RLCGTELPEMLERICSYGYNTEMKRANVP-PPVQYNGISNEYAG----SYSNLDSNS-------------------------------QPMLQMLLGESAHRHLVNSRH--RRF-----GVYDDCCARSCTYTELASYCRP</Hsp_hseq>
+      <Hsp_midline>+ CG +L   L+ IC   YN+  K++    PP     I++   G    S++ L SN                                 P L   L  +  R +++ R   RR+     G++++CC   CT  EL SYC P</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>59</Hit_num>
+  <Hit_id>gi|165973358|ref|NP_001107144.1|</Hit_id>
+  <Hit_def>insulin-like growth factor 2 precursor [Xenopus (Silurana) tropicalis] &gt;gi|161612034|gb|AAI56000.1| igf2 protein [Xenopus (Silurana) tropicalis] &gt;gi|213624226|gb|AAI70810.1| insulin-like growth factor 2 (somatomedin A) [Xenopus (Silurana) tropicalis] &gt;gi|213625534|gb|AAI70812.1| insulin-like growth factor 2 (somatomedin A) [Xenopus (Silurana) tropicalis]</Hit_def>
+  <Hit_accession>NP_001107144</Hit_accession>
+  <Hit_len>182</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>39.2762</Hsp_bit-score>
+      <Hsp_score>90</Hsp_score>
+      <Hsp_evalue>0.413775</Hsp_evalue>
+      <Hsp_query-from>147</Hsp_query-from>
+      <Hsp_query-to>185</Hsp_query-to>
+      <Hsp_hit-from>44</Hsp_hit-from>
+      <Hsp_hit-to>82</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>18</Hsp_identity>
+      <Hsp_positive>21</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>39</Hsp_align-len>
+      <Hsp_qseq>RGMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYCG</Hsp_qseq>
+      <Hsp_hseq>RGFYFSRNNGRSNRRANRGIVEECCFRSCDLELLETYCA</Hsp_hseq>
+      <Hsp_midline>RG    R  GR  RR +RGI EECC   C +  L +YC </Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>60</Hit_num>
+  <Hit_id>gi|505768235|ref|XP_004600391.1|</Hit_id>
+  <Hit_def>PREDICTED: insulin-like peptide INSL6 [Sorex araneus]</Hit_def>
+  <Hit_accession>XP_004600391</Hit_accession>
+  <Hit_len>212</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>38.891</Hsp_bit-score>
+      <Hsp_score>89</Hsp_score>
+      <Hsp_evalue>0.534349</Hsp_evalue>
+      <Hsp_query-from>32</Hsp_query-from>
+      <Hsp_query-to>186</Hsp_query-to>
+      <Hsp_hit-from>17</Hsp_hit-from>
+      <Hsp_hit-to>194</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>42</Hsp_identity>
+      <Hsp_positive>79</Hsp_positive>
+      <Hsp_gaps>43</Hsp_gaps>
+      <Hsp_align-len>188</Hsp_align-len>
+      <Hsp_qseq>LQFNPKRSAVSSPQKYCGKKLSNALQIICDGVYNSMFKKSGQDFPPQNKRHIAHRINGN-EEESFT------------------------TLKSNFLNWCVEVY--HRHYRFVFVSEMEMADYPLAYDISPYLPPFL-----SRARAR-GMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYCGP</Hsp_qseq>
+      <Hsp_hseq>VRFSLEQTEVREPRKLCGRHLLKEIVKLCGGSNWGNFER---------KRTPSTRLFSHVKEESFTPSQFENPQTPFMILEKDSSSAPTLSQEETISNWVMQSLSDYKHEMDNFLPDSTKIFF-ASQEFSPYIHKILELQKKNKNRSKIKTISHLFWGNHPQRKRRGYSEKCCLKGCTKQELRIACLP</Hsp_hseq>
+      <Hsp_midline>++F+ +++ V  P+K CG+ L   +  +C G     F++         KR  + R+  + +EESFT                        + +    NW ++    ++H    F+ +     +  + + SPY+   L     ++ R++   +   F G   +R+ RG  E+CC+ GCT  EL   C P</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>61</Hit_num>
+  <Hit_id>gi|187281797|ref|NP_001119736.1|</Hit_id>
+  <Hit_def>bombyxin C-1 precursor [Bombyx mori] &gt;gi|115184|sp|P15410.2|BXC1_BOMMO RecName: Full=Bombyxin C-1; Short=BBX-C1; AltName: Full=4K-prothoracicotropic hormone; Short=4K-PTTH; Contains: RecName: Full=Bombyxin C-1 B chain; Contains: RecName: Full=Bombyxin C-1 A chain; Flags: Precursor &gt;gi|217252|dbj|BAA00686.1| bombyxin C-1 precursor [Bombyx mori] &gt;gi|217254|dbj|BAA00687.1| bombyxin C-1 precursor [Bombyx mori] &gt;gi|227979|prf||1714254A bombyxin C1</Hit_def>
+  <Hit_accession>NP_001119736</Hit_accession>
+  <Hit_len>91</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>37.3502</Hsp_bit-score>
+      <Hsp_score>85</Hsp_score>
+      <Hsp_evalue>0.538355</Hsp_evalue>
+      <Hsp_query-from>135</Hsp_query-from>
+      <Hsp_query-to>184</Hsp_query-to>
+      <Hsp_hit-from>57</Hsp_hit-from>
+      <Hsp_hit-to>89</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>20</Hsp_identity>
+      <Hsp_positive>23</Hsp_positive>
+      <Hsp_gaps>17</Hsp_gaps>
+      <Hsp_align-len>50</Hsp_align-len>
+      <Hsp_qseq>PYLPPFLSRARARGMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYC</Hsp_qseq>
+      <Hsp_hseq>PWLPPFSSS-----------------RGKRGIVDECCYRPCTIDVLMSYC</Hsp_hseq>
+      <Hsp_midline>P+LPPF S                  R  RGI +ECC   CTI+ L SYC</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>62</Hit_num>
+  <Hit_id>gi|297684480|ref|XP_002819863.1|</Hit_id>
+  <Hit_def>PREDICTED: insulin-like peptide INSL6 [Pongo abelii]</Hit_def>
+  <Hit_accession>XP_002819863</Hit_accession>
+  <Hit_len>211</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>38.891</Hsp_bit-score>
+      <Hsp_score>89</Hsp_score>
+      <Hsp_evalue>0.558121</Hsp_evalue>
+      <Hsp_query-from>32</Hsp_query-from>
+      <Hsp_query-to>186</Hsp_query-to>
+      <Hsp_hit-from>17</Hsp_hit-from>
+      <Hsp_hit-to>192</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>46</Hsp_identity>
+      <Hsp_positive>72</Hsp_positive>
+      <Hsp_gaps>33</Hsp_gaps>
+      <Hsp_align-len>182</Hsp_align-len>
+      <Hsp_qseq>LQFNPKRSAVSSPQKYCGKKLSNALQIICDGVYNSMFKKSGQDFPPQNKRHIAHRINGNEEESFTTLKSNFLNWCVEVYHRHYRFV------FVSEMEMADYPLAYDISPYLP---------------------PFLSRARARGMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYCGP</Hsp_qseq>
+      <Hsp_hseq>VRFSRELSDISSARKLCGRYLVKEIEKLCGHANWSQFR-LGEETP--FSRLIAQ--ASEKVEAFSPYQFQSSQTAFPVRGRGTNPVSTSWEEAVNSWEMQSLPEYKDKKGYSPLDKTREFSSSHNINLYIHENAKFQKKSRNK-TLSNLFWGNHPQRKRRGYSEKCCLTGCTKEELSIACLP</Hsp_hseq>
+      <Hsp_midline>++F+ + S +SS +K CG+ L   ++ +C     S F+  G++ P    R IA      + E+F+  +         V  R    V       V+  EM   P   D   Y P                      F  ++R +  L   F G   +R+ RG  E+CC+ GCT  EL+  C P</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>63</Hit_num>
+  <Hit_id>gi|327359420|gb|AEA51304.1|</Hit_id>
+  <Hit_def>insulin-like peptide 2 precursor [Anopheles stephensi]</Hit_def>
+  <Hit_accession>AEA51304</Hit_accession>
+  <Hit_len>131</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>38.1206</Hsp_bit-score>
+      <Hsp_score>87</Hsp_score>
+      <Hsp_evalue>0.566204</Hsp_evalue>
+      <Hsp_query-from>113</Hsp_query-from>
+      <Hsp_query-to>184</Hsp_query-to>
+      <Hsp_hit-from>67</Hsp_hit-from>
+      <Hsp_hit-to>130</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>24</Hsp_identity>
+      <Hsp_positive>33</Hsp_positive>
+      <Hsp_gaps>8</Hsp_gaps>
+      <Hsp_align-len>72</Hsp_align-len>
+      <Hsp_qseq>HYRFVFVSEMEMADYPLAYDISPYLPPFLSRARARGMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYC</Hsp_qseq>
+      <Hsp_hseq>HYRTDYVHDQQRVKVEVA-TLPDTLPPGFP-------YPGAGVHRRSRRSSGGIYDECCKKSCSYVELRAYC</Hsp_hseq>
+      <Hsp_midline>HYR  +V + +     +A  +   LPP            G    RR RR S GI++ECC   C+  EL +YC</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>64</Hit_num>
+  <Hit_id>gi|117553594|ref|NP_001070989.1|</Hit_id>
+  <Hit_def>insulin-like peptide INSL6 precursor [Bos taurus] &gt;gi|122138723|sp|Q32L79.1|INSL6_BOVIN RecName: Full=Insulin-like peptide INSL6; Short=Insulin-like peptide 6; Contains: RecName: Full=Insulin-like peptide INSL6 B chain; Contains: RecName: Full=Insulin-like peptide INSL6 A chain; Flags: Precursor &gt;gi|81673141|gb|AAI09722.1| Insulin-like 6 [Bos taurus] &gt;gi|296484814|tpg|DAA26929.1| TPA: insulin-like peptide INSL6 precursor [Bos taurus]</Hit_def>
+  <Hit_accession>NP_001070989</Hit_accession>
+  <Hit_len>205</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>38.5058</Hsp_bit-score>
+      <Hsp_score>88</Hsp_score>
+      <Hsp_evalue>0.652895</Hsp_evalue>
+      <Hsp_query-from>88</Hsp_query-from>
+      <Hsp_query-to>186</Hsp_query-to>
+      <Hsp_hit-from>95</Hsp_hit-from>
+      <Hsp_hit-to>192</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>28</Hsp_identity>
+      <Hsp_positive>44</Hsp_positive>
+      <Hsp_gaps>9</Hsp_gaps>
+      <Hsp_align-len>103</Hsp_align-len>
+      <Hsp_qseq>NGNEEESFTTLKSNFLNWCVEVYHRHYRFVFVSEMEMADYPLAYDISPYLPPFLSRARAR----GMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYCGP</Hsp_qseq>
+      <Hsp_hseq>SASQEEAINNMKMQSL---PEYQYKKANLPFKTRQEESSS--SQDISPYIHEIIEFQKKNTNKIKTLSNLFWGNHPQRKRRGYSEKCCQKGCTKEELIIACLP</Hsp_hseq>
+      <Hsp_midline>+ ++EE+   +K   L    E  ++     F +  E +    + DISPY+   +   +        L   F G   +R+ RG  E+CC  GCT  EL   C P</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>65</Hit_num>
+  <Hit_id>gi|440909638|gb|ELR59525.1|</Hit_id>
+  <Hit_def>Insulin-like peptide INSL6 [Bos grunniens mutus]</Hit_def>
+  <Hit_accession>ELR59525</Hit_accession>
+  <Hit_len>205</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>38.5058</Hsp_bit-score>
+      <Hsp_score>88</Hsp_score>
+      <Hsp_evalue>0.677827</Hsp_evalue>
+      <Hsp_query-from>88</Hsp_query-from>
+      <Hsp_query-to>186</Hsp_query-to>
+      <Hsp_hit-from>95</Hsp_hit-from>
+      <Hsp_hit-to>192</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>28</Hsp_identity>
+      <Hsp_positive>44</Hsp_positive>
+      <Hsp_gaps>9</Hsp_gaps>
+      <Hsp_align-len>103</Hsp_align-len>
+      <Hsp_qseq>NGNEEESFTTLKSNFLNWCVEVYHRHYRFVFVSEMEMADYPLAYDISPYLPPFLSRARAR----GMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYCGP</Hsp_qseq>
+      <Hsp_hseq>SASQEEAINNMKMQSL---PEYQYKKANLPFKTRQEESSS--SQDISPYIHEIIEFQKKNTNKIKTLSNLFWGNHPQRKRRGYSEKCCQKGCTKEELIIACLP</Hsp_hseq>
+      <Hsp_midline>+ ++EE+   +K   L    E  ++     F +  E +    + DISPY+   +   +        L   F G   +R+ RG  E+CC  GCT  EL   C P</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>66</Hit_num>
+  <Hit_id>gi|222692187|gb|ACM66966.1|</Hit_id>
+  <Hit_def>putative insulin-like peptide 1, partial [Culex pipiens pipiens]</Hit_def>
+  <Hit_accession>ACM66966</Hit_accession>
+  <Hit_len>162</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>38.1206</Hsp_bit-score>
+      <Hsp_score>87</Hsp_score>
+      <Hsp_evalue>0.684954</Hsp_evalue>
+      <Hsp_query-from>47</Hsp_query-from>
+      <Hsp_query-to>185</Hsp_query-to>
+      <Hsp_hit-from>44</Hsp_hit-from>
+      <Hsp_hit-to>162</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>35</Hsp_identity>
+      <Hsp_positive>55</Hsp_positive>
+      <Hsp_gaps>24</Hsp_gaps>
+      <Hsp_align-len>141</Hsp_align-len>
+      <Hsp_qseq>YCGKKLSNALQIICDGVYNSMFKKSGQDFPPQNKRHIAHRINGNEEESFTTLKSNFLNWCVEVYHRHYRFVFVSEMEMADYPLAYDISPYLP--PFLSRARARGMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYCG</Hsp_qseq>
+      <Hsp_hseq>YCGKVLTDALAMVCTS-YPSPWRKKSMEPSSTSSDEETSAESSYREQLLAEIKQD-----------------LDELEQLS-PEMFAEKPPQPFHPFYPRSYQVHANEARGGHRRVRRQ---IVDECCRKSCTMKTLKQYCA</Hsp_hseq>
+      <Hsp_midline>YCGK L++AL ++C   Y S ++K   +    +        +   E+    +K +                 + E+E    P  +   P  P  PF  R+      + R   RR RR+   I +ECC   CT+  L  YC </Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>67</Hit_num>
+  <Hit_id>gi|432951604|ref|XP_004084860.1|</Hit_id>
+  <Hit_def>PREDICTED: insulin-like growth factor II-like [Oryzias latipes]</Hit_def>
+  <Hit_accession>XP_004084860</Hit_accession>
+  <Hit_len>174</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>38.1206</Hsp_bit-score>
+      <Hsp_score>87</Hsp_score>
+      <Hsp_evalue>0.753502</Hsp_evalue>
+      <Hsp_query-from>151</Hsp_query-from>
+      <Hsp_query-to>185</Hsp_query-to>
+      <Hsp_hit-from>38</Hsp_hit-from>
+      <Hsp_hit-to>70</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>18</Hsp_identity>
+      <Hsp_positive>21</Hsp_positive>
+      <Hsp_gaps>2</Hsp_gaps>
+      <Hsp_align-len>35</Hsp_align-len>
+      <Hsp_qseq>DGRFAGRRYRRESRGIHEECCINGCTINELTSYCG</Hsp_qseq>
+      <Hsp_hseq>DGRGGLRR--QQSRGIVEECCFRSCDLNLLEQYCA</Hsp_hseq>
+      <Hsp_midline>DGR   RR  ++SRGI EECC   C +N L  YC </Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>68</Hit_num>
+  <Hit_id>gi|327259965|ref|XP_003214806.1|</Hit_id>
+  <Hit_def>PREDICTED: insulin-like growth factor II-like [Anolis carolinensis]</Hit_def>
+  <Hit_accession>XP_003214806</Hit_accession>
+  <Hit_len>186</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>38.1206</Hsp_bit-score>
+      <Hsp_score>87</Hsp_score>
+      <Hsp_evalue>0.820894</Hsp_evalue>
+      <Hsp_query-from>147</Hsp_query-from>
+      <Hsp_query-to>185</Hsp_query-to>
+      <Hsp_hit-from>47</Hsp_hit-from>
+      <Hsp_hit-to>85</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>18</Hsp_identity>
+      <Hsp_positive>21</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>39</Hsp_align-len>
+      <Hsp_qseq>RGMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYCG</Hsp_qseq>
+      <Hsp_hseq>RGFYFSRPVGRNRGRLNRGIVEECCFRSCDLNLLETYCA</Hsp_hseq>
+      <Hsp_midline>RG    R  GR   R +RGI EECC   C +N L +YC </Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>69</Hit_num>
+  <Hit_id>gi|357625017|gb|EHJ75573.1|</Hit_id>
+  <Hit_def>hypothetical protein KGM_00365 [Danaus plexippus]</Hit_def>
+  <Hit_accession>EHJ75573</Hit_accession>
+  <Hit_len>197</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>38.5058</Hsp_bit-score>
+      <Hsp_score>88</Hsp_score>
+      <Hsp_evalue>0.829399</Hsp_evalue>
+      <Hsp_query-from>160</Hsp_query-from>
+      <Hsp_query-to>185</Hsp_query-to>
+      <Hsp_hit-from>63</Hsp_hit-from>
+      <Hsp_hit-to>88</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>15</Hsp_identity>
+      <Hsp_positive>18</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>26</Hsp_align-len>
+      <Hsp_qseq>RRESRGIHEECCINGCTINELTSYCG</Hsp_qseq>
+      <Hsp_hseq>RRRRTGIADECCIYGCTWEQLSSYCA</Hsp_hseq>
+      <Hsp_midline>RR   GI +ECCI GCT  +L+SYC </Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>70</Hit_num>
+  <Hit_id>gi|21431657|gb|AAF69129.2|</Hit_id>
+  <Hit_def>insulin-like growth factor 2 precursor [Ornithorhynchus anatinus]</Hit_def>
+  <Hit_accession>AAF69129</Hit_accession>
+  <Hit_len>151</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>37.7354</Hsp_bit-score>
+      <Hsp_score>86</Hsp_score>
+      <Hsp_evalue>0.846374</Hsp_evalue>
+      <Hsp_query-from>147</Hsp_query-from>
+      <Hsp_query-to>185</Hsp_query-to>
+      <Hsp_hit-from>24</Hsp_hit-from>
+      <Hsp_hit-to>62</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>17</Hsp_identity>
+      <Hsp_positive>21</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>39</Hsp_align-len>
+      <Hsp_qseq>RGMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYCG</Hsp_qseq>
+      <Hsp_hseq>RGFYFGRSPSRTNRRSKKGIVEECCFSSCDLAVLETYCA</Hsp_hseq>
+      <Hsp_midline>RG   GR   R  RR  +GI EECC + C +  L +YC </Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>71</Hit_num>
+  <Hit_id>gi|30349722|gb|AAP22173.1|</Hit_id>
+  <Hit_def>insulin-like growth factor 2 [Gallus gallus]</Hit_def>
+  <Hit_accession>AAP22173</Hit_accession>
+  <Hit_len>177</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>38.1206</Hsp_bit-score>
+      <Hsp_score>87</Hsp_score>
+      <Hsp_evalue>0.857419</Hsp_evalue>
+      <Hsp_query-from>147</Hsp_query-from>
+      <Hsp_query-to>185</Hsp_query-to>
+      <Hsp_hit-from>37</Hsp_hit-from>
+      <Hsp_hit-to>75</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>18</Hsp_identity>
+      <Hsp_positive>21</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>39</Hsp_align-len>
+      <Hsp_qseq>RGMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYCG</Hsp_qseq>
+      <Hsp_hseq>RGFYFSRPVGRNNRRINRGIVEECCFRSCDLALLETYCA</Hsp_hseq>
+      <Hsp_midline>RG    R  GR  RR +RGI EECC   C +  L +YC </Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>72</Hit_num>
+  <Hit_id>gi|37220730|gb|AAQ89698.1|</Hit_id>
+  <Hit_def>insulin-like peptide 6 precursor [Anopheles gambiae]</Hit_def>
+  <Hit_accession>AAQ89698</Hit_accession>
+  <Hit_len>160</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>37.7354</Hsp_bit-score>
+      <Hsp_score>86</Hsp_score>
+      <Hsp_evalue>0.863045</Hsp_evalue>
+      <Hsp_query-from>39</Hsp_query-from>
+      <Hsp_query-to>184</Hsp_query-to>
+      <Hsp_hit-from>25</Hsp_hit-from>
+      <Hsp_hit-to>154</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>32</Hsp_identity>
+      <Hsp_positive>61</Hsp_positive>
+      <Hsp_gaps>28</Hsp_gaps>
+      <Hsp_align-len>152</Hsp_align-len>
+      <Hsp_qseq>SAVSSPQKYCGKKLSNALQIICDGVYNSMFKKSGQDFPPQNKRHIAHRINGNEEESFTTLKSNFLNWCVEVYHRHYRFVFVSEMEMADYPLAYDISPYLPPFLSRARARGMLDGRFAGR------RYRRESRGIHEECCINGCTINELTSYC</Hsp_qseq>
+      <Hsp_hseq>AMVSANKRYCGAELVKVLSFLCD------------EFP--DLHTTSKRSADNFAKPSDMATEDWMN-----VEDNTQQILDQQLQSVGMP---DDRATVPAWMNMVYPSNYMYRHGAGHNELIPARFRKNRGGIVEECCLRPCGMNQLLQYC</Hsp_hseq>
+      <Hsp_midline>+ VS+ ++YCG +L   L  +CD            +FP  +    + R   N  +       +++N        + + +   +++    P   D    +P +++       +    AG       R+R+   GI EECC+  C +N+L  YC</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>73</Hit_num>
+  <Hit_id>gi|480542384|gb|AGJ91143.1|</Hit_id>
+  <Hit_def>insulin-like growth factor 2 [Chelydra serpentina]</Hit_def>
+  <Hit_accession>AGJ91143</Hit_accession>
+  <Hit_len>186</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>38.1206</Hsp_bit-score>
+      <Hsp_score>87</Hsp_score>
+      <Hsp_evalue>0.911059</Hsp_evalue>
+      <Hsp_query-from>147</Hsp_query-from>
+      <Hsp_query-to>185</Hsp_query-to>
+      <Hsp_hit-from>47</Hsp_hit-from>
+      <Hsp_hit-to>85</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>18</Hsp_identity>
+      <Hsp_positive>21</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>39</Hsp_align-len>
+      <Hsp_qseq>RGMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYCG</Hsp_qseq>
+      <Hsp_hseq>RGFYFSRPVGRNNRRFNRGIVEECCFRSCDLALLETYCA</Hsp_hseq>
+      <Hsp_midline>RG    R  GR  RR +RGI EECC   C +  L +YC </Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>74</Hit_num>
+  <Hit_id>gi|444722374|gb|ELW63071.1|</Hit_id>
+  <Hit_def>Insulin-like peptide INSL6 [Tupaia chinensis]</Hit_def>
+  <Hit_accession>ELW63071</Hit_accession>
+  <Hit_len>211</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>38.1206</Hsp_bit-score>
+      <Hsp_score>87</Hsp_score>
+      <Hsp_evalue>0.915344</Hsp_evalue>
+      <Hsp_query-from>126</Hsp_query-from>
+      <Hsp_query-to>186</Hsp_query-to>
+      <Hsp_hit-from>130</Hsp_hit-from>
+      <Hsp_hit-to>194</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>21</Hsp_identity>
+      <Hsp_positive>31</Hsp_positive>
+      <Hsp_gaps>4</Hsp_gaps>
+      <Hsp_align-len>65</Hsp_align-len>
+      <Hsp_qseq>DYPLAYDISPYLPPFLSRARAR----GMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYCGP</Hsp_qseq>
+      <Hsp_hseq>EFSLLSDINPSVHESVTFQKKSTNKINTLSNLFWGNHPQRRRRGYSEKCCIKGCTKEELSIACLP</Hsp_hseq>
+      <Hsp_midline>++ L  DI+P +   ++  +        L   F G   +R  RG  E+CCI GCT  EL+  C P</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>75</Hit_num>
+  <Hit_id>gi|488593981|ref|XP_004482211.1|</Hit_id>
+  <Hit_def>PREDICTED: insulin-like growth factor II [Dasypus novemcinctus]</Hit_def>
+  <Hit_accession>XP_004482211</Hit_accession>
+  <Hit_len>135</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>37.3502</Hsp_bit-score>
+      <Hsp_score>85</Hsp_score>
+      <Hsp_evalue>0.980721</Hsp_evalue>
+      <Hsp_query-from>147</Hsp_query-from>
+      <Hsp_query-to>185</Hsp_query-to>
+      <Hsp_hit-from>44</Hsp_hit-from>
+      <Hsp_hit-to>82</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>18</Hsp_identity>
+      <Hsp_positive>21</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>39</Hsp_align-len>
+      <Hsp_qseq>RGMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYCG</Hsp_qseq>
+      <Hsp_hseq>RGFYFSRPGLRRNRRSNRGIVEECCFRSCDLALLETYCA</Hsp_hseq>
+      <Hsp_midline>RG    R   RR RR +RGI EECC   C +  L +YC </Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>76</Hit_num>
+  <Hit_id>gi|386278557|gb|AFJ04512.1|</Hit_id>
+  <Hit_def>insulin-like growth factor 2, partial [Anas platyrhynchos]</Hit_def>
+  <Hit_accession>AFJ04512</Hit_accession>
+  <Hit_len>96</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>36.5798</Hsp_bit-score>
+      <Hsp_score>83</Hsp_score>
+      <Hsp_evalue>0.988173</Hsp_evalue>
+      <Hsp_query-from>147</Hsp_query-from>
+      <Hsp_query-to>184</Hsp_query-to>
+      <Hsp_hit-from>31</Hsp_hit-from>
+      <Hsp_hit-to>68</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>18</Hsp_identity>
+      <Hsp_positive>21</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>38</Hsp_align-len>
+      <Hsp_qseq>RGMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYC</Hsp_qseq>
+      <Hsp_hseq>RGFYFSRPVGRNNRRINRGIVEECCFRSCDLALLETYC</Hsp_hseq>
+      <Hsp_midline>RG    R  GR  RR +RGI EECC   C +  L +YC</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>77</Hit_num>
+  <Hit_id>gi|465971799|gb|EMP32846.1|</Hit_id>
+  <Hit_def>Insulin-like growth factor II [Chelonia mydas]</Hit_def>
+  <Hit_accession>EMP32846</Hit_accession>
+  <Hit_len>241</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>38.1206</Hsp_bit-score>
+      <Hsp_score>87</Hsp_score>
+      <Hsp_evalue>1.02862</Hsp_evalue>
+      <Hsp_query-from>147</Hsp_query-from>
+      <Hsp_query-to>185</Hsp_query-to>
+      <Hsp_hit-from>102</Hsp_hit-from>
+      <Hsp_hit-to>140</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>18</Hsp_identity>
+      <Hsp_positive>21</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>39</Hsp_align-len>
+      <Hsp_qseq>RGMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYCG</Hsp_qseq>
+      <Hsp_hseq>RGFYFSRPVGRNNRRFNRGIVEECCFRSCDLALLETYCA</Hsp_hseq>
+      <Hsp_midline>RG    R  GR  RR +RGI EECC   C +  L +YC </Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>78</Hit_num>
+  <Hit_id>gi|498986463|ref|XP_004530862.1|</Hit_id>
+  <Hit_def>PREDICTED: probable insulin-like peptide 1-like [Ceratitis capitata]</Hit_def>
+  <Hit_accession>XP_004530862</Hit_accession>
+  <Hit_len>125</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>36.965</Hsp_bit-score>
+      <Hsp_score>84</Hsp_score>
+      <Hsp_evalue>1.18346</Hsp_evalue>
+      <Hsp_query-from>48</Hsp_query-from>
+      <Hsp_query-to>184</Hsp_query-to>
+      <Hsp_hit-from>30</Hsp_hit-from>
+      <Hsp_hit-to>122</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>36</Hsp_identity>
+      <Hsp_positive>52</Hsp_positive>
+      <Hsp_gaps>50</Hsp_gaps>
+      <Hsp_align-len>140</Hsp_align-len>
+      <Hsp_qseq>CGKKLSNALQIICDGVYNSMFKKSGQDFPPQNKRHIAHRINGNEEESFTTLKSNFLNWCVEVYHRHYRFVFVSEMEMADYPLAYDISPYLPPFLSRARARG-MLDGRFAGRRYRRES--RGIHEECCINGCTINELTSYC</Hsp_qseq>
+      <Hsp_hseq>CGPALDAVLRTICVHGFNSKFKKSME---------------------WDDVGTNELDF--------------------ELPFLYANSPFL------AKINGDQFDTVAKTRRYRDTPYRTGVYDECCSKACSYNEILSYC</Hsp_hseq>
+      <Hsp_midline>CG  L   L+ IC   +NS FKKS +                     +  + +N L++                    + P  Y  SP+L      A+  G   D     RRYR      G+++ECC   C+ NE+ SYC</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>79</Hit_num>
+  <Hit_id>gi|156567671|gb|ABU82759.1|</Hit_id>
+  <Hit_def>insulin-like peptide 1 precursor [Tritonia diomedea]</Hit_def>
+  <Hit_accession>ABU82759</Hit_accession>
+  <Hit_len>146</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>37.3502</Hsp_bit-score>
+      <Hsp_score>85</Hsp_score>
+      <Hsp_evalue>1.19663</Hsp_evalue>
+      <Hsp_query-from>164</Hsp_query-from>
+      <Hsp_query-to>186</Hsp_query-to>
+      <Hsp_hit-from>112</Hsp_hit-from>
+      <Hsp_hit-to>134</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>14</Hsp_identity>
+      <Hsp_positive>17</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>23</Hsp_align-len>
+      <Hsp_qseq>RGIHEECCINGCTINELTSYCGP</Hsp_qseq>
+      <Hsp_hseq>QGIVCECCINSCSVNELIQYCEP</Hsp_hseq>
+      <Hsp_midline>+GI  ECCIN C++NEL  YC P</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>80</Hit_num>
+  <Hit_id>gi|488531447|ref|XP_004457478.1|</Hit_id>
+  <Hit_def>PREDICTED: insulin-like peptide INSL6 [Dasypus novemcinctus]</Hit_def>
+  <Hit_accession>XP_004457478</Hit_accession>
+  <Hit_len>222</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>37.7354</Hsp_bit-score>
+      <Hsp_score>86</Hsp_score>
+      <Hsp_evalue>1.23404</Hsp_evalue>
+      <Hsp_query-from>150</Hsp_query-from>
+      <Hsp_query-to>186</Hsp_query-to>
+      <Hsp_hit-from>155</Hsp_hit-from>
+      <Hsp_hit-to>191</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>16</Hsp_identity>
+      <Hsp_positive>22</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>37</Hsp_align-len>
+      <Hsp_qseq>LDGRFAGRRYRRESRGIHEECCINGCTINELTSYCGP</Hsp_qseq>
+      <Hsp_hseq>LHNLFWGNHHQRKRRGYSEKCCLKGCTKRELSIACIP</Hsp_hseq>
+      <Hsp_midline>L   F G  ++R+ RG  E+CC+ GCT  EL+  C P</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>81</Hit_num>
+  <Hit_id>gi|483512986|gb|EOB01255.1|</Hit_id>
+  <Hit_def>Insulin-like growth factor II-B, partial [Anas platyrhynchos]</Hit_def>
+  <Hit_accession>EOB01255</Hit_accession>
+  <Hit_len>142</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>37.3502</Hsp_bit-score>
+      <Hsp_score>85</Hsp_score>
+      <Hsp_evalue>1.26152</Hsp_evalue>
+      <Hsp_query-from>147</Hsp_query-from>
+      <Hsp_query-to>185</Hsp_query-to>
+      <Hsp_hit-from>47</Hsp_hit-from>
+      <Hsp_hit-to>85</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>18</Hsp_identity>
+      <Hsp_positive>21</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>39</Hsp_align-len>
+      <Hsp_qseq>RGMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYCG</Hsp_qseq>
+      <Hsp_hseq>RGFYFSRPVGRNNRRINRGIVEECCFRSCDLALLETYCA</Hsp_hseq>
+      <Hsp_midline>RG    R  GR  RR +RGI EECC   C +  L +YC </Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>82</Hit_num>
+  <Hit_id>gi|449280821|gb|EMC88046.1|</Hit_id>
+  <Hit_def>Insulin-like growth factor II, partial [Columba livia]</Hit_def>
+  <Hit_accession>EMC88046</Hit_accession>
+  <Hit_len>134</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>36.965</Hsp_bit-score>
+      <Hsp_score>84</Hsp_score>
+      <Hsp_evalue>1.28659</Hsp_evalue>
+      <Hsp_query-from>147</Hsp_query-from>
+      <Hsp_query-to>185</Hsp_query-to>
+      <Hsp_hit-from>47</Hsp_hit-from>
+      <Hsp_hit-to>85</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>18</Hsp_identity>
+      <Hsp_positive>21</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>39</Hsp_align-len>
+      <Hsp_qseq>RGMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYCG</Hsp_qseq>
+      <Hsp_hseq>RGFYFSRPVGRNNRRINRGIVEECCFRSCDLALLETYCA</Hsp_hseq>
+      <Hsp_midline>RG    R  GR  RR +RGI EECC   C +  L +YC </Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>83</Hit_num>
+  <Hit_id>gi|195012514|ref|XP_001983681.1|</Hit_id>
+  <Hit_def>GH15432 [Drosophila grimshawi] &gt;gi|193897163|gb|EDV96029.1| GH15432 [Drosophila grimshawi]</Hit_def>
+  <Hit_accession>XP_001983681</Hit_accession>
+  <Hit_len>133</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>36.965</Hsp_bit-score>
+      <Hsp_score>84</Hsp_score>
+      <Hsp_evalue>1.31797</Hsp_evalue>
+      <Hsp_query-from>160</Hsp_query-from>
+      <Hsp_query-to>185</Hsp_query-to>
+      <Hsp_hit-from>107</Hsp_hit-from>
+      <Hsp_hit-to>132</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>15</Hsp_identity>
+      <Hsp_positive>18</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>26</Hsp_align-len>
+      <Hsp_qseq>RRESRGIHEECCINGCTINELTSYCG</Hsp_qseq>
+      <Hsp_hseq>RRTRQGIVDECCKRSCDINELTNYCA</Hsp_hseq>
+      <Hsp_midline>RR  +GI +ECC   C INELT+YC </Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>84</Hit_num>
+  <Hit_id>gi|326920128|ref|XP_003206327.1|</Hit_id>
+  <Hit_def>PREDICTED: insulin-like growth factor-II [Meleagris gallopavo] &gt;gi|56407899|gb|AAV88090.1| insulin-like growth factor-II precursor [Meleagris gallopavo]</Hit_def>
+  <Hit_accession>XP_003206327</Hit_accession>
+  <Hit_len>187</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>37.7354</Hsp_bit-score>
+      <Hsp_score>86</Hsp_score>
+      <Hsp_evalue>1.37501</Hsp_evalue>
+      <Hsp_query-from>147</Hsp_query-from>
+      <Hsp_query-to>185</Hsp_query-to>
+      <Hsp_hit-from>47</Hsp_hit-from>
+      <Hsp_hit-to>85</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>18</Hsp_identity>
+      <Hsp_positive>21</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>39</Hsp_align-len>
+      <Hsp_qseq>RGMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYCG</Hsp_qseq>
+      <Hsp_hseq>RGFYFSRPVGRNNRRINRGIVEECCFRSCDLALLETYCA</Hsp_hseq>
+      <Hsp_midline>RG    R  GR  RR +RGI EECC   C +  L +YC </Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>85</Hit_num>
+  <Hit_id>gi|157841172|ref|NP_001025513.1|</Hit_id>
+  <Hit_def>insulin-like growth factor II precursor [Gallus gallus] &gt;gi|226693533|sp|P33717.2|IGF2_CHICK RecName: Full=Insulin-like growth factor II; Short=IGF-II; Flags: Precursor &gt;gi|1836006|gb|AAB46818.1| prepro-insulin-like growth factor-II [Gallus gallus]</Hit_def>
+  <Hit_accession>NP_001025513</Hit_accession>
+  <Hit_len>187</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>37.7354</Hsp_bit-score>
+      <Hsp_score>86</Hsp_score>
+      <Hsp_evalue>1.42776</Hsp_evalue>
+      <Hsp_query-from>147</Hsp_query-from>
+      <Hsp_query-to>185</Hsp_query-to>
+      <Hsp_hit-from>47</Hsp_hit-from>
+      <Hsp_hit-to>85</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>18</Hsp_identity>
+      <Hsp_positive>21</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>39</Hsp_align-len>
+      <Hsp_qseq>RGMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYCG</Hsp_qseq>
+      <Hsp_hseq>RGFYFSRPVGRNNRRINRGIVEECCFRSCDLALLETYCA</Hsp_hseq>
+      <Hsp_midline>RG    R  GR  RR +RGI EECC   C +  L +YC </Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>86</Hit_num>
+  <Hit_id>gi|155959|gb|AAA27823.1|</Hit_id>
+  <Hit_def>bombyxin, partial [Bombyx mori]</Hit_def>
+  <Hit_accession>AAA27823</Hit_accession>
+  <Hit_len>43</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>35.4242</Hsp_bit-score>
+      <Hsp_score>80</Hsp_score>
+      <Hsp_evalue>1.45484</Hsp_evalue>
+      <Hsp_query-from>135</Hsp_query-from>
+      <Hsp_query-to>184</Hsp_query-to>
+      <Hsp_hit-from>9</Hsp_hit-from>
+      <Hsp_hit-to>41</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>20</Hsp_identity>
+      <Hsp_positive>23</Hsp_positive>
+      <Hsp_gaps>17</Hsp_gaps>
+      <Hsp_align-len>50</Hsp_align-len>
+      <Hsp_qseq>PYLPPFLSRARARGMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYC</Hsp_qseq>
+      <Hsp_hseq>PWLPPFSSS-----------------RGKRGIVDECCYRPCTIDVLMSYC</Hsp_hseq>
+      <Hsp_midline>P+LPPF S                  R  RGI +ECC   CTI+ L SYC</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>87</Hit_num>
+  <Hit_id>gi|297270983|ref|XP_001082439.2|</Hit_id>
+  <Hit_def>PREDICTED: insulin-like 6 [Macaca mulatta]</Hit_def>
+  <Hit_accession>XP_001082439</Hit_accession>
+  <Hit_len>207</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>37.7354</Hsp_bit-score>
+      <Hsp_score>86</Hsp_score>
+      <Hsp_evalue>1.46634</Hsp_evalue>
+      <Hsp_query-from>32</Hsp_query-from>
+      <Hsp_query-to>186</Hsp_query-to>
+      <Hsp_hit-from>9</Hsp_hit-from>
+      <Hsp_hit-to>188</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>37</Hsp_identity>
+      <Hsp_positive>75</Hsp_positive>
+      <Hsp_gaps>25</Hsp_gaps>
+      <Hsp_align-len>180</Hsp_align-len>
+      <Hsp_qseq>LQFNPKRSAVSSPQKYCGKKLSNALQIICDGVYNSMFKKSGQDFPPQNKRHIAHRINGNEEESFTTLKSNFL--------------------NWCVEVYHRHYRFVFVSEMEMA-DYPLAYDISPYL---PPFLSRARAR-GMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYCGP</Hsp_qseq>
+      <Hsp_hseq>VRFSRELSDISSARKLCGRYLVKEIEKLCGHANWSQFHFEEETPFPRLIAQASEKVEAFSPYRFESPQTAFPARGRGTNPVSTSASWEEAVNNWEMQSLPEYQDKKAYSPLDKEREFSSSHNINLYIHENAKFQKKSRNKIKTLSNLFWGNHPQRKRRGYSEKCCLTGCTKEELSIACLP</Hsp_hseq>
+      <Hsp_midline>++F+ + S +SS +K CG+ L   ++ +C     S F    +   P+     + ++       F + ++ F                     NW ++    +      S ++   ++  +++I+ Y+     F  ++R +   L   F G   +R+ RG  E+CC+ GCT  EL+  C P</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>88</Hit_num>
+  <Hit_id>gi|38257353|sp|O09210.1|BXRB_AGRCO</Hit_id>
+  <Hit_def>RecName: Full=Bombyxin-related peptide B; AltName: Full=ABRP; Contains: RecName: Full=Bombyxin-related peptide B chain B; Contains: RecName: Full=Bombyxin-related peptide B chain A; Flags: Precursor &gt;gi|2116682|dbj|BAA20092.1| prepro-Agrius bombyxin-related peptide B [Agrius convolvuli] &gt;gi|1588743|prf||2209332B bombyxin-related peptide:ISOTYPE=B</Hit_def>
+  <Hit_accession>O09210</Hit_accession>
+  <Hit_len>93</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>36.1946</Hsp_bit-score>
+      <Hsp_score>82</Hsp_score>
+      <Hsp_evalue>1.47263</Hsp_evalue>
+      <Hsp_query-from>135</Hsp_query-from>
+      <Hsp_query-to>184</Hsp_query-to>
+      <Hsp_hit-from>34</Hsp_hit-from>
+      <Hsp_hit-to>93</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>21</Hsp_identity>
+      <Hsp_positive>27</Hsp_positive>
+      <Hsp_gaps>10</Hsp_gaps>
+      <Hsp_align-len>60</Hsp_align-len>
+      <Hsp_qseq>PYLPPFLSRARAR----------GMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYC</Hsp_qseq>
+      <Hsp_hseq>AYMCPELEGASKRSGAMGAAAMYGTRGWRWAAMGGNRGKRGVVEECCYQSCTLDELLTYC</Hsp_hseq>
+      <Hsp_midline> Y+ P L  A  R          G    R+A     R  RG+ EECC   CT++EL +YC</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>89</Hit_num>
+  <Hit_id>gi|171916099|ref|NP_001116438.1|</Hit_id>
+  <Hit_def>insulin-like growth factor II precursor [Taeniopygia guttata] &gt;gi|2808535|emb|CAA11145.1| IGF-II precursor [Taeniopygia guttata]</Hit_def>
+  <Hit_accession>NP_001116438</Hit_accession>
+  <Hit_len>187</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>37.3502</Hsp_bit-score>
+      <Hsp_score>85</Hsp_score>
+      <Hsp_evalue>1.58336</Hsp_evalue>
+      <Hsp_query-from>147</Hsp_query-from>
+      <Hsp_query-to>185</Hsp_query-to>
+      <Hsp_hit-from>47</Hsp_hit-from>
+      <Hsp_hit-to>85</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>18</Hsp_identity>
+      <Hsp_positive>21</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>39</Hsp_align-len>
+      <Hsp_qseq>RGMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYCG</Hsp_qseq>
+      <Hsp_hseq>RGFYFSRPVGRNNRRFNRGIVEECCFRSCDLALLETYCA</Hsp_hseq>
+      <Hsp_midline>RG    R  GR  RR +RGI EECC   C +  L +YC </Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>90</Hit_num>
+  <Hit_id>gi|195589165|ref|XP_002084326.1|</Hit_id>
+  <Hit_def>GD14217 [Drosophila simulans] &gt;gi|194196335|gb|EDX09911.1| GD14217 [Drosophila simulans] &gt;gi|317423355|emb|CBY85565.1| insulin-like peptide 1 [Drosophila simulans]</Hit_def>
+  <Hit_accession>XP_002084326</Hit_accession>
+  <Hit_len>156</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>36.965</Hsp_bit-score>
+      <Hsp_score>84</Hsp_score>
+      <Hsp_evalue>1.77775</Hsp_evalue>
+      <Hsp_query-from>45</Hsp_query-from>
+      <Hsp_query-to>186</Hsp_query-to>
+      <Hsp_hit-from>46</Hsp_hit-from>
+      <Hsp_hit-to>155</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>34</Hsp_identity>
+      <Hsp_positive>58</Hsp_positive>
+      <Hsp_gaps>34</Hsp_gaps>
+      <Hsp_align-len>143</Hsp_align-len>
+      <Hsp_qseq>QKYCGKKLSNALQIICDGVYNSMFKKSGQDFPPQNKRHIAHRINGNEEESFTTLKSNFLNWCVEVYHRHYRFVFVSEMEMADYPLAYDISPYLPPFLSRARARGMLDGRFAGRRYRRE-SRGIHEECCINGCTINELTSYCGP</Hsp_qseq>
+      <Hsp_hseq>HKLCGPALSDAMDVVCPHGFNTLPRK----------RESLLLANSDDDEDAKQEEEDDSSMWQTLDGTGYSFS----------PLLTNL--YGSEVLIKTR-----------RRYRRHLTGGVYDECCVKTCSYLELAIYCLP</Hsp_hseq>
+      <Hsp_midline> K CG  LS+A+ ++C   +N++ +K          R      N +++E     + +  +    +    Y F           PL  ++  Y    L + R           RRYRR  + G+++ECC+  C+  EL  YC P</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>91</Hit_num>
+  <Hit_id>gi|157112308|ref|XP_001657488.1|</Hit_id>
+  <Hit_def>hypothetical protein AaeL_AAEL000932 [Aedes aegypti] &gt;gi|108883761|gb|EAT47986.1| AAEL000932-PA [Aedes aegypti] &gt;gi|114325957|gb|ABI64119.1| insulin-like peptide 4 precursor [Aedes aegypti]</Hit_def>
+  <Hit_accession>XP_001657488</Hit_accession>
+  <Hit_len>161</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>36.965</Hsp_bit-score>
+      <Hsp_score>84</Hsp_score>
+      <Hsp_evalue>1.78509</Hsp_evalue>
+      <Hsp_query-from>40</Hsp_query-from>
+      <Hsp_query-to>185</Hsp_query-to>
+      <Hsp_hit-from>29</Hsp_hit-from>
+      <Hsp_hit-to>161</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>44</Hsp_identity>
+      <Hsp_positive>60</Hsp_positive>
+      <Hsp_gaps>49</Hsp_gaps>
+      <Hsp_align-len>164</Hsp_align-len>
+      <Hsp_qseq>AVSSPQKYCGKKLSNALQIICDGVYNSMFKKSGQDFPPQNKR-----------HIAHRINGNEEESFTTLKSNFLN------WCVEVYHRHYRFVFVSEMEMADYPLAYDISPYLPPFLSRARARGMLDGRFAGRRYRRESRGIHEECCINGCTINELT-SYCG</Hsp_qseq>
+      <Hsp_hseq>GASQKQKFCGPKLARALAELCDA-YPTL-------SPPPMKRPSDAKGMTMNDYNAPDLTNFEDQSAINRVYNVVNLKDKPIWMKLFYSKH------DPMALNDLDYVNEIIP---------------DRFMLGK--RRPGKGIVEECCRKGCTYEYLMLNYCA</Hsp_hseq>
+      <Hsp_midline>  S  QK+CG KL+ AL  +CD  Y ++        PP  KR           + A  +   E++S      N +N      W    Y +H        M + D     +I P               D    G+  RR  +GI EECC  GCT   L  +YC </Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>92</Hit_num>
+  <Hit_id>gi|395819120|ref|XP_003782948.1|</Hit_id>
+  <Hit_def>PREDICTED: insulin-like peptide INSL6 [Otolemur garnettii]</Hit_def>
+  <Hit_accession>XP_003782948</Hit_accession>
+  <Hit_len>211</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>37.3502</Hsp_bit-score>
+      <Hsp_score>85</Hsp_score>
+      <Hsp_evalue>1.90587</Hsp_evalue>
+      <Hsp_query-from>150</Hsp_query-from>
+      <Hsp_query-to>186</Hsp_query-to>
+      <Hsp_hit-from>156</Hsp_hit-from>
+      <Hsp_hit-to>192</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>16</Hsp_identity>
+      <Hsp_positive>22</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>37</Hsp_align-len>
+      <Hsp_qseq>LDGRFAGRRYRRESRGIHEECCINGCTINELTSYCGP</Hsp_qseq>
+      <Hsp_hseq>LNNLFWGNHPQRKRRGYSEKCCLKGCTKEELSIACLP</Hsp_hseq>
+      <Hsp_midline>L+  F G   +R+ RG  E+CC+ GCT  EL+  C P</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>93</Hit_num>
+  <Hit_id>gi|226822858|gb|ACO83092.1|</Hit_id>
+  <Hit_def>insulin-like growth factor 2 isoform 2 (predicted) [Dasypus novemcinctus]</Hit_def>
+  <Hit_accession>ACO83092</Hit_accession>
+  <Hit_len>185</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>37.3502</Hsp_bit-score>
+      <Hsp_score>85</Hsp_score>
+      <Hsp_evalue>1.90822</Hsp_evalue>
+      <Hsp_query-from>147</Hsp_query-from>
+      <Hsp_query-to>185</Hsp_query-to>
+      <Hsp_hit-from>52</Hsp_hit-from>
+      <Hsp_hit-to>90</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>18</Hsp_identity>
+      <Hsp_positive>21</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>39</Hsp_align-len>
+      <Hsp_qseq>RGMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYCG</Hsp_qseq>
+      <Hsp_hseq>RGFYFSRPGLRRNRRSNRGIVEECCFRSCDLALLETYCA</Hsp_hseq>
+      <Hsp_midline>RG    R   RR RR +RGI EECC   C +  L +YC </Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>94</Hit_num>
+  <Hit_id>gi|461660|sp|P33719.1|BXA2_SAMCY</Hit_id>
+  <Hit_def>RecName: Full=Bombyxin A-2 homolog; Contains: RecName: Full=Bombyxin A-2 homolog B chain; Contains: RecName: Full=Bombyxin A-2 homolog A chain; Flags: Precursor &gt;gi|217384|dbj|BAA03021.1| Samia bombyxin homolog A-2 [Samia ricini]</Hit_def>
+  <Hit_accession>P33719</Hit_accession>
+  <Hit_len>100</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>35.8094</Hsp_bit-score>
+      <Hsp_score>81</Hsp_score>
+      <Hsp_evalue>1.98146</Hsp_evalue>
+      <Hsp_query-from>136</Hsp_query-from>
+      <Hsp_query-to>184</Hsp_query-to>
+      <Hsp_hit-from>57</Hsp_hit-from>
+      <Hsp_hit-to>98</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>22</Hsp_identity>
+      <Hsp_positive>27</Hsp_positive>
+      <Hsp_gaps>7</Hsp_gaps>
+      <Hsp_align-len>49</Hsp_align-len>
+      <Hsp_qseq>YLPPFLSRARARGMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYC</Hsp_qseq>
+      <Hsp_hseq>YGWKWLERQRARQLDEAR--GKR-----QGIVEECCNKPCTENELLGYC</Hsp_hseq>
+      <Hsp_midline>Y   +L R RAR + + R  G+R     +GI EECC   CT NEL  YC</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>95</Hit_num>
+  <Hit_id>gi|355567787|gb|EHH24128.1|</Hit_id>
+  <Hit_def>Insulin-like peptide INSL6 [Macaca mulatta] &gt;gi|355753372|gb|EHH57418.1| Insulin-like peptide INSL6 [Macaca fascicularis]</Hit_def>
+  <Hit_accession>EHH24128</Hit_accession>
+  <Hit_len>215</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>36.965</Hsp_bit-score>
+      <Hsp_score>84</Hsp_score>
+      <Hsp_evalue>2.21284</Hsp_evalue>
+      <Hsp_query-from>32</Hsp_query-from>
+      <Hsp_query-to>186</Hsp_query-to>
+      <Hsp_hit-from>17</Hsp_hit-from>
+      <Hsp_hit-to>196</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>37</Hsp_identity>
+      <Hsp_positive>75</Hsp_positive>
+      <Hsp_gaps>25</Hsp_gaps>
+      <Hsp_align-len>180</Hsp_align-len>
+      <Hsp_qseq>LQFNPKRSAVSSPQKYCGKKLSNALQIICDGVYNSMFKKSGQDFPPQNKRHIAHRINGNEEESFTTLKSNFL--------------------NWCVEVYHRHYRFVFVSEMEMA-DYPLAYDISPYL---PPFLSRARAR-GMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYCGP</Hsp_qseq>
+      <Hsp_hseq>VRFSRELSDISSARKLCGRYLVKEIEKLCGHANWSQFHFEEETPFPRLIAQASEKVEAFSPYRFESPQTAFPARGRGTNPVSTSASWEEAVNNWEMQSLPEYQDKKAYSPLDKEREFSSSHNINLYIHENAKFQKKSRNKIKTLSNLFWGNHPQRKRRGYSEKCCLTGCTKEELSIACLP</Hsp_hseq>
+      <Hsp_midline>++F+ + S +SS +K CG+ L   ++ +C     S F    +   P+     + ++       F + ++ F                     NW ++    +      S ++   ++  +++I+ Y+     F  ++R +   L   F G   +R+ RG  E+CC+ GCT  EL+  C P</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>96</Hit_num>
+  <Hit_id>gi|391337631|ref|XP_003743170.1|</Hit_id>
+  <Hit_def>PREDICTED: insulin-like [Metaseiulus occidentalis]</Hit_def>
+  <Hit_accession>XP_003743170</Hit_accession>
+  <Hit_len>132</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>36.1946</Hsp_bit-score>
+      <Hsp_score>82</Hsp_score>
+      <Hsp_evalue>2.23332</Hsp_evalue>
+      <Hsp_query-from>138</Hsp_query-from>
+      <Hsp_query-to>185</Hsp_query-to>
+      <Hsp_hit-from>82</Hsp_hit-from>
+      <Hsp_hit-to>129</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>21</Hsp_identity>
+      <Hsp_positive>24</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>48</Hsp_align-len>
+      <Hsp_qseq>PPFLSRARARGMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYCG</Hsp_qseq>
+      <Hsp_hseq>PDDPSRSRSSEKQARREALTALRRSVRGIVNECCRNRCTIKDLMMYCA</Hsp_hseq>
+      <Hsp_midline>P   SR+R+      R A    RR  RGI  ECC N CTI +L  YC </Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>97</Hit_num>
+  <Hit_id>gi|8571480|gb|AAF76900.1|AF276074_1</Hit_id>
+  <Hit_def>insulin-like growth factor 2 [Trichosurus vulpecula]</Hit_def>
+  <Hit_accession>AAF76900</Hit_accession>
+  <Hit_len>106</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>35.8094</Hsp_bit-score>
+      <Hsp_score>81</Hsp_score>
+      <Hsp_evalue>2.30761</Hsp_evalue>
+      <Hsp_query-from>150</Hsp_query-from>
+      <Hsp_query-to>185</Hsp_query-to>
+      <Hsp_hit-from>32</Hsp_hit-from>
+      <Hsp_hit-to>67</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>17</Hsp_identity>
+      <Hsp_positive>20</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>36</Hsp_align-len>
+      <Hsp_qseq>LDGRFAGRRYRRESRGIHEECCINGCTINELTSYCG</Hsp_qseq>
+      <Hsp_hseq>LPGRPLSRVSRRLNRGIVEECCFRSCDLALLETYCA</Hsp_hseq>
+      <Hsp_midline>L GR   R  RR +RGI EECC   C +  L +YC </Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>98</Hit_num>
+  <Hit_id>gi|471366113|ref|XP_004373594.1|</Hit_id>
+  <Hit_def>PREDICTED: insulin-like peptide INSL6 [Trichechus manatus latirostris]</Hit_def>
+  <Hit_accession>XP_004373594</Hit_accession>
+  <Hit_len>199</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>36.965</Hsp_bit-score>
+      <Hsp_score>84</Hsp_score>
+      <Hsp_evalue>2.40094</Hsp_evalue>
+      <Hsp_query-from>154</Hsp_query-from>
+      <Hsp_query-to>186</Hsp_query-to>
+      <Hsp_hit-from>161</Hsp_hit-from>
+      <Hsp_hit-to>193</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>15</Hsp_identity>
+      <Hsp_positive>21</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>33</Hsp_align-len>
+      <Hsp_qseq>FAGRRYRRESRGIHEECCINGCTINELTSYCGP</Hsp_qseq>
+      <Hsp_hseq>FWGNHPQRKRRGYSEKCCLKGCTKDELSIACLP</Hsp_hseq>
+      <Hsp_midline>F G   +R+ RG  E+CC+ GCT +EL+  C P</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>99</Hit_num>
+  <Hit_id>gi|47939733|gb|AAH72153.1|</Hit_id>
+  <Hit_def>Igf2-b protein [Xenopus laevis]</Hit_def>
+  <Hit_accession>AAH72153</Hit_accession>
+  <Hit_len>205</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>36.965</Hsp_bit-score>
+      <Hsp_score>84</Hsp_score>
+      <Hsp_evalue>2.40422</Hsp_evalue>
+      <Hsp_query-from>156</Hsp_query-from>
+      <Hsp_query-to>185</Hsp_query-to>
+      <Hsp_hit-from>76</Hsp_hit-from>
+      <Hsp_hit-to>105</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>15</Hsp_identity>
+      <Hsp_positive>18</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>30</Hsp_align-len>
+      <Hsp_qseq>GRRYRRESRGIHEECCINGCTINELTSYCG</Hsp_qseq>
+      <Hsp_hseq>GRSNRRSNRGIVEECCFRSCDLELLETYCA</Hsp_hseq>
+      <Hsp_midline>GR  RR +RGI EECC   C +  L +YC </Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>100</Hit_num>
+  <Hit_id>gi|402897492|ref|XP_003911789.1|</Hit_id>
+  <Hit_def>PREDICTED: insulin-like peptide INSL6 [Papio anubis]</Hit_def>
+  <Hit_accession>XP_003911789</Hit_accession>
+  <Hit_len>225</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>36.965</Hsp_bit-score>
+      <Hsp_score>84</Hsp_score>
+      <Hsp_evalue>2.43927</Hsp_evalue>
+      <Hsp_query-from>15</Hsp_query-from>
+      <Hsp_query-to>186</Hsp_query-to>
+      <Hsp_hit-from>9</Hsp_hit-from>
+      <Hsp_hit-to>206</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>41</Hsp_identity>
+      <Hsp_positive>80</Hsp_positive>
+      <Hsp_gaps>26</Hsp_gaps>
+      <Hsp_align-len>198</Hsp_align-len>
+      <Hsp_qseq>AVALLVTESGNAQVDGYLQFNPKR-SAVSSPQKYCGKKLSNALQIICDGVYNSMFKKSGQDFPPQNKRHIAHRINGNEEESFTTLKSNFL--------------------NWCVEVYHRHYRFVFVSEMEMA-DYPLAYDISPYL---PPFLSRARAR-GMLDGRFAGRRYRRESRGIHEECCINGCTINELTSYCGP</Hsp_qseq>
+      <Hsp_hseq>AVTGMLSTSACACCAGLLLVGSRELSDISSARRLCGRYLVKEIEKLCGHANWSQFHFEEETPFPRLVAQASEKVEAFSPYQFESPQTAFPARGRGTNPVSTSASWEEAVNNWEMQSLPEYQDKKAYSPLDKEREFSSSHNINLYIHENAKFQKKSRNKIKTLSNLFWGNHPQRKRRGYSEKCCLTGCTKEELSIACLP</Hsp_hseq>
+      <Hsp_midline>AV  +++ S  A   G L    +  S +SS ++ CG+ L   ++ +C     S F    +   P+     + ++       F + ++ F                     NW ++    +      S ++   ++  +++I+ Y+     F  ++R +   L   F G   +R+ RG  E+CC+ GCT  EL+  C P</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+</Iteration_hits>
+  <Iteration_stat>
+    <Statistics>
+      <Statistics_db-num>26490256</Statistics_db-num>
+      <Statistics_db-len>602037680</Statistics_db-len>
+      <Statistics_hsp-len>0</Statistics_hsp-len>
+      <Statistics_eff-space>0</Statistics_eff-space>
+      <Statistics_kappa>0.041</Statistics_kappa>
+      <Statistics_lambda>0.267</Statistics_lambda>
+      <Statistics_entropy>0.14</Statistics_entropy>
+    </Statistics>
+  </Iteration_stat>
+</Iteration>
+</BlastOutput_iterations>
+</BlastOutput>
+

@@ -1,0 +1,36 @@
+Predicted Proteins for Solenopsis invicta (ant):
+
+1  prot1.fasta   quality=100.00
+2  prot2.fasta   quality=100.00
+3  prot3.fasta   quality=100.00
+4  prot4.fasta   quality=99.23
+5  prot5.fasta   quality=100.00
+6  prot6.fasta   quality=99.83
+7  prot7.fasta   quality=100.00 
+8  prot8.fasta   quality=28.95
+9  prot9.fasta   quality=43.33
+10 prot10.fasta  quality=76.92
+
+Transcripts Nasonia vitripennis (ant):
+
+1  mrna1.fasta
+2  mrna2.fasta
+3  mrna3.fasta
+4  mrna4.fasta
+5  mrna5.fasta
+6  mrna6.fasta
+7  mrna7.fasta
+8  mrna8.fasta
+9  mrna9.fasta
+10 mrna10.fasta
+
+Cow:
+
+1  cow_prot1.fasta
+2  cow_prot2.fasta
+3  cow_prot3.fasta
+4  cow_mrna1.fasta
+5  cow_mrna2.fasta
+6  cow_mrna3.fasta
+
+

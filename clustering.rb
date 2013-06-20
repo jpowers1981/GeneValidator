@@ -36,11 +36,21 @@ class Cluster
   # distance between two adiacent clusters (euclidian)
   def distance(cluster)
     d = 0;
+    this_cluster_norm = 0
+    cluster_norm = 0
+
     cluster.lengths.each do |elem1|
       lengths.each do |elem2|
-        d = d + (elem1[0] - elem2[0]).abs #* elem1[1] * elem2[1]; 
+        d = d + (elem1[0] - elem2[0]).abs
+        #d = d + (elem1[0]* elem1[1] - elem2[0]* elem2[1]).abs
+        #d = d + elem1[1] * elem2[1]*(elem1[0] - elem2[0]).abs
+        cluster_norm = cluster_norm + elem1[1]
+        this_cluster_norm = this_cluster_norm + elem2[1]
       end
     end
+    #group average distance
+    d = d/(cluster.lengths.length * lengths.length)
+    #d = d/(cluster_norm * this_cluster_norm)
     d
   end
 
@@ -52,7 +62,7 @@ class Cluster
   end
 
   #print the current cluster
-  def print_cluster
+  def print
     puts "Cluster: mean = #{mean()}, density = #{density}"
     lengths.sort{|a,b| a<=>b}.each do |elem|
       puts "#{elem[0]}, #{elem[1]}"
@@ -87,7 +97,7 @@ def hierarchical_clustering (vec, debug = false)
 
     if debug
       clusters.each do |elem|
-        elem.print_cluster
+        elem.print
       end	
     end
 
@@ -106,7 +116,10 @@ def hierarchical_clustering (vec, debug = false)
 
     clusters.each_with_index do |item, i|
       if i < clusters.length-1
-        dist = clusters[i].distance(clusters[i+1])	
+        dist = clusters[i].distance(clusters[i+1])
+        if debug
+          puts "distance between clusters #{i} and #{i+1} is #{dist}"	
+        end
 	current_density = clusters[i].density + clusters[i+1].density
 	if dist < min_distance
 	  min_distance = dist
@@ -124,6 +137,7 @@ def hierarchical_clustering (vec, debug = false)
     #stop condition
     #the distance between the closest clusters exceeds the threshold
     if (clusters[cluster].mean - clusters[cluster+1].mean).abs > threshold_distance
+      puts "Clusterization stoped because clusters #{cluster} and #{cluster+1} that should be merged are too far one from the other."
       clusters
       break
     end
@@ -137,14 +151,16 @@ def hierarchical_clustering (vec, debug = false)
     clusters.delete_at(cluster+1)
 
     if debug
-      clusters.each do |elem|
-        elem.print_cluster
+      clusters.each_with_index do |elem, i|
+        puts "cluster #{i}"
+        elem.print
       end
     end
 
     #stop condition
     #the density of the biggest clusters exceeds the threshold
     if clusters[cluster].density > threshold_density
+      puts "Clusterization stoped because cluster's #{cluster} no of elements exceeded half of the total no of elements."
       clusters
       break
     end
@@ -170,6 +186,6 @@ clusters.each_with_index{|item, i|
        	end
 }
 puts "\nMost dense cluster:"
-clusters[max_density_cluster].print_cluster
+clusters[max_density_cluster].print
 =end
 

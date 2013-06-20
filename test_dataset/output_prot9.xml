@@ -1,0 +1,1106 @@
+<?xml version="1.0"?>
+<!DOCTYPE BlastOutput PUBLIC "-//NCBI//NCBI BlastOutput/EN" "http://www.ncbi.nlm.nih.gov/dtd/NCBI_BlastOutput.dtd">
+<BlastOutput>
+  <BlastOutput_program>blastp</BlastOutput_program>
+  <BlastOutput_version>BLASTP 2.2.28+</BlastOutput_version>
+  <BlastOutput_reference>Stephen F. Altschul, Thomas L. Madden, Alejandro A. Sch&amp;auml;ffer, Jinghui Zhang, Zheng Zhang, Webb Miller, and David J. Lipman (1997), &quot;Gapped BLAST and PSI-BLAST: a new generation of protein database search programs&quot;, Nucleic Acids Res. 25:3389-3402.</BlastOutput_reference>
+  <BlastOutput_db>nr</BlastOutput_db>
+  <BlastOutput_query-ID>Query_1</BlastOutput_query-ID>
+  <BlastOutput_query-def>SI2.2.0_80039 locus=Si_gnF.scaffold05277[1187..2156].pep_2 flag=new_id quality=43.33 merge_with=SI2.2.0_80211 merge_with=SI2.2.0_80306 merge_with=SI2.2.0_07731</BlastOutput_query-def>
+  <BlastOutput_query-len>125</BlastOutput_query-len>
+  <BlastOutput_param>
+    <Parameters>
+      <Parameters_matrix>BLOSUM62</Parameters_matrix>
+      <Parameters_expect>1e-05</Parameters_expect>
+      <Parameters_gap-open>11</Parameters_gap-open>
+      <Parameters_gap-extend>1</Parameters_gap-extend>
+      <Parameters_filter>F</Parameters_filter>
+    </Parameters>
+  </BlastOutput_param>
+<BlastOutput_iterations>
+<Iteration>
+  <Iteration_iter-num>1</Iteration_iter-num>
+  <Iteration_query-ID>Query_1</Iteration_query-ID>
+  <Iteration_query-def>SI2.2.0_80039 locus=Si_gnF.scaffold05277[1187..2156].pep_2 flag=new_id quality=43.33 merge_with=SI2.2.0_80211 merge_with=SI2.2.0_80306 merge_with=SI2.2.0_07731</Iteration_query-def>
+  <Iteration_query-len>125</Iteration_query-len>
+<Iteration_hits>
+<Hit>
+  <Hit_num>1</Hit_num>
+  <Hit_id>gi|322789806|gb|EFZ14964.1|</Hit_id>
+  <Hit_def>hypothetical protein SINV_80039 [Solenopsis invicta]</Hit_def>
+  <Hit_accession>EFZ14964</Hit_accession>
+  <Hit_len>125</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>262.307</Hsp_bit-score>
+      <Hsp_score>669</Hsp_score>
+      <Hsp_evalue>7.00476e-88</Hsp_evalue>
+      <Hsp_query-from>1</Hsp_query-from>
+      <Hsp_query-to>125</Hsp_query-to>
+      <Hsp_hit-from>1</Hsp_hit-from>
+      <Hsp_hit-to>125</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>125</Hsp_identity>
+      <Hsp_positive>125</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>125</Hsp_align-len>
+      <Hsp_qseq>LDKCVPSDNKEREGDAHTKIRAQNKKYRNCNMEQEISEAEVTSAIKKIKNNKAPGADVKSNFKEAHKYMQKGCPQGSIIGPTMWNFCMDALLHQLAEIKDVETIAYADDLAMLIGGNSRAELEKR</Hsp_qseq>
+      <Hsp_hseq>LDKCVPSDNKEREGDAHTKIRAQNKKYRNCNMEQEISEAEVTSAIKKIKNNKAPGADVKSNFKEAHKYMQKGCPQGSIIGPTMWNFCMDALLHQLAEIKDVETIAYADDLAMLIGGNSRAELEKR</Hsp_hseq>
+      <Hsp_midline>LDKCVPSDNKEREGDAHTKIRAQNKKYRNCNMEQEISEAEVTSAIKKIKNNKAPGADVKSNFKEAHKYMQKGCPQGSIIGPTMWNFCMDALLHQLAEIKDVETIAYADDLAMLIGGNSRAELEKR</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>2</Hit_num>
+  <Hit_id>gi|56798156|dbj|BAD82946.1|</Hit_id>
+  <Hit_def>non-LTR retrotransposon R1Bmks ORF2 protein [Bombyx mori]</Hit_def>
+  <Hit_accession>BAD82946</Hit_accession>
+  <Hit_len>1035</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>72.4034</Hsp_bit-score>
+      <Hsp_score>176</Hsp_score>
+      <Hsp_evalue>2.49071e-12</Hsp_evalue>
+      <Hsp_query-from>72</Hsp_query-from>
+      <Hsp_query-to>125</Hsp_query-to>
+      <Hsp_hit-from>644</Hsp_hit-from>
+      <Hsp_hit-to>697</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>30</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>54</Hsp_align-len>
+      <Hsp_qseq>GCPQGSIIGPTMWNFCMDALLHQLAEIKDVETIAYADDLAMLIGGNSRAELEKR</Hsp_qseq>
+      <Hsp_hseq>GCPQGSVLGPTLWNVLMDDLLALPQGIEGTEMVAYADDVTVLVRGDSRAQLERR</Hsp_hseq>
+      <Hsp_midline>GCPQGS++GPT+WN  MD LL     I+  E +AYADD+ +L+ G+SRA+LE+R</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>3</Hit_num>
+  <Hit_id>gi|556020|gb|AAC13649.1|</Hit_id>
+  <Hit_def>reverse transcriptase [Bombyx mori]</Hit_def>
+  <Hit_accession>AAC13649</Hit_accession>
+  <Hit_len>1047</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>72.4034</Hsp_bit-score>
+      <Hsp_score>176</Hsp_score>
+      <Hsp_evalue>2.50269e-12</Hsp_evalue>
+      <Hsp_query-from>72</Hsp_query-from>
+      <Hsp_query-to>125</Hsp_query-to>
+      <Hsp_hit-from>644</Hsp_hit-from>
+      <Hsp_hit-to>697</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>30</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>54</Hsp_align-len>
+      <Hsp_qseq>GCPQGSIIGPTMWNFCMDALLHQLAEIKDVETIAYADDLAMLIGGNSRAELEKR</Hsp_qseq>
+      <Hsp_hseq>GCPQGSVLGPTLWNVLMDDLLALPQGIEGTEMVAYADDVTVLVRGDSRAQLERR</Hsp_hseq>
+      <Hsp_midline>GCPQGS++GPT+WN  MD LL     I+  E +AYADD+ +L+ G+SRA+LE+R</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>4</Hit_num>
+  <Hit_id>gi|307170940|gb|EFN63038.1|</Hit_id>
+  <Hit_def>Putative 115 kDa protein in type-1 retrotransposable element R1DM [Camponotus floridanus]</Hit_def>
+  <Hit_accession>EFN63038</Hit_accession>
+  <Hit_len>119</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>67.781</Hsp_bit-score>
+      <Hsp_score>164</Hsp_score>
+      <Hsp_evalue>2.94544e-12</Hsp_evalue>
+      <Hsp_query-from>58</Hsp_query-from>
+      <Hsp_query-to>122</Hsp_query-to>
+      <Hsp_hit-from>52</Hsp_hit-from>
+      <Hsp_hit-to>119</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>33</Hsp_identity>
+      <Hsp_positive>42</Hsp_positive>
+      <Hsp_gaps>3</Hsp_gaps>
+      <Hsp_align-len>68</Hsp_align-len>
+      <Hsp_qseq>VKSNFKEAHKYMQKGCPQGSIIGPTMWNFCMDALLHQLAEIKD---VETIAYADDLAMLIGGNSRAEL</Hsp_qseq>
+      <Hsp_hseq>VRSKTDQIERSMERGCPQGSILGPIAWNWCMDELLTSFKSEFDEAKAEIIAYADDLLILIKEDSRRNL</Hsp_hseq>
+      <Hsp_midline>V+S   +  + M++GCPQGSI+GP  WN+CMD LL       D    E IAYADDL +LI  +SR  L</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>5</Hit_num>
+  <Hit_id>gi|270016636|gb|EFA13082.1|</Hit_id>
+  <Hit_def>hypothetical protein TcasGA2_TC011582 [Tribolium castaneum]</Hit_def>
+  <Hit_accession>EFA13082</Hit_accession>
+  <Hit_len>2265</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>70.8626</Hsp_bit-score>
+      <Hsp_score>172</Hsp_score>
+      <Hsp_evalue>1.16235e-11</Hsp_evalue>
+      <Hsp_query-from>64</Hsp_query-from>
+      <Hsp_query-to>123</Hsp_query-to>
+      <Hsp_hit-from>1744</Hsp_hit-from>
+      <Hsp_hit-to>1802</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>34</Hsp_identity>
+      <Hsp_positive>43</Hsp_positive>
+      <Hsp_gaps>1</Hsp_gaps>
+      <Hsp_align-len>60</Hsp_align-len>
+      <Hsp_qseq>EAHKYMQKGCPQGSIIGPTMWNFCMDALLHQLAEIKDVETIAYADDLAMLIGGNSRAELE</Hsp_qseq>
+      <Hsp_hseq>EIWKQVWKGCPQGSICGPSVWNMMMDELLNDLESL-NVEVVAYADDVLCLIEGMSRAEIE</Hsp_hseq>
+      <Hsp_midline>E  K + KGCPQGSI GP++WN  MD LL+ L  + +VE +AYADD+  LI G SRAE+E</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>6</Hit_num>
+  <Hit_id>gi|270017061|gb|EFA13507.1|</Hit_id>
+  <Hit_def>hypothetical protein TcasGA2_TC011554 [Tribolium castaneum]</Hit_def>
+  <Hit_accession>EFA13507</Hit_accession>
+  <Hit_len>1374</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>70.0922</Hsp_bit-score>
+      <Hsp_score>170</Hsp_score>
+      <Hsp_evalue>1.68896e-11</Hsp_evalue>
+      <Hsp_query-from>67</Hsp_query-from>
+      <Hsp_query-to>125</Hsp_query-to>
+      <Hsp_hit-from>975</Hsp_hit-from>
+      <Hsp_hit-to>1032</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>32</Hsp_identity>
+      <Hsp_positive>42</Hsp_positive>
+      <Hsp_gaps>1</Hsp_gaps>
+      <Hsp_align-len>59</Hsp_align-len>
+      <Hsp_qseq>KYMQKGCPQGSIIGPTMWNFCMDALLHQLAEIKDVETIAYADDLAMLIGGNSRAELEKR</Hsp_qseq>
+      <Hsp_hseq>KDVSRGCPQGSICGPFVWNLCMNELLRGLGEL-GAQVVAYADDLLVLVEGNSRRDLESR</Hsp_hseq>
+      <Hsp_midline>K + +GCPQGSI GP +WN CM+ LL  L E+   + +AYADDL +L+ GNSR +LE R</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>7</Hit_num>
+  <Hit_id>gi|548538|sp|Q03269.1|PO11_NASVI</Hit_id>
+  <Hit_def>RecName: Full=Retrovirus-related Pol polyprotein from type-1 retrotransposable element R1; AltName: Full=Retrovirus-related Pol polyprotein from type I retrotransposable element R1; Includes: RecName: Full=Reverse transcriptase; Includes: RecName: Full=Endonuclease &gt;gi|162565|gb|AAA30337.1| reverse transcriptase, partial [Nasonia vitripennis]</Hit_def>
+  <Hit_accession>Q03269</Hit_accession>
+  <Hit_len>337</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>67.3958</Hsp_bit-score>
+      <Hsp_score>163</Hsp_score>
+      <Hsp_evalue>3.60022e-11</Hsp_evalue>
+      <Hsp_query-from>72</Hsp_query-from>
+      <Hsp_query-to>124</Hsp_query-to>
+      <Hsp_hit-from>1</Hsp_hit-from>
+      <Hsp_hit-to>52</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>29</Hsp_identity>
+      <Hsp_positive>39</Hsp_positive>
+      <Hsp_gaps>1</Hsp_gaps>
+      <Hsp_align-len>53</Hsp_align-len>
+      <Hsp_qseq>GCPQGSIIGPTMWNFCMDALLHQLAEIKDVETIAYADDLAMLIGGNSRAELEK</Hsp_qseq>
+      <Hsp_hseq>GCPQGSISGPYMWNLCMNGLLDRLSAMNE-RIVAYADDLMIVANGNSRMEMER</Hsp_hseq>
+      <Hsp_midline>GCPQGSI GP MWN CM+ LL +L+ + +   +AYADDL ++  GNSR E+E+</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>8</Hit_num>
+  <Hit_id>gi|288563819|gb|ADC53707.1|</Hit_id>
+  <Hit_def>unknown [Blattella germanica]</Hit_def>
+  <Hit_accession>ADC53707</Hit_accession>
+  <Hit_len>566</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>68.1662</Hsp_bit-score>
+      <Hsp_score>165</Hsp_score>
+      <Hsp_evalue>4.1347e-11</Hsp_evalue>
+      <Hsp_query-from>67</Hsp_query-from>
+      <Hsp_query-to>125</Hsp_query-to>
+      <Hsp_hit-from>69</Hsp_hit-from>
+      <Hsp_hit-to>128</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>27</Hsp_identity>
+      <Hsp_positive>45</Hsp_positive>
+      <Hsp_gaps>1</Hsp_gaps>
+      <Hsp_align-len>60</Hsp_align-len>
+      <Hsp_qseq>KYMQKGCPQGSIIGPTMWNFCMDALLHQLAEIKDV-ETIAYADDLAMLIGGNSRAELEKR</Hsp_qseq>
+      <Hsp_hseq>KTITKGCPQGSILGPEFWNIALEPILEKLQRLEDLTEVVAFADDILLIVGGRSRAVIEQK</Hsp_hseq>
+      <Hsp_midline>K + KGCPQGSI+GP  WN  ++ +L +L  ++D+ E +A+ADD+ +++GG SRA +E++</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>9</Hit_num>
+  <Hit_id>gi|288563817|gb|ADC53706.1|</Hit_id>
+  <Hit_def>unknown [Blattella germanica]</Hit_def>
+  <Hit_accession>ADC53706</Hit_accession>
+  <Hit_len>465</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>66.6254</Hsp_bit-score>
+      <Hsp_score>161</Hsp_score>
+      <Hsp_evalue>1.14261e-10</Hsp_evalue>
+      <Hsp_query-from>67</Hsp_query-from>
+      <Hsp_query-to>125</Hsp_query-to>
+      <Hsp_hit-from>69</Hsp_hit-from>
+      <Hsp_hit-to>128</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>28</Hsp_identity>
+      <Hsp_positive>43</Hsp_positive>
+      <Hsp_gaps>1</Hsp_gaps>
+      <Hsp_align-len>60</Hsp_align-len>
+      <Hsp_qseq>KYMQKGCPQGSIIGPTMWNFCMDALLHQLAEIKDV-ETIAYADDLAMLIGGNSRAELEKR</Hsp_qseq>
+      <Hsp_hseq>KTTTKGCPQGSVLGPEFWDIALEPILYKMAENPDLADTVAYADDILFLIDGRNRQELESK</Hsp_hseq>
+      <Hsp_midline>K   KGCPQGS++GP  W+  ++ +L+++AE  D+ +T+AYADD+  LI G +R ELE +</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>10</Hit_num>
+  <Hit_id>gi|189242251|ref|XP_001808188.1|</Hit_id>
+  <Hit_def>PREDICTED: similar to pol-like protein [Tribolium castaneum]</Hit_def>
+  <Hit_accession>XP_001808188</Hit_accession>
+  <Hit_len>1808</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>67.3958</Hsp_bit-score>
+      <Hsp_score>163</Hsp_score>
+      <Hsp_evalue>1.60122e-10</Hsp_evalue>
+      <Hsp_query-from>65</Hsp_query-from>
+      <Hsp_query-to>125</Hsp_query-to>
+      <Hsp_hit-from>1504</Hsp_hit-from>
+      <Hsp_hit-to>1563</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>30</Hsp_identity>
+      <Hsp_positive>43</Hsp_positive>
+      <Hsp_gaps>3</Hsp_gaps>
+      <Hsp_align-len>62</Hsp_align-len>
+      <Hsp_qseq>AHKYMQKGCPQGSIIGPTMWNFCMDALLHQLAEIKDVET-IAYADDLAMLIGGNSRAELEKR</Hsp_qseq>
+      <Hsp_hseq>VRKFCTKGCPQGSVLGPTLWNLIMDTLLN--SAWSDFATPIAYADDLAVIVKSDLRSQLKTR</Hsp_hseq>
+      <Hsp_midline>  K+  KGCPQGS++GPT+WN  MD LL+  +   D  T IAYADDLA+++  + R++L+ R</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>11</Hit_num>
+  <Hit_id>gi|733470|gb|AAA90996.1|</Hit_id>
+  <Hit_def>reverse transcriptase [Drosophila neotestacea]</Hit_def>
+  <Hit_accession>AAA90996</Hit_accession>
+  <Hit_len>400</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>65.855</Hsp_bit-score>
+      <Hsp_score>159</Hsp_score>
+      <Hsp_evalue>1.71201e-10</Hsp_evalue>
+      <Hsp_query-from>72</Hsp_query-from>
+      <Hsp_query-to>123</Hsp_query-to>
+      <Hsp_hit-from>3</Hsp_hit-from>
+      <Hsp_hit-to>52</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>29</Hsp_identity>
+      <Hsp_positive>37</Hsp_positive>
+      <Hsp_gaps>2</Hsp_gaps>
+      <Hsp_align-len>52</Hsp_align-len>
+      <Hsp_qseq>GCPQGSIIGPTMWNFCMDALLHQLAEIKDVETIAYADDLAMLIGGNSRAELE</Hsp_qseq>
+      <Hsp_hseq>GCPQGSICGPYIWNLMMDTLLRQLEQV--CKCCAYADDLIIMVEGQSRAEIE</Hsp_hseq>
+      <Hsp_midline>GCPQGSI GP +WN  MD LL QL ++   +  AYADDL +++ G SRAE+E</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>12</Hit_num>
+  <Hit_id>gi|270015739|gb|EFA12187.1|</Hit_id>
+  <Hit_def>hypothetical protein TcasGA2_TC004340 [Tribolium castaneum]</Hit_def>
+  <Hit_accession>EFA12187</Hit_accession>
+  <Hit_len>914</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>66.2402</Hsp_bit-score>
+      <Hsp_score>160</Hsp_score>
+      <Hsp_evalue>2.6979e-10</Hsp_evalue>
+      <Hsp_query-from>67</Hsp_query-from>
+      <Hsp_query-to>125</Hsp_query-to>
+      <Hsp_hit-from>517</Hsp_hit-from>
+      <Hsp_hit-to>574</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>31</Hsp_identity>
+      <Hsp_positive>44</Hsp_positive>
+      <Hsp_gaps>3</Hsp_gaps>
+      <Hsp_align-len>60</Hsp_align-len>
+      <Hsp_qseq>KYMQKGCPQGSIIGPTMWNFCMDALLHQLAEIKDVET-IAYADDLAMLIGGNSRAELEKR</Hsp_qseq>
+      <Hsp_hseq>KFCTKGCPQGSVLGPTLWNLTMDTLLN--SEWSDFATPIAYADDLAVIVKSDLRSQLKTR</Hsp_hseq>
+      <Hsp_midline>K+  KGCPQGS++GPT+WN  MD LL+  +E  D  T IAYADDLA+++  + R++L+ R</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>13</Hit_num>
+  <Hit_id>gi|533133|gb|AAA21257.1|</Hit_id>
+  <Hit_def>reverse transcriptase [Drosophila ambigua]</Hit_def>
+  <Hit_accession>AAA21257</Hit_accession>
+  <Hit_len>393</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>63.929</Hsp_bit-score>
+      <Hsp_score>154</Hsp_score>
+      <Hsp_evalue>8.04107e-10</Hsp_evalue>
+      <Hsp_query-from>72</Hsp_query-from>
+      <Hsp_query-to>125</Hsp_query-to>
+      <Hsp_hit-from>3</Hsp_hit-from>
+      <Hsp_hit-to>54</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>29</Hsp_identity>
+      <Hsp_positive>38</Hsp_positive>
+      <Hsp_gaps>2</Hsp_gaps>
+      <Hsp_align-len>54</Hsp_align-len>
+      <Hsp_qseq>GCPQGSIIGPTMWNFCMDALLHQLAEIKDVETIAYADDLAMLIGGNSRAELEKR</Hsp_qseq>
+      <Hsp_hseq>GCPQGSISGPFIWNILMDVLLQRLEPLGALSR--YADDLLLLIEGNARSELERK</Hsp_hseq>
+      <Hsp_midline>GCPQGSI GP +WN  MD LL +L  +  +    YADDL +LI GN+R+ELE++</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>14</Hit_num>
+  <Hit_id>gi|733468|gb|AAA90995.1|</Hit_id>
+  <Hit_def>reverse transcriptase [Drosophila miranda]</Hit_def>
+  <Hit_accession>AAA90995</Hit_accession>
+  <Hit_len>392</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>63.5438</Hsp_bit-score>
+      <Hsp_score>153</Hsp_score>
+      <Hsp_evalue>1.06763e-09</Hsp_evalue>
+      <Hsp_query-from>72</Hsp_query-from>
+      <Hsp_query-to>125</Hsp_query-to>
+      <Hsp_hit-from>1</Hsp_hit-from>
+      <Hsp_hit-to>52</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>29</Hsp_identity>
+      <Hsp_positive>38</Hsp_positive>
+      <Hsp_gaps>2</Hsp_gaps>
+      <Hsp_align-len>54</Hsp_align-len>
+      <Hsp_qseq>GCPQGSIIGPTMWNFCMDALLHQLAEIKDVETIAYADDLAMLIGGNSRAELEKR</Hsp_qseq>
+      <Hsp_hseq>GCPQGSISGPFIWNILMDVLLQRLEPLGALSR--YADDLLLLIEGNARSELEQK</Hsp_hseq>
+      <Hsp_midline>GCPQGSI GP +WN  MD LL +L  +  +    YADDL +LI GN+R+ELE++</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>15</Hit_num>
+  <Hit_id>gi|733466|gb|AAA90994.1|</Hit_id>
+  <Hit_def>reverse transcriptase [Drosophila mercatorum]</Hit_def>
+  <Hit_accession>AAA90994</Hit_accession>
+  <Hit_len>408</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>63.5438</Hsp_bit-score>
+      <Hsp_score>153</Hsp_score>
+      <Hsp_evalue>1.34369e-09</Hsp_evalue>
+      <Hsp_query-from>72</Hsp_query-from>
+      <Hsp_query-to>123</Hsp_query-to>
+      <Hsp_hit-from>3</Hsp_hit-from>
+      <Hsp_hit-to>52</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>30</Hsp_identity>
+      <Hsp_positive>36</Hsp_positive>
+      <Hsp_gaps>2</Hsp_gaps>
+      <Hsp_align-len>52</Hsp_align-len>
+      <Hsp_qseq>GCPQGSIIGPTMWNFCMDALLHQLAEIKDVETIAYADDLAMLIGGNSRAELE</Hsp_qseq>
+      <Hsp_hseq>GCPQGSISGPFIWNILMDVLLHRLEAHCTIS--AYADDLMLLIEGESRSQLE</Hsp_hseq>
+      <Hsp_midline>GCPQGSI GP +WN  MD LLH+L     +   AYADDL +LI G SR++LE</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>16</Hit_num>
+  <Hit_id>gi|270015448|gb|EFA11896.1|</Hit_id>
+  <Hit_def>hypothetical protein TcasGA2_TC001590 [Tribolium castaneum]</Hit_def>
+  <Hit_accession>EFA11896</Hit_accession>
+  <Hit_len>400</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>63.1586</Hsp_bit-score>
+      <Hsp_score>152</Hsp_score>
+      <Hsp_evalue>1.4374e-09</Hsp_evalue>
+      <Hsp_query-from>31</Hsp_query-from>
+      <Hsp_query-to>125</Hsp_query-to>
+      <Hsp_hit-from>220</Hsp_hit-from>
+      <Hsp_hit-to>319</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>40</Hsp_identity>
+      <Hsp_positive>60</Hsp_positive>
+      <Hsp_gaps>9</Hsp_gaps>
+      <Hsp_align-len>102</Hsp_align-len>
+      <Hsp_qseq>NMEQEISEAEVTSAIKKIKN--NKAPGADVKSNFK----EAHKYMQKGCPQGSIIGPTMWNFCMDALLHQLAEIKDVET-IAYADDLAMLIGGNSRAELEKR</Hsp_qseq>
+      <Hsp_hseq>DVPKELETEELVNEILKQEGLPNTIPKKFVKSAFKVGDFTVRKTCTKGCPQGSVLGPTLWNLIMDVLLN--SDWPDFTTPIAYADDLVVIVESDLRSQLKIR</Hsp_hseq>
+      <Hsp_midline>++ +E+   E+ + I K +   N  P   VKS FK       K   KGCPQGS++GPT+WN  MD LL+  ++  D  T IAYADDL +++  + R++L+ R</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>17</Hit_num>
+  <Hit_id>gi|270016008|gb|EFA12456.1|</Hit_id>
+  <Hit_def>hypothetical protein TcasGA2_TC004333 [Tribolium castaneum]</Hit_def>
+  <Hit_accession>EFA12456</Hit_accession>
+  <Hit_len>1505</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>63.929</Hsp_bit-score>
+      <Hsp_score>154</Hsp_score>
+      <Hsp_evalue>1.9304e-09</Hsp_evalue>
+      <Hsp_query-from>71</Hsp_query-from>
+      <Hsp_query-to>122</Hsp_query-to>
+      <Hsp_hit-from>814</Hsp_hit-from>
+      <Hsp_hit-to>864</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>26</Hsp_identity>
+      <Hsp_positive>36</Hsp_positive>
+      <Hsp_gaps>1</Hsp_gaps>
+      <Hsp_align-len>52</Hsp_align-len>
+      <Hsp_qseq>KGCPQGSIIGPTMWNFCMDALLHQLAEIKDVETIAYADDLAMLIGGNSRAEL</Hsp_qseq>
+      <Hsp_hseq>KGCPQGSVLGPTLWNTILDEFLRKKIA-PNTETIAYADDIVVITGANTRNEF</Hsp_hseq>
+      <Hsp_midline>KGCPQGS++GPT+WN  +D  L +     + ETIAYADD+ ++ G N+R E </Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>18</Hit_num>
+  <Hit_id>gi|270016642|gb|EFA13088.1|</Hit_id>
+  <Hit_def>hypothetical protein TcasGA2_TC011588 [Tribolium castaneum]</Hit_def>
+  <Hit_accession>EFA13088</Hit_accession>
+  <Hit_len>475</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>62.003</Hsp_bit-score>
+      <Hsp_score>149</Hsp_score>
+      <Hsp_evalue>5.05531e-09</Hsp_evalue>
+      <Hsp_query-from>67</Hsp_query-from>
+      <Hsp_query-to>125</Hsp_query-to>
+      <Hsp_hit-from>304</Hsp_hit-from>
+      <Hsp_hit-to>361</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>31</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>3</Hsp_gaps>
+      <Hsp_align-len>60</Hsp_align-len>
+      <Hsp_qseq>KYMQKGCPQGSIIGPTMWNFCMDALLHQLAEIKDVET-IAYADDLAMLIGGNSRAELEKR</Hsp_qseq>
+      <Hsp_hseq>KLCSKGCPQGSVLGPTLWNLIMDTLLD--SEWPDFATPIAYADDLAVVVKSDLRSHLKLR</Hsp_hseq>
+      <Hsp_midline>K   KGCPQGS++GPT+WN  MD LL   +E  D  T IAYADDLA+++  + R+ L+ R</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>19</Hit_num>
+  <Hit_id>gi|733462|gb|AAA90992.1|</Hit_id>
+  <Hit_def>reverse transcriptase [Drosophila buzzatii]</Hit_def>
+  <Hit_accession>AAA90992</Hit_accession>
+  <Hit_len>400</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>61.6178</Hsp_bit-score>
+      <Hsp_score>148</Hsp_score>
+      <Hsp_evalue>5.99758e-09</Hsp_evalue>
+      <Hsp_query-from>72</Hsp_query-from>
+      <Hsp_query-to>123</Hsp_query-to>
+      <Hsp_hit-from>2</Hsp_hit-from>
+      <Hsp_hit-to>51</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>30</Hsp_identity>
+      <Hsp_positive>35</Hsp_positive>
+      <Hsp_gaps>2</Hsp_gaps>
+      <Hsp_align-len>52</Hsp_align-len>
+      <Hsp_qseq>GCPQGSIIGPTMWNFCMDALLHQLAEIKDVETIAYADDLAMLIGGNSRAELE</Hsp_qseq>
+      <Hsp_hseq>GCPQGSISGPFIWNILMDVLLRRLE--AHCTFSAYADDLLLLIEGNSRSQLE</Hsp_hseq>
+      <Hsp_midline>GCPQGSI GP +WN  MD LL +L         AYADDL +LI GNSR++LE</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>20</Hit_num>
+  <Hit_id>gi|140023|sp|P16425.1|Y2R2_DROME</Hit_id>
+  <Hit_def>RecName: Full=Putative 115 kDa protein in type-1 retrotransposable element R1DM; AltName: Full=ORF 2; AltName: Full=Putative 115 kDa protein in type I retrotransposable element R1DM &gt;gi|1335645|emb|CAA36227.1| unnamed protein product [Drosophila melanogaster]</Hit_def>
+  <Hit_accession>P16425</Hit_accession>
+  <Hit_len>1021</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>62.003</Hsp_bit-score>
+      <Hsp_score>149</Hsp_score>
+      <Hsp_evalue>7.14104e-09</Hsp_evalue>
+      <Hsp_query-from>71</Hsp_query-from>
+      <Hsp_query-to>125</Hsp_query-to>
+      <Hsp_hit-from>630</Hsp_hit-from>
+      <Hsp_hit-to>682</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>29</Hsp_identity>
+      <Hsp_positive>38</Hsp_positive>
+      <Hsp_gaps>2</Hsp_gaps>
+      <Hsp_align-len>55</Hsp_align-len>
+      <Hsp_qseq>KGCPQGSIIGPTMWNFCMDALLHQLAEIKDVETIAYADDLAMLIGGNSRAELEKR</Hsp_qseq>
+      <Hsp_hseq>RGCPQGSISGPFIWDILMDVLLQRLQPY--CQLSAYADDLLLLVEGNSRAVLEEK</Hsp_hseq>
+      <Hsp_midline>+GCPQGSI GP +W+  MD LL +L      +  AYADDL +L+ GNSRA LE++</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>21</Hit_num>
+  <Hit_id>gi|270015744|gb|EFA12192.1|</Hit_id>
+  <Hit_def>hypothetical protein TcasGA2_TC004345 [Tribolium castaneum]</Hit_def>
+  <Hit_accession>EFA12192</Hit_accession>
+  <Hit_len>879</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>62.003</Hsp_bit-score>
+      <Hsp_score>149</Hsp_score>
+      <Hsp_evalue>7.48807e-09</Hsp_evalue>
+      <Hsp_query-from>67</Hsp_query-from>
+      <Hsp_query-to>125</Hsp_query-to>
+      <Hsp_hit-from>577</Hsp_hit-from>
+      <Hsp_hit-to>634</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>30</Hsp_identity>
+      <Hsp_positive>43</Hsp_positive>
+      <Hsp_gaps>3</Hsp_gaps>
+      <Hsp_align-len>60</Hsp_align-len>
+      <Hsp_qseq>KYMQKGCPQGSIIGPTMWNFCMDALLHQLAEIKDVET-IAYADDLAMLIGGNSRAELEKR</Hsp_qseq>
+      <Hsp_hseq>KFCTKGCPQGSVLGPTLWNLIMDTLLN--SAWSDFATPIAYADDLAVIVKSDLRSQLKTR</Hsp_hseq>
+      <Hsp_midline>K+  KGCPQGS++GPT+WN  MD LL+  +   D  T IAYADDLA+++  + R++L+ R</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>22</Hit_num>
+  <Hit_id>gi|270016716|gb|EFA13162.1|</Hit_id>
+  <Hit_def>hypothetical protein TcasGA2_TC002103 [Tribolium castaneum]</Hit_def>
+  <Hit_accession>EFA13162</Hit_accession>
+  <Hit_len>541</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>60.8474</Hsp_bit-score>
+      <Hsp_score>146</Hsp_score>
+      <Hsp_evalue>1.40514e-08</Hsp_evalue>
+      <Hsp_query-from>67</Hsp_query-from>
+      <Hsp_query-to>125</Hsp_query-to>
+      <Hsp_hit-from>261</Hsp_hit-from>
+      <Hsp_hit-to>318</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>29</Hsp_identity>
+      <Hsp_positive>42</Hsp_positive>
+      <Hsp_gaps>3</Hsp_gaps>
+      <Hsp_align-len>60</Hsp_align-len>
+      <Hsp_qseq>KYMQKGCPQGSIIGPTMWNFCMDALLHQLAEIKDVET-IAYADDLAMLIGGNSRAELEKR</Hsp_qseq>
+      <Hsp_hseq>KTCTKGCPQGSVLGPTLWNLIMDVLLN--SDWPDFTTPIAYADDLVVIVESDLRSQLKIR</Hsp_hseq>
+      <Hsp_midline>K   KGCPQGS++GPT+WN  MD LL+  ++  D  T IAYADDL +++  + R++L+ R</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>23</Hit_num>
+  <Hit_id>gi|733464|gb|AAA90993.1|</Hit_id>
+  <Hit_def>reverse transcriptase [Drosophila hydei]</Hit_def>
+  <Hit_accession>AAA90993</Hit_accession>
+  <Hit_len>405</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>60.077</Hsp_bit-score>
+      <Hsp_score>144</Hsp_score>
+      <Hsp_evalue>1.84662e-08</Hsp_evalue>
+      <Hsp_query-from>74</Hsp_query-from>
+      <Hsp_query-to>123</Hsp_query-to>
+      <Hsp_hit-from>1</Hsp_hit-from>
+      <Hsp_hit-to>48</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>28</Hsp_identity>
+      <Hsp_positive>35</Hsp_positive>
+      <Hsp_gaps>2</Hsp_gaps>
+      <Hsp_align-len>50</Hsp_align-len>
+      <Hsp_qseq>PQGSIIGPTMWNFCMDALLHQLAEIKDVETIAYADDLAMLIGGNSRAELE</Hsp_qseq>
+      <Hsp_hseq>PQGSISGPFIWNILMDTLLHRLE--AECTLSAYADDLLLLVDGNSRSQLE</Hsp_hseq>
+      <Hsp_midline>PQGSI GP +WN  MD LLH+L    +    AYADDL +L+ GNSR++LE</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>24</Hit_num>
+  <Hit_id>gi|548541|sp|Q03270.1|PO12_NASVI</Hit_id>
+  <Hit_def>RecName: Full=Retrovirus-related Pol polyprotein from type-1 retrotransposable element R1 2; AltName: Full=Retrovirus-related Pol polyprotein from type I retrotransposable element R1 2; Includes: RecName: Full=Reverse transcriptase; Includes: RecName: Full=Endonuclease &gt;gi|162567|gb|AAA30338.1| reverse transcriptase, partial [Nasonia vitripennis]</Hit_def>
+  <Hit_accession>Q03270</Hit_accession>
+  <Hit_len>410</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>58.9214</Hsp_bit-score>
+      <Hsp_score>141</Hsp_score>
+      <Hsp_evalue>4.29872e-08</Hsp_evalue>
+      <Hsp_query-from>72</Hsp_query-from>
+      <Hsp_query-to>124</Hsp_query-to>
+      <Hsp_hit-from>1</Hsp_hit-from>
+      <Hsp_hit-to>52</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>27</Hsp_identity>
+      <Hsp_positive>37</Hsp_positive>
+      <Hsp_gaps>1</Hsp_gaps>
+      <Hsp_align-len>53</Hsp_align-len>
+      <Hsp_qseq>GCPQGSIIGPTMWNFCMDALLHQLAEIKDVETIAYADDLAMLIGGNSRAELEK</Hsp_qseq>
+      <Hsp_hseq>GCPQGSIGGPILWNLSMNGMLIELAG-SGVSVCAFADDVAILAEGNTRKEVER</Hsp_hseq>
+      <Hsp_midline>GCPQGSI GP +WN  M+ +L +LA    V   A+ADD+A+L  GN+R E+E+</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>25</Hit_num>
+  <Hit_id>gi|270016032|gb|EFA12480.1|</Hit_id>
+  <Hit_def>hypothetical protein TcasGA2_TC001504 [Tribolium castaneum]</Hit_def>
+  <Hit_accession>EFA12480</Hit_accession>
+  <Hit_len>1682</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>56.225</Hsp_bit-score>
+      <Hsp_score>134</Hsp_score>
+      <Hsp_evalue>7.52729e-07</Hsp_evalue>
+      <Hsp_query-from>64</Hsp_query-from>
+      <Hsp_query-to>122</Hsp_query-to>
+      <Hsp_hit-from>1291</Hsp_hit-from>
+      <Hsp_hit-to>1350</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>26</Hsp_identity>
+      <Hsp_positive>40</Hsp_positive>
+      <Hsp_gaps>3</Hsp_gaps>
+      <Hsp_align-len>61</Hsp_align-len>
+      <Hsp_qseq>EAHKYMQKGC--PQGSIIGPTMWNFCMDALLHQLAEIKDVETIAYADDLAMLIGGNSRAEL</Hsp_qseq>
+      <Hsp_hseq>EGEEYVEMTCGVPQGSVLGPTLWNVLYDAVL-RLEMPVGVRTLAFADDLAVLVSSRNEEEM</Hsp_hseq>
+      <Hsp_midline>E  +Y++  C  PQGS++GPT+WN   DA+L +L     V T+A+ADDLA+L+   +  E+</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>26</Hit_num>
+  <Hit_id>gi|270016031|gb|EFA12479.1|</Hit_id>
+  <Hit_def>hypothetical protein TcasGA2_TC001503 [Tribolium castaneum]</Hit_def>
+  <Hit_accession>EFA12479</Hit_accession>
+  <Hit_len>1682</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>56.225</Hsp_bit-score>
+      <Hsp_score>134</Hsp_score>
+      <Hsp_evalue>7.7334e-07</Hsp_evalue>
+      <Hsp_query-from>64</Hsp_query-from>
+      <Hsp_query-to>122</Hsp_query-to>
+      <Hsp_hit-from>1293</Hsp_hit-from>
+      <Hsp_hit-to>1350</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>26</Hsp_identity>
+      <Hsp_positive>38</Hsp_positive>
+      <Hsp_gaps>1</Hsp_gaps>
+      <Hsp_align-len>59</Hsp_align-len>
+      <Hsp_qseq>EAHKYMQKGCPQGSIIGPTMWNFCMDALLHQLAEIKDVETIAYADDLAMLIGGNSRAEL</Hsp_qseq>
+      <Hsp_hseq>EEYVEMTCGVPQGSVLGPTLWNVLYDAVL-RLEMPVGVRTLAFADDLAVLVSSRNEEEM</Hsp_hseq>
+      <Hsp_midline>E +  M  G PQGS++GPT+WN   DA+L +L     V T+A+ADDLA+L+   +  E+</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>27</Hit_num>
+  <Hit_id>gi|270015839|gb|EFA12287.1|</Hit_id>
+  <Hit_def>hypothetical protein TcasGA2_TC016239 [Tribolium castaneum]</Hit_def>
+  <Hit_accession>EFA12287</Hit_accession>
+  <Hit_len>943</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>55.8398</Hsp_bit-score>
+      <Hsp_score>133</Hsp_score>
+      <Hsp_evalue>9.14332e-07</Hsp_evalue>
+      <Hsp_query-from>64</Hsp_query-from>
+      <Hsp_query-to>122</Hsp_query-to>
+      <Hsp_hit-from>554</Hsp_hit-from>
+      <Hsp_hit-to>611</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>26</Hsp_identity>
+      <Hsp_positive>38</Hsp_positive>
+      <Hsp_gaps>1</Hsp_gaps>
+      <Hsp_align-len>59</Hsp_align-len>
+      <Hsp_qseq>EAHKYMQKGCPQGSIIGPTMWNFCMDALLHQLAEIKDVETIAYADDLAMLIGGNSRAEL</Hsp_qseq>
+      <Hsp_hseq>EEYVEMTCGVPQGSVLGPTLWNVLYDAVL-RLEMPVGVRTLAFADDLAVLVSSRNEEEM</Hsp_hseq>
+      <Hsp_midline>E +  M  G PQGS++GPT+WN   DA+L +L     V T+A+ADDLA+L+   +  E+</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>28</Hit_num>
+  <Hit_id>gi|334883352|dbj|BAK38639.1|</Hit_id>
+  <Hit_def>unnamed protein product [Tribolium castaneum]</Hit_def>
+  <Hit_accession>BAK38639</Hit_accession>
+  <Hit_len>982</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>55.8398</Hsp_bit-score>
+      <Hsp_score>133</Hsp_score>
+      <Hsp_evalue>9.33311e-07</Hsp_evalue>
+      <Hsp_query-from>64</Hsp_query-from>
+      <Hsp_query-to>122</Hsp_query-to>
+      <Hsp_hit-from>593</Hsp_hit-from>
+      <Hsp_hit-to>650</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>26</Hsp_identity>
+      <Hsp_positive>38</Hsp_positive>
+      <Hsp_gaps>1</Hsp_gaps>
+      <Hsp_align-len>59</Hsp_align-len>
+      <Hsp_qseq>EAHKYMQKGCPQGSIIGPTMWNFCMDALLHQLAEIKDVETIAYADDLAMLIGGNSRAEL</Hsp_qseq>
+      <Hsp_hseq>EEYVEMTCGVPQGSVLGPTLWNVLYDAVL-RLEMPVGVRTLAFADDLAVLVSSRNEEEM</Hsp_hseq>
+      <Hsp_midline>E +  M  G PQGS++GPT+WN   DA+L +L     V T+A+ADDLA+L+   +  E+</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>29</Hit_num>
+  <Hit_id>gi|270015496|gb|EFA11944.1|</Hit_id>
+  <Hit_def>hypothetical protein TcasGA2_TC001902 [Tribolium castaneum]</Hit_def>
+  <Hit_accession>EFA11944</Hit_accession>
+  <Hit_len>917</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>55.8398</Hsp_bit-score>
+      <Hsp_score>133</Hsp_score>
+      <Hsp_evalue>9.40198e-07</Hsp_evalue>
+      <Hsp_query-from>64</Hsp_query-from>
+      <Hsp_query-to>122</Hsp_query-to>
+      <Hsp_hit-from>528</Hsp_hit-from>
+      <Hsp_hit-to>585</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>26</Hsp_identity>
+      <Hsp_positive>38</Hsp_positive>
+      <Hsp_gaps>1</Hsp_gaps>
+      <Hsp_align-len>59</Hsp_align-len>
+      <Hsp_qseq>EAHKYMQKGCPQGSIIGPTMWNFCMDALLHQLAEIKDVETIAYADDLAMLIGGNSRAEL</Hsp_qseq>
+      <Hsp_hseq>EEYVEMTCGVPQGSVLGPTLWNVLYDAVL-RLEMPVGVRTLAFADDLAVLVSSRNEEEM</Hsp_hseq>
+      <Hsp_midline>E +  M  G PQGS++GPT+WN   DA+L +L     V T+A+ADDLA+L+   +  E+</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>30</Hit_num>
+  <Hit_id>gi|159620|gb|AAA29365.1|</Hit_id>
+  <Hit_def>unknown [Anopheles gambiae]</Hit_def>
+  <Hit_accession>AAA29365</Hit_accession>
+  <Hit_len>1222</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>55.8398</Hsp_bit-score>
+      <Hsp_score>133</Hsp_score>
+      <Hsp_evalue>9.49135e-07</Hsp_evalue>
+      <Hsp_query-from>67</Hsp_query-from>
+      <Hsp_query-to>125</Hsp_query-to>
+      <Hsp_hit-from>680</Hsp_hit-from>
+      <Hsp_hit-to>737</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>26</Hsp_identity>
+      <Hsp_positive>37</Hsp_positive>
+      <Hsp_gaps>1</Hsp_gaps>
+      <Hsp_align-len>59</Hsp_align-len>
+      <Hsp_qseq>KYMQKGCPQGSIIGPTMWNFCMDALLHQLAEIKDVETIAYADDLAMLIGGNSRAELEKR</Hsp_qseq>
+      <Hsp_hseq>RHVTAGVPQGSILGPTLWNIMYDGVL-DVPLPPDVEVIGYADDLALLVPATTTDEVRAR</Hsp_hseq>
+      <Hsp_midline>+++  G PQGSI+GPT+WN   D +L  +    DVE I YADDLA+L+   +  E+  R</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>31</Hit_num>
+  <Hit_id>gi|1549144|dbj|BAA07467.1|</Hit_id>
+  <Hit_def>ORF2 [Bombyx mori]</Hit_def>
+  <Hit_accession>BAA07467</Hit_accession>
+  <Hit_len>1162</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>54.6842</Hsp_bit-score>
+      <Hsp_score>130</Hsp_score>
+      <Hsp_evalue>1.84489e-06</Hsp_evalue>
+      <Hsp_query-from>64</Hsp_query-from>
+      <Hsp_query-to>125</Hsp_query-to>
+      <Hsp_hit-from>599</Hsp_hit-from>
+      <Hsp_hit-to>659</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>24</Hsp_identity>
+      <Hsp_positive>39</Hsp_positive>
+      <Hsp_gaps>1</Hsp_gaps>
+      <Hsp_align-len>62</Hsp_align-len>
+      <Hsp_qseq>EAHKYMQKGCPQGSIIGPTMWNFCMDALLHQLAEIKDVETIAYADDLAMLIGGNSRAELEKR</Hsp_qseq>
+      <Hsp_hseq>EYERATSKGCVQGSIGGPILWNLLLDPLIHQL-QARGEYIQAFADDVVLVFDGDSALQIERQ</Hsp_hseq>
+      <Hsp_midline>E  +   KGC QGSI GP +WN  +D L+HQL + +     A+ADD+ ++  G+S  ++E++</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>32</Hit_num>
+  <Hit_id>gi|270016645|gb|EFA13091.1|</Hit_id>
+  <Hit_def>hypothetical protein TcasGA2_TC012960 [Tribolium castaneum]</Hit_def>
+  <Hit_accession>EFA13091</Hit_accession>
+  <Hit_len>162</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>51.6026</Hsp_bit-score>
+      <Hsp_score>122</Hsp_score>
+      <Hsp_evalue>2.79159e-06</Hsp_evalue>
+      <Hsp_query-from>72</Hsp_query-from>
+      <Hsp_query-to>122</Hsp_query-to>
+      <Hsp_hit-from>79</Hsp_hit-from>
+      <Hsp_hit-to>128</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>23</Hsp_identity>
+      <Hsp_positive>34</Hsp_positive>
+      <Hsp_gaps>1</Hsp_gaps>
+      <Hsp_align-len>51</Hsp_align-len>
+      <Hsp_qseq>GCPQGSIIGPTMWNFCMDALLHQLAEIKDVETIAYADDLAMLIGGNSRAEL</Hsp_qseq>
+      <Hsp_hseq>GVPQGSILGPTLWNIMYNDVMNIETE-EDIQYICYADDLAISITAKDKEEL</Hsp_hseq>
+      <Hsp_midline>G PQGSI+GPT+WN   + +++   E +D++ I YADDLA+ I    + EL</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>33</Hit_num>
+  <Hit_id>gi|270015484|gb|EFA11932.1|</Hit_id>
+  <Hit_def>hypothetical protein TcasGA2_TC012885 [Tribolium castaneum]</Hit_def>
+  <Hit_accession>EFA11932</Hit_accession>
+  <Hit_len>1457</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>53.9138</Hsp_bit-score>
+      <Hsp_score>128</Hsp_score>
+      <Hsp_evalue>3.73765e-06</Hsp_evalue>
+      <Hsp_query-from>63</Hsp_query-from>
+      <Hsp_query-to>125</Hsp_query-to>
+      <Hsp_hit-from>648</Hsp_hit-from>
+      <Hsp_hit-to>709</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>26</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>1</Hsp_gaps>
+      <Hsp_align-len>63</Hsp_align-len>
+      <Hsp_qseq>KEAHKYMQKGCPQGSIIGPTMWNFCMDALLHQLAEIKDVETIAYADDLAMLIGGNSRAELEKR</Hsp_qseq>
+      <Hsp_hseq>REIWKQVWKGYPQGSICGPSVWNMMTDELLNDIENL-NVEAVAYADDVLCLLEGLVERKLKQK</Hsp_hseq>
+      <Hsp_midline>+E  K + KG PQGSI GP++WN   D LL+ +  + +VE +AYADD+  L+ G    +L+++</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>34</Hit_num>
+  <Hit_id>gi|28569870|dbj|BAC57910.1|</Hit_id>
+  <Hit_def>reverse transcriptase [Anopheles gambiae]</Hit_def>
+  <Hit_accession>BAC57910</Hit_accession>
+  <Hit_len>1009</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>53.5286</Hsp_bit-score>
+      <Hsp_score>127</Hsp_score>
+      <Hsp_evalue>4.83896e-06</Hsp_evalue>
+      <Hsp_query-from>72</Hsp_query-from>
+      <Hsp_query-to>123</Hsp_query-to>
+      <Hsp_hit-from>604</Hsp_hit-from>
+      <Hsp_hit-to>654</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>22</Hsp_identity>
+      <Hsp_positive>35</Hsp_positive>
+      <Hsp_gaps>1</Hsp_gaps>
+      <Hsp_align-len>52</Hsp_align-len>
+      <Hsp_qseq>GCPQGSIIGPTMWNFCMDALLHQLAEIKDVETIAYADDLAMLIGGNSRAELE</Hsp_qseq>
+      <Hsp_hseq>GVPQGSVLGPTLWNLMYDGVL-RVAMVEGARIIGYADDIVLLVEGNCVDDIE</Hsp_hseq>
+      <Hsp_midline>G PQGS++GPT+WN   D +L ++A ++    I YADD+ +L+ GN   ++E</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>35</Hit_num>
+  <Hit_id>gi|283630|pir||S27771</Hit_id>
+  <Hit_def>RNA-directed DNA polymerase (EC 2.7.7.49) - African malaria mosquito transposon RT1 (fragment) &gt;gi|159617|gb|AAA29363.1| unknown [Anopheles gambiae]</Hit_def>
+  <Hit_accession>S27771</Hit_accession>
+  <Hit_len>1212</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>53.1434</Hsp_bit-score>
+      <Hsp_score>126</Hsp_score>
+      <Hsp_evalue>6.82669e-06</Hsp_evalue>
+      <Hsp_query-from>67</Hsp_query-from>
+      <Hsp_query-to>116</Hsp_query-to>
+      <Hsp_hit-from>687</Hsp_hit-from>
+      <Hsp_hit-to>735</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>25</Hsp_identity>
+      <Hsp_positive>34</Hsp_positive>
+      <Hsp_gaps>1</Hsp_gaps>
+      <Hsp_align-len>50</Hsp_align-len>
+      <Hsp_qseq>KYMQKGCPQGSIIGPTMWNFCMDALLHQLAEIKDVETIAYADDLAMLIGG</Hsp_qseq>
+      <Hsp_hseq>RSITAGVPQGSILGPTLWNTMYDGVL-DVALPQDCEMVAYADDLVLLIPG</Hsp_hseq>
+      <Hsp_midline>+ +  G PQGSI+GPT+WN   D +L  +A  +D E +AYADDL +LI G</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>36</Hit_num>
+  <Hit_id>gi|312380884|gb|EFR26761.1|</Hit_id>
+  <Hit_def>hypothetical protein AND_06934 [Anopheles darlingi]</Hit_def>
+  <Hit_accession>EFR26761</Hit_accession>
+  <Hit_len>254</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>51.6026</Hsp_bit-score>
+      <Hsp_score>122</Hsp_score>
+      <Hsp_evalue>7.55183e-06</Hsp_evalue>
+      <Hsp_query-from>69</Hsp_query-from>
+      <Hsp_query-to>114</Hsp_query-to>
+      <Hsp_hit-from>112</Hsp_hit-from>
+      <Hsp_hit-to>156</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>21</Hsp_identity>
+      <Hsp_positive>34</Hsp_positive>
+      <Hsp_gaps>1</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>MQKGCPQGSIIGPTMWNFCMDALLHQLAEIKDVETIAYADDLAMLI</Hsp_qseq>
+      <Hsp_hseq>LTAGVPQGSILGPTLWNVMYNSVL-EIALPEGVEAIAYADDVLLMV</Hsp_hseq>
+      <Hsp_midline>+  G PQGSI+GPT+WN   +++L ++A  + VE IAYADD+ +++</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>37</Hit_num>
+  <Hit_id>gi|270015837|gb|EFA12285.1|</Hit_id>
+  <Hit_def>hypothetical protein TcasGA2_TC016237 [Tribolium castaneum]</Hit_def>
+  <Hit_accession>EFA12285</Hit_accession>
+  <Hit_len>385</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>51.9878</Hsp_bit-score>
+      <Hsp_score>123</Hsp_score>
+      <Hsp_evalue>8.21566e-06</Hsp_evalue>
+      <Hsp_query-from>69</Hsp_query-from>
+      <Hsp_query-to>122</Hsp_query-to>
+      <Hsp_hit-from>1</Hsp_hit-from>
+      <Hsp_hit-to>53</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>25</Hsp_identity>
+      <Hsp_positive>36</Hsp_positive>
+      <Hsp_gaps>1</Hsp_gaps>
+      <Hsp_align-len>54</Hsp_align-len>
+      <Hsp_qseq>MQKGCPQGSIIGPTMWNFCMDALLHQLAEIKDVETIAYADDLAMLIGGNSRAEL</Hsp_qseq>
+      <Hsp_hseq>MTCGVPQGSVLGPTLWNVLYDAVL-RLEMPVGVRTLAFADDLAVLVSSRNEEEM</Hsp_hseq>
+      <Hsp_midline>M  G PQGS++GPT+WN   DA+L +L     V T+A+ADDLA+L+   +  E+</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>38</Hit_num>
+  <Hit_id>gi|733474|gb|AAA90998.1|</Hit_id>
+  <Hit_def>reverse transcriptase [Drosophila persimilis]</Hit_def>
+  <Hit_accession>AAA90998</Hit_accession>
+  <Hit_len>387</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>51.9878</Hsp_bit-score>
+      <Hsp_score>123</Hsp_score>
+      <Hsp_evalue>8.33065e-06</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>125</Hsp_query-to>
+      <Hsp_hit-from>1</Hsp_hit-from>
+      <Hsp_hit-to>47</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>25</Hsp_identity>
+      <Hsp_positive>34</Hsp_positive>
+      <Hsp_gaps>2</Hsp_gaps>
+      <Hsp_align-len>49</Hsp_align-len>
+      <Hsp_qseq>SIIGPTMWNFCMDALLHQLAEIKDVETIAYADDLAMLIGGNSRAELEKR</Hsp_qseq>
+      <Hsp_hseq>SISGPFIWNILMDVLLQRLEPLGALS--AYADDLLLLIEGNARSELEQK</Hsp_hseq>
+      <Hsp_midline>SI GP +WN  MD LL +L  +  +   AYADDL +LI GN+R+ELE++</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+</Iteration_hits>
+  <Iteration_stat>
+    <Statistics>
+      <Statistics_db-num>25803655</Statistics_db-num>
+      <Statistics_db-len>8915072589</Statistics_db-len>
+      <Statistics_hsp-len>0</Statistics_hsp-len>
+      <Statistics_eff-space>231499129348</Statistics_eff-space>
+      <Statistics_kappa>0.041</Statistics_kappa>
+      <Statistics_lambda>0.267</Statistics_lambda>
+      <Statistics_entropy>0.14</Statistics_entropy>
+    </Statistics>
+  </Iteration_stat>
+</Iteration>
+</BlastOutput_iterations>
+</BlastOutput>
+

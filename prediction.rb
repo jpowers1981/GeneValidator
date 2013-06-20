@@ -64,6 +64,6 @@ end
 # Skip the blast-ing part and provide a xml blast output file as argument to this ruby script
 file = File.open(ARGV[0], "rb").read
 b.parse_output(file)
-b.plot_lengths
-#b.clusterization_by_length
-#b.plot_lengths
+b.clusterization_by_length(nil,false)
+#b.plot_histo_clusters(nil,nil,#{ARGV[0]})
+b.plot_histo_clusters
