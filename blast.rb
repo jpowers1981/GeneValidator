@@ -22,19 +22,25 @@ class Blast
   #query sequence fasta file
   attr_reader :fasta_file
   #predicted sequence
-  attr_reader :predicted_seq
+  #attr_reader :predicted_seq
   #array list with the reference sequences
-  attr_reader :ref_seq_list
+  #attr_reader :ref_seq_list
   #array of clusters for clusterization by sequence length
-  attr_reader :clusters
-  attr_reader :most_dense_cluster_idx
+  #attr_reader :clusters
+  #attr_reader :most_dense_cluster_idx
+  #Enumerator that iterates through the hits from the blast xml output
+  attr_writer :blast_xml_iterator
 
+  ################################
   def initialize(fasta_file, type)
     @type = type
     @fasta_file = fasta_file
+    R.echo "enable = nil, stderr = nil" #redirect the cosole messages of R
+    R.eval "x11()"  # othetwise I get SIGPIPE
   end
 
-  #call blast according to the type of the sequence
+  #################################################
+  #calls blast according to the type of the sequence
   def blast
     #call blast with the default parameters
     if type == 'protein'
@@ -44,7 +50,9 @@ class Blast
     end
   end
 
-  #call blast with specific parameters
+  ####################################
+  #calls blast with specific parameters
+  #return blast's xml output as a string
   def advanced_blast(command, filename, gapopen, gapextend)
     
     raise TypeError unless command.is_a? String and filename.is_a? String
@@ -79,21 +87,35 @@ class Blast
     output
   end
 
+  ##########################################################################
   #parse the xml blast output given as string parameter (optional parameter)
+  #initializes the class blast xml iterator
   def parse_output(output = nil)
-
-    @predicted_seq = Sequence.new
-
-    hits = Array.new
 
     if output == nil
       output = @xml_output
     end
 
-    xml = Bio::BlastXMLParser::NokogiriBlastXml.new(output).to_enum #XmlIterator.new(filename).to_enum
+    xml = Bio::BlastXMLParser::NokogiriBlastXml.new(output).to_enum
+    @blast_xml_iterator = xml
 
-    iter = xml.first
-    @predicted_seq.xml_length = iter.field("Iteration_query-len").to_i
+  end
+
+  #####################################################
+  #parse the next query from the blast xml output query
+  #return an array of sequences
+  def parse_next_query
+  begin
+    raise TypeError unless @blast_xml_iterator.is_a? Enumerator
+
+    hits = Array.new
+    predicted_seq = Sequence.new
+
+    iter = @blast_xml_iterator.next
+
+    puts "#################################################"
+    puts "Parsing query #{iter.field('Iteration_iter-num')}"
+    predicted_seq.xml_length = iter.field("Iteration_query-len").to_i
 
     iter.each do | hit |
 
@@ -107,13 +129,14 @@ class Blast
       seq.id = hit.hit_id
   
       seq.definition = hit.hit_def
-=begin      
+      
       species_regex = hit.hit_def.scan(/\[([^\]\[]+)\]$/)
-      if species_rgx == 0
+      if species_regex[0] == nil
       	seq.species = "Unknown" 
+      else
+	seq.species = species_regex[0][0]
       end
-	    seq.species = species_regex[0][0]
-=end	    
+	    
       seq.accession_no = hit.accession
       seq.e_value = hsp.evalue
       
@@ -146,12 +169,23 @@ class Blast
       #puts "getting sequence #{seq.accession_no}..."
     end     
     
-    @ref_seq_list = hits	
-    hits
+    #@ref_seq_list = hits	
+    return [hits, predicted_seq]
+
+  rescue TypeError 
+    $stderr.print "Type error. Possible cause: you didn't call 'parse_output' method first!\n" 
+    exit
+  rescue StopIteration
+    nil
+  end
 
   end
 
+  ###################################################
   #get gene by accession number from a givem database
+  #input 1: accno = accession number (string)
+  #input 2: db = database (string)
+  #output: the nucleotide sequence corresponding to the accno
   def get_sequence_by_accession_no(accno,db)
 
     uri = "http://www.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=#{db}&retmax=1&usehistory=y&term=#{accno}/"
@@ -176,76 +210,74 @@ class Blast
 
   end
 
+  ##################################################
   #clusterization by length from a list of sequences
-  def clusterization_by_length(lst = nil, debug = false)
-
+  #input 1: lst = array of Sequence objects
+  #input 2: predicted_seq = Sequence objetc
+  #input 3: debug = true to display debug information, false by default (optional argument)
+  #output 1: array of Cluster objects
+  #output 2: the index of the most dense cluster
+  def clusterization_by_length(lst, predicted_seq, debug = false)
+  begin
     if lst == nil
       lst = @ref_seq_list
     end
 
-    raise TypeError unless lst[0].is_a? Sequence
+    raise TypeError unless lst[0].is_a? Sequence and predicted_seq.is_a? Sequence
 
     contents = lst.map{ |x| x.xml_length.to_i }.sort{|a,b| a<=>b}
 
     clusters = hierarchical_clustering(contents, debug)
     max_density = 0;
-    max_density_cluster = 0;
+    max_density_cluster_idx = 0;
     clusters.each_with_index do |item, i|
       if item.density > max_density
         max_density = item.density
-        max_density_cluster = i;
+        max_density_cluster_idx = i;
       end
     end
 
     @clusters = clusters;      
 
-    puts "Predicted sequence length: #{@predicted_seq.xml_length}"
+    puts "Predicted sequence length: #{predicted_seq.xml_length}"
     puts "Maximum sequence length: #{contents.max}"
     puts "Number of sequences: #{contents.length}"
-    puts "\nMost dense cluster:"
+    limits = clusters[max_density_cluster_idx].get_limits
+    puts "Most dense custer interval [#{limits[0]},#{limits[1]}]"
+    #clusters[max_density_cluster].print
 
-    @most_dense_cluster_idx = max_density_cluster
-    clusters[max_density_cluster].print
+    return [clusters, max_density_cluster_idx]
 
+  rescue TypeError
+    $stderr.print "Type error. Possible cause: one of the arguments of 'clusterization_by_length' method has not the proper type.\n"
+    exit
+  
+  end
   end
 
-  def print_lengths(lst = nil)
-    if lst == nil
-      lst = @ref_seq_list
-    end  
-    
-    raise TypeError unless lst[0].is_a? Sequence	
-    contents = lst.sort{|a, b| a.xml_length.to_i <=>b.xml_length.to_i }
-    contents.each_with_index do |elem, i| puts "#{elem.xml_length}" end    
-    
-  end
 
+  #############################################################################
   #plots a histogram of the length distribution given a list of Cluster objects
-  def plot_histo_clusters(clusters = nil, predicted_length = nil, output = nil)
-
-    if clusters == nil
-      clusters = @clusters
-    end
-
-    if predicted_length == nil
-      predicted_length = predicted_seq.xml_length
-    end
-
+  #input 1: array of Cluster objects
+  #input 2: length of the predicted sequence (number)
+  #input 3: index from the clusters array of the most_dense_cluster_idx
+  #input 4: name of the histogram file (optional argument, if missing the histogram will be displayed in a new window)
+  def plot_histo_clusters(clusters, predicted_length, most_dense_cluster_idx, output)
+  begin
     raise TypeError unless clusters[0].is_a? Cluster and predicted_length.is_a? Fixnum
 
-    lengths = @ref_seq_list.map{ |x| x.xml_length.to_i }.sort{|a,b| a<=>b}
+    lengths = clusters.map{ |c| c.lengths.sort{|a,b| a[0]<=>b[0]}.map{ |x| a = Array.new(x[1],x[0])}.flatten}.flatten
+    lengths.push(predicted_length)
+
     max_freq = clusters.map{ |x| x.lengths.map{|y| y[1]}.max}.max
 
     #make the plot in a new process
-    pid = fork do
-      R.echo "enable = nil, stderr = nil"
-      R.eval "par(new=F)"
       R.eval "colors = c('orange', 'blue', 'yellow', 'green', 'gray')"
 
       unless output == nil
         puts "---- #{output}"
-        R.eval "dev.copy(png,'#{output}.png')"
-        #R.eval "jpeg('#{output}.jpg')"  
+        #R.eval "dev.copy(png,'#{output}.png')"
+        R.eval "jpeg('#{output}.jpg')"  
       end
 
       clusters.each_with_index do |cluster, i|
@@ -267,29 +299,24 @@ class Blast
         R.eval "par(new=T)"
       end
       
-      R.eval "hist(c(#{predicted_length}), 
-                breaks = seq(#{lengths.min-10}, #{lengths.max+10}, 2), 
-                xlim=c(#{lengths.min-10},#{lengths.max+10}), 
-                ylim=c(0,#{max_freq}), 
-                col='black', 
-                border='black', 
-                main='Histogram for length distribution', xlab='length\nblack = predicted sequence, red = most dense cluster')"
+      R.eval "abline(v=#{predicted_length})" 
+
       unless output == nil
         R.eval "dev.off()"
       end
 
-      while 1
-	R.eval "x11 = length(dev.list())"
-        no_windows = R.pull "x11"
-        if no_windows == 0
-	  break
-        end
-      end
-    end
+  rescue TypeError
+    $stderr.print "Type error. Possible cause: one of the arguments of 'plot_histo_clusters' method has not the proper type.\n"
+    exit
+
+  end
   end
 end
+
+##########
 #Main body
 #Test certain methods of Blast class
+
 =begin
 b = Blast.new("ana","protein")
 puts b.get_sequence_by_accession_no("EF100000","nucleotide")

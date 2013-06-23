@@ -69,6 +69,21 @@ class Cluster
     end
     puts "--------------------------"
   end
+
+  def get_limits
+    min = 100000
+    max = 0
+    lengths.each do |elem|
+      if min > elem[0]
+        min = elem[0]
+      end
+      if max < elem[0]
+        max = elem[0]
+      end
+    end
+    [min,max]
+  end
+ 
 end
 
 # takes a vector of lengths and makes hiararchical clustering
@@ -86,20 +101,22 @@ def hierarchical_clustering (vec, debug = false)
   #initially each length belongs to a different cluster
   clusters = Array.new 
   histogram.sort {|a,b| a[0]<=>b[0]}.each do |elem|
-    puts "len #{elem[0]} appears #{elem[1]} times"
-      hash = Hash.new
-      hash[elem[0]] = elem[1]
-      cluster = Cluster.new(hash)
-      clusters.push(cluster)
-    end
-
-    puts ""
-
     if debug
-      clusters.each do |elem|
-        elem.print
-      end	
+      puts "len #{elem[0]} appears #{elem[1]} times"
     end
+    hash = Hash.new
+    hash[elem[0]] = elem[1]
+    cluster = Cluster.new(hash)
+    clusters.push(cluster)
+  end
+
+  puts ""
+
+  if debug
+    clusters.each do |elem|
+      elem.print
+    end	
+  end
 
   # each iteration merge the closest two adiacent cluster
   # the loop stops according to the stop conditions

@@ -57,13 +57,24 @@ b = Blast.new(ARGV[0], options[:type].to_s.downcase)
 unless options[:skip_blast]
   b.blast
   b.parse_output
-  b.clusterization_by_length
-  exit
+else
+  # Skip the blast-ing part and provide a xml blast output file as argument to this ruby script
+  file = File.open(ARGV[0], "rb").read
+  b.parse_output(file)
 end
 
-# Skip the blast-ing part and provide a xml blast output file as argument to this ruby script
-file = File.open(ARGV[0], "rb").read
-b.parse_output(file)
-b.clusterization_by_length(nil,false)
-#b.plot_histo_clusters(nil,nil,#{ARGV[0]})
-b.plot_histo_clusters
+idx = 0
+begin
+  idx = idx + 1
+  seq = b.parse_next_query #return [hits, predicted_seq]
+  if seq == nil
+    break
+  end
+
+  rez = b.clusterization_by_length(seq[0], seq[1] ,false) #return [clusters, max_density_cluster_idx]
+  b.plot_histo_clusters(rez[0], seq[1].xml_length, rez[1], "#{ARGV[0]}_#{idx}")
+
+end while 1
+#b.clusterization_by_length(nil,false)
+#b.plot_histo_clusters
+
