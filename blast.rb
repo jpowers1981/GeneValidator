@@ -6,7 +6,6 @@ require 'bio-blastxmlparser'
 require 'net/http'
 require 'open-uri'
 require 'uri'
-require 'gnuplot.rb'
 require 'rinruby.rb'
 
 class Blast
@@ -36,7 +35,7 @@ class Blast
     @type = type
     @fasta_file = fasta_file
     R.echo "enable = nil, stderr = nil" #redirect the cosole messages of R
-    R.eval "x11()"  # othetwise I get SIGPIPE
+    #R.eval "x11()"  # othetwise I get SIGPIPE
   end
 
   #################################################
@@ -103,7 +102,8 @@ class Blast
 
   #####################################################
   #parse the next query from the blast xml output query
-  #return an array of sequences
+  #output1: an array of Sequence hits
+  #output2: Sequence object for the predicted sequence
   def parse_next_query
   begin
     raise TypeError unless @blast_xml_iterator.is_a? Enumerator
@@ -113,9 +113,10 @@ class Blast
 
     iter = @blast_xml_iterator.next
 
-    puts "#################################################"
-    puts "Parsing query #{iter.field('Iteration_iter-num')}"
+    #puts "#################################################"
+    #puts "Parsing query #{iter.field('Iteration_iter-num')}"
     predicted_seq.xml_length = iter.field("Iteration_query-len").to_i
+    predicted_seq.definition = iter.field("Iteration_query-def")
 
     iter.each do | hit |
 
@@ -236,16 +237,15 @@ class Blast
         max_density_cluster_idx = i;
       end
     end
-
-    @clusters = clusters;      
-
+      
+=begin
     puts "Predicted sequence length: #{predicted_seq.xml_length}"
     puts "Maximum sequence length: #{contents.max}"
     puts "Number of sequences: #{contents.length}"
     limits = clusters[max_density_cluster_idx].get_limits
     puts "Most dense custer interval [#{limits[0]},#{limits[1]}]"
     #clusters[max_density_cluster].print
-
+=end
     return [clusters, max_density_cluster_idx]
 
   rescue TypeError
@@ -255,6 +255,69 @@ class Blast
   end
   end
 
+  ############################################################################
+  #calculates the silhouette score of the sequence
+  #input1: Sequence object
+  #input2: index of the target cluster within the clusters (see input 3)
+  #input3: an array of Cluster objects
+  #output: the silhouette of the sequence
+  def sequence_silhouette (seq, idx, clusters)
+    seq_len = seq.xml_length    
+
+    #the average dissimilarity of the sequence with other elements in idx cluster
+    a = 0
+    clusters[idx].lengths.each do |len, frecv|
+      a = a + (len - seq_len).abs
+    end
+    a = a.to_f / clusters[idx].lengths.length
+#    puts "a = #{a}"
+
+    b_vector = Array.new
+
+    clusters.each_with_index do |cluster, i|
+      #the average dissimilarity of the sequence with the members of cluster i
+      if i != idx
+        b = 0
+        cluster.lengths.each do |len, frecv|
+          b = b + (len - seq_len).abs
+        end
+        b = b.to_f / cluster.lengths.length
+#        puts "b = #{b}"
+        unless b == 0
+          b_vector.push(b)
+        end
+      end  
+    end
+    b = b_vector.min
+ 
+    silhouette = (b - a).to_f / [a,b].max
+    return silhouette  
+  end  
+
+  #plots lines corresponding to each length
+  #highlights the start and end hit offsets
+  #input 1: lst = array of Sequence objects
+  #input 2: predicted_seq = Sequence objetc
+  def plot_length(lst, predicted_seq, output)
+
+    max_len = lst.map{|x| x.xml_length.to_i}.max
+    lst = lst.sort{|a,b| a.xml_length<=>b.xml_length}
+
+    max_plots = 120
+    skip= lst.length/max_plots
+
+    R.eval "jpeg('#{output}_len.jpg')"
+    R.eval "plot(1:#{[lst.length-1,max_plots].min}, xlim=c(1,#{max_len}), xlab='Length',ylab='Index', col='white')"
+    height = -1;
+    lst.each_with_index do |seq,i|
+      if skip == 0 or i%skip == 0      
+        height = height + 1
+        R.eval "lines(c(1,#{seq.xml_length}), c(#{height}, #{height}), lwd=10)"    
+        R.eval "lines(c(#{seq.hit_from},#{seq.hit_to}), c(#{height}, #{height}), lwd=6, col='red')"
+      end
+    end
+    R.eval "dev.off()"
+  end
 
   #############################################################################
   #plots a histogram of the length distribution given a list of Cluster objects
@@ -275,7 +338,7 @@ class Blast
       R.eval "colors = c('orange', 'blue', 'yellow', 'green', 'gray')"
 
       unless output == nil
-        puts "---- #{output}"
+        #puts "---- #{output}"
         #R.eval "dev.copy(png,'#{output}.png')"
         R.eval "jpeg('#{output}.jpg')"  
       end

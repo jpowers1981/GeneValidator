@@ -63,18 +63,39 @@ else
   b.parse_output(file)
 end
 
+
+printf "\nQuery No | Definition | Predicted Length | Confidence Interval | Silhouette Score | Accepted (yes/no)\n"
+
 idx = 0
 begin
   idx = idx + 1
   seq = b.parse_next_query #return [hits, predicted_seq]
+
   if seq == nil
     break
   end
 
-  rez = b.clusterization_by_length(seq[0], seq[1] ,false) #return [clusters, max_density_cluster_idx]
-  b.plot_histo_clusters(rez[0], seq[1].xml_length, rez[1], "#{ARGV[0]}_#{idx}")
+  hits = seq[0]
+  predicted_seq = seq[1]
 
+  rez = b.clusterization_by_length(hits, predicted_seq, false) #return [clusters, max_density_cluster_idx]
+  clusters = rez[0]
+  max_cluster_idx = rez[1]
+  b.plot_histo_clusters(clusters, predicted_seq.xml_length, max_cluster_idx, "#{ARGV[0]}_#{idx}")
+  b.plot_length(hits, predicted_seq, "#{ARGV[0]}_#{idx}")
+  silhouette = b.sequence_silhouette(predicted_seq, max_cluster_idx, clusters)
+
+  limits = clusters[max_cluster_idx].get_limits
+  max_len = hits.map{|x| x.xml_length}.max
+  predicted_len = predicted_seq.xml_length
+
+  if predicted_len <= limits[1] and predicted_len >= limits[0]
+    printf "Query %3d: %-20s %6d [%6d:%6d]    %+.2f  yes  p-value = %f \n", idx, predicted_seq.definition[0, [predicted_seq.definition.length-1,20].min],
+         predicted_len, limits[0], limits[1], silhouette, clusters[max_cluster_idx].pvalue
+  else
+    printf "Query %3d: %-20s %6d [%6d:%6d]    %+.2f  no\n", idx, predicted_seq.definition[0, [predicted_seq.definition.length-1,20].min],
+         predicted_len, limits[0], limits[1], silhouette
+
+  end
 end while 1
-#b.clusterization_by_length(nil,false)
-#b.plot_histo_clusters
 

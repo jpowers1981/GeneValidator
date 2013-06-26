@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+#require 'rinruby.rb'
+
 # class that stores the sequence lengths for each cluster
 # used for a clusterization among a vector of lengths
 class Cluster
@@ -8,6 +10,7 @@ class Cluster
 
   def initialize(lengths)
     @lengths = lengths
+#    R.echo "enable = nil, stderr = nil" #redirect the cosole messages of R
   end
 
   # the weighted mean length of the cluster
@@ -52,6 +55,45 @@ class Cluster
     d = d/(cluster.lengths.length * lengths.length)
     #d = d/(cluster_norm * this_cluster_norm)
     d
+  end
+
+  def standard_deviation(lengths2 = nil)
+    if lengths2 == nil
+      lengths2 = @lengths.map{|y| y[0]}
+    end
+
+    cluster_mean = mean()
+    std_deviation = 0
+    lengths2.each do |len|
+      std_deviation = std_deviation + (cluster_mean - len) * (cluster_mean - len)
+    end
+
+    std_deviation = Math.sqrt(std_deviation.to_f / (lengths2.length - 1))
+  end
+
+  def standard_error
+    return standard_deviation().to_f / Math.sqrt(lengths.length)
+  end
+
+  def quantile_normalization
+    max_len = lengths.map{|y| y[0]}.max
+    lengths.map{|y| y[0].to_f / max_len}
+  end
+
+  def t_test(test_value)
+    cluster_mean = mean()
+    std_deviation = standard_deviation()
+    
+    t_test = (test_value - cluster_mean) / (standard_deviation / Math.sqrt(lengths.length))
+  end
+
+  def pvalue
+    #puts "test = t.test(c#{quantile_normalization[1,10].to_s.gsub('[','(').gsub(']',')')})"
+    R. eval("test = t.test(c#{quantile_normalization.to_s.gsub('[','(').gsub(']',')')})")
+    pval = R.pull "test$p.value"
+    #interval_left = R.pull "test.$conf.int[1]"
+    #interval_right = R.pull "test.$conf.int[2]"
+    return pval
   end
 
   # merge two clusters
@@ -110,8 +152,6 @@ def hierarchical_clustering (vec, debug = false)
     clusters.push(cluster)
   end
 
-  puts ""
-
   if debug
     clusters.each do |elem|
       elem.print
@@ -154,7 +194,7 @@ def hierarchical_clustering (vec, debug = false)
     #stop condition
     #the distance between the closest clusters exceeds the threshold
     if (clusters[cluster].mean - clusters[cluster+1].mean).abs > threshold_distance
-      puts "Clusterization stoped because clusters #{cluster} and #{cluster+1} that should be merged are too far one from the other."
+      #puts "Clusterization stoped because clusters #{cluster} and #{cluster+1} that should be merged are too far one from the other."
       clusters
       break
     end
@@ -177,7 +217,7 @@ def hierarchical_clustering (vec, debug = false)
     #stop condition
     #the density of the biggest clusters exceeds the threshold
     if clusters[cluster].density > threshold_density
-      puts "Clusterization stoped because cluster's #{cluster} no of elements exceeded half of the total no of elements."
+      #puts "Clusterization stoped because cluster's #{cluster} no of elements exceeded half of the total no of elements."
       clusters
       break
     end
