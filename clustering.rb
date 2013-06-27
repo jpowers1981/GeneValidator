@@ -80,11 +80,27 @@ class Cluster
     lengths.map{|y| y[0].to_f / max_len}
   end
 
-  def t_test(test_value)
-    cluster_mean = mean()
-    std_deviation = standard_deviation()
-    
-    t_test = (test_value - cluster_mean) / (standard_deviation / Math.sqrt(lengths.length))
+  def t_test(clusters, queryLength)
+
+    #normalize the data so that to fit a bell curve
+    #raw_hits = c(1,2,3,4,4,6,3,7,4,2,3,4)
+    #raw_hits = lengths.map{ |x| a = Array.new(x[1],x[0])}.flatten.to_s.gsub('[','').gsub(']','')
+    raw_hits = clusters.map{|c| c.lengths.map{ |x| a = Array.new(x[1],x[0])}.flatten}.flatten.to_s.gsub('[','').gsub(']','')
+
+    R.eval("library(preprocessCore)")
+    R.eval("x = matrix(c(#{raw_hits}), ncol=1)")
+    mean_length = raw_hits.sum / raw_hits.size.to_f
+    R.eval("target = rnorm(10000, m=#{mean_length}, sd=sd(c(#{raw_hits})))")
+
+    R.eval("hits = normalize.quantiles.use.target(x,target,copy=TRUE)")
+
+#    R.eval("queryLength = tail(hits, n=1)[1]")
+#    R.eval("hits = hits[1:length(hits)-1]")
+
+    #make the t-test and get the p-value
+    R. eval("pval = t.test(hits - #{queryLength})$p.value")
+    pval = R.pull "pval"
+
   end
 
   def pvalue

@@ -88,13 +88,15 @@ begin
   limits = clusters[max_cluster_idx].get_limits
   max_len = hits.map{|x| x.xml_length}.max
   predicted_len = predicted_seq.xml_length
+  pval = clusters[0].t_test(clusters, predicted_len)
 
   if predicted_len <= limits[1] and predicted_len >= limits[0]
     printf "Query %3d: %-20s %6d [%6d:%6d]    %+.2f  yes  p-value = %f \n", idx, predicted_seq.definition[0, [predicted_seq.definition.length-1,20].min],
-         predicted_len, limits[0], limits[1], silhouette, clusters[max_cluster_idx].pvalue
+         predicted_len, limits[0], limits[1], silhouette, pval
   else
-    printf "Query %3d: %-20s %6d [%6d:%6d]    %+.2f  no\n", idx, predicted_seq.definition[0, [predicted_seq.definition.length-1,20].min],
-         predicted_len, limits[0], limits[1], silhouette
+    printf "Query %3d: %-20s %6d [%6d:%6d]    %+.2f  no   p-value = %f\n", idx, predicted_seq.definition[0, [predicted_seq.definition.length-1,20].min],
+         predicted_len, limits[0], limits[1], silhouette, pval
+
 
   end
 end while 1
