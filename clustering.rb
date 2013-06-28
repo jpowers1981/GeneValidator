@@ -71,45 +71,53 @@ class Cluster
     std_deviation = Math.sqrt(std_deviation.to_f / (lengths2.length - 1))
   end
 
-  def standard_error
-    return standard_deviation().to_f / Math.sqrt(lengths.length)
+  def deviation(clusters, queryLength)
+    hits = clusters.map{|c| c.lengths.map{ |x| a = Array.new(x[1],x[0])}.flatten}.flatten
+    raw_hits = clusters.map{|c| c.lengths.map{ |x| a = Array.new(x[1],x[0])}.flatten}.flatten.to_s.gsub('[','').gsub(']','')
+    R.eval("sd = sd(c(#{raw_hits}))")
+    sd = R.pull("sd")
+    sd = standard_deviation(hits)
+    #puts "#{queryLength} #{mean} #{sd}"
+    return (queryLength - mean).abs / sd
+
   end
 
-  def quantile_normalization
-    max_len = lengths.map{|y| y[0]}.max
-    lengths.map{|y| y[0].to_f / max_len}
+  def wilcox_test(clusters, queryLength)
+
+    raw_hits = clusters.map{|c| c.lengths.map{ |x| a = Array.new(x[1],x[0])}.flatten}.flatten.to_s.gsub('[','').gsub(']','')
+
+    R.eval("library(preprocessCore)")
+    R.eval("x = matrix(c(#{raw_hits}), ncol=1)")
+    mean_length = raw_hits.sum / raw_hits.size.to_f
+    R.eval("target = rnorm(10000, m=#{mean}, sd=sd(c(#{raw_hits})))")
+
+    R.eval("hits = normalize.quantiles.use.target(x,target,copy=TRUE)")
+
+    #make the wilcox-test and get the p-value
+    R.eval("hits = c(#{raw_hits})")
+    #R. eval("pval = wilcox.test(hits - #{queryLength})$p.value")
+    #pval = R.pull "pval"
+    return 0
+
   end
 
   def t_test(clusters, queryLength)
 
     #normalize the data so that to fit a bell curve
-    #raw_hits = c(1,2,3,4,4,6,3,7,4,2,3,4)
     #raw_hits = lengths.map{ |x| a = Array.new(x[1],x[0])}.flatten.to_s.gsub('[','').gsub(']','')
     raw_hits = clusters.map{|c| c.lengths.map{ |x| a = Array.new(x[1],x[0])}.flatten}.flatten.to_s.gsub('[','').gsub(']','')
 
     R.eval("library(preprocessCore)")
     R.eval("x = matrix(c(#{raw_hits}), ncol=1)")
     mean_length = raw_hits.sum / raw_hits.size.to_f
-    R.eval("target = rnorm(10000, m=#{mean_length}, sd=sd(c(#{raw_hits})))")
+    R.eval("target = rnorm(10000, m=#{mean}, sd=sd(c(#{raw_hits})))")
 
     R.eval("hits = normalize.quantiles.use.target(x,target,copy=TRUE)")
-
-#    R.eval("queryLength = tail(hits, n=1)[1]")
-#    R.eval("hits = hits[1:length(hits)-1]")
 
     #make the t-test and get the p-value
     R. eval("pval = t.test(hits - #{queryLength})$p.value")
     pval = R.pull "pval"
 
-  end
-
-  def pvalue
-    #puts "test = t.test(c#{quantile_normalization[1,10].to_s.gsub('[','(').gsub(']',')')})"
-    R. eval("test = t.test(c#{quantile_normalization.to_s.gsub('[','(').gsub(']',')')})")
-    pval = R.pull "test$p.value"
-    #interval_left = R.pull "test.$conf.int[1]"
-    #interval_right = R.pull "test.$conf.int[2]"
-    return pval
   end
 
   # merge two clusters
