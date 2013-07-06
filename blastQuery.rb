@@ -1,4 +1,4 @@
-#!/usr/bin/env ruby
+#/usr/bin/env ruby
 
 require './clustering'
 require './sequences'
@@ -20,8 +20,7 @@ class BlastQuery
 
   def initialize(hits, prediction, filename, query_index)
     begin
-      raise QueryError unless hits[0].is_a? Sequence and prediction.is_a? Sequence and filename.is_a? String
-
+      raise QueryError unless hits[0].is_a? Sequence and prediction.is_a? Sequence and filename.is_a? String and query_index.is_a? Fixnum
 #      R.echo "enable = nil, stderr = nil" #redirect the cosole messages of R
 #      R.eval "x11()"
       @hits = hits
@@ -35,12 +34,14 @@ class BlastQuery
   def length_validation
 
       ret = clusterization_by_length  #returns [clusters, max_density_cluster_idx]
+
       @clusters = ret[0]
       @max_density_cluster = ret[1]
-      @mean = @clusters[@max_density_cluster].mean
+      @mean = @clusters[@max_density_cluster].mean      
 
-      plot_histo_clusters("#{@filename}_#{@query_index}")
-      plot_length("#{@filename}_#{@query_index}")
+      plot_histo_clusters(@filename)
+      plot_length(@filename)
+
       silhouette = sequence_silhouette
 
       limits = @clusters[@max_density_cluster].get_limits
@@ -51,14 +52,107 @@ class BlastQuery
       deviation = @clusters[@max_density_cluster].deviation(@clusters, predicted_len)
 
       if predicted_len <= limits[1] and predicted_len >= limits[0]
-        status = "yes"
+        status = "YES"
       else
-        status = "no "
+        status = "NO "
       end
 
-      printf "Query #{@query_index}: \"%-20s\" %6d [%6d:%6d]    %+.2f  #{status}  p-value = %f deviation = %f \n",
-              @prediction.definition[0, [@prediction.definition.length-1,20].min],
-              predicted_len, limits[0], limits[1], silhouette, pval, deviation
+      return "len=#{predicted_len}, I=[#{limits[0]}, #{limits[1]}], #{status}, deviation=#{deviation.round(2)}"
+  end
+
+  #test for reading frame inconsistency
+  def reading_frame_validation(lst = @hits)
+    frames_histo = Hash[lst.group_by { |x| x.query_reading_frame }.map { |k, vs| [k, vs.length] }]
+    rez = ""
+    frames_histo.each do |x, y|
+      rez << "#{x} #{y}; "
+    end
+    #if there are different reading frames of the same sign
+    #count for positive reading frames
+
+    count_p = 0
+    count_n = 0
+    frames_histo.each do |x, y|
+      if x > 0
+        count_p = count_p + 1
+      else 
+        if x < 0
+          count_n = count_n + 1
+        end
+      end
+    end
+
+    if count_p > 1 or count_n > 1
+      answ = "NOT GOOD"
+    else
+      answ = "GOOD"
+    end
+
+    return "#{answ} (#{rez})"
+  end
+
+  def gene_merge_validation
+
+    plot_matched_regions(@filename)
+
+    # make a histogram with the middles of each matched subsequence from the predicted sequence
+    middles = @hits.map { |hit| ((hit.match_query_from + hit.match_query_to)/2.0).to_i }
+
+    #calculate the likelyhood to have a binomial distribution
+    #split in two clusters
+    #puts middles
+    clusters = hierarchical_clustering(middles, 2, 1)
+
+    max_freq = clusters.map{ |x| x.lengths.map{|y| y[1]}.max}.max
+
+    R.eval "colors = c('red', 'blue', 'yellow', 'green', 'gray', 'orange')"
+    R.eval "jpeg('#{@filename}_match_distr.jpg')"
+
+    clusters.each_with_index do |cluster, i|
+      cluster_values = cluster.lengths.sort{|a,b| a[0]<=>b[0]}.map{ |x| a = Array.new(x[1],x[0])}.flatten
+      color = "colors[#{i%5+1}]"
+         
+      R.eval "hist(c#{cluster_values.to_s.gsub('[','(').gsub(']',')')},
+                     breaks = 30,
+                     xlim=c(#{middles.min-10},#{middles.max+10}),
+                     ylim=c(0,#{max_freq}),
+                     col=#{color},
+                     border=#{color},
+                     main='Predction match distribution (middle of the matches)', xlab='position idx', ylab='Frequency')"
+      R.eval "par(new=T)"    
+    end
+    R.eval "dev.off()"
+=begin
+    R.eval "library(diptest)"
+    R.eval "pval = dip.test(c#{middles.to_s.gsub('[','(').gsub(']',')')}, simulate.p.value = FALSE)$p.value"
+    pval = R.pull("pval")
+=end
+    pval = 0
+    
+    wss1 = clusters[0].wss
+    wss2 = clusters[1].wss   
+
+    mean1 = clusters[0].mean
+    mean2 = clusters[1].mean
+
+    n1 = clusters[0].density
+    n2 = clusters[1].density
+
+    big_cluster = clusters[0].dup
+    big_cluster.add(clusters[1])
+    big_mean = big_cluster.mean
+    big_wss = big_cluster.wss
+
+    #puts "#{mean1} #{mean2} #{big_mean}"
+
+    bss = n1 * (mean1 - big_mean) * (mean1 - big_mean)
+    bss += n2 * (mean2 - big_mean) * (mean2 - big_mean)
+
+    ratio = (wss1 + wss2) / (wss1 + wss2 + bss + 0.0)
+    ratio_y = (wss1 + wss2) / (wss1 + wss2 + big_wss + 0.0)
+
+    return " y: #{ratio_y.round(2)} || #{ratio.round(2)} "
+
   end
 
   ##################################################
@@ -75,7 +169,7 @@ class BlastQuery
 
       contents = lst.map{ |x| x.xml_length.to_i }.sort{|a,b| a<=>b}
 
-      clusters = hierarchical_clustering(contents, debug)
+      clusters = hierarchical_clustering(contents,0)
       max_density = 0;
       max_density_cluster_idx = 0;
       clusters.each_with_index do |item, i|
@@ -110,6 +204,7 @@ class BlastQuery
     a = a.to_f / clusters[idx].lengths.length
     
     b_vector = Array.new
+    
     clusters.each_with_index do |cluster, i|
       #the average dissimilarity of the sequence with the members of cluster i
       if i != idx
@@ -124,7 +219,9 @@ class BlastQuery
       end  
     end
     b = b_vector.min
- 
+    if b == nil
+      b=0
+    end
     silhouette = (b - a).to_f / [a,b].max
     return silhouette  
   end
@@ -142,7 +239,7 @@ class BlastQuery
     skip= lst.length/max_plots
 
     R.eval "jpeg('#{output}_len.jpg')"
-    R.eval "plot(1:#{[lst.length-1,max_plots].min}, xlim=c(1,#{max_len}), xlab='Length',ylab='Index', col='white')"
+    R.eval "plot(1:#{[lst.length-1,max_plots].min}, xlim=c(1,#{max_len}), xlab='Hit Length (black) vs part of the hit that matches the query (red)',ylab='Hit Number', col='white')"
     height = -1;
     lst.each_with_index do |seq,i|
       if skip == 0 or i%skip == 0
@@ -153,6 +250,33 @@ class BlastQuery
     end
     R.eval "dev.off()"
   end
+
+  #########################################  
+  #plots lines corresponding to each hit
+  #highlights the matched region of the prediction for each hit
+  #input 1: lst = array of Sequence objects
+  #input 2: predicted_seq = Sequence objetc
+  def plot_matched_regions(output, lst = @hits, predicted_seq = @prediction)
+
+    max_len = lst.map{|x| x.xml_length.to_i}.max
+
+    max_plots = 120
+    skip= lst.length/max_plots
+    len = predicted_seq.xml_length
+
+    R.eval "jpeg('#{output}_match.jpg')"
+    R.eval "plot(1:#{[lst.length-1,max_plots].min}, xlim=c(1,#{len}), xlab='Prediction length (black) vs part of the prediction that matches hit x (yellow)',ylab='Hit Number', col='white')"
+    height = -1;
+    lst.each_with_index do |seq,i|
+      if skip == 0 or i%skip == 0
+        height = height + 1
+        R.eval "lines(c(1,#{len}), c(#{height}, #{height}), lwd=10)"
+        R.eval "lines(c(#{seq.match_query_from},#{seq.match_query_to}), c(#{height}, #{height}), lwd=6, col='yellow')"
+      end
+    end
+    R.eval "dev.off()"
+  end
+
 
   #############################################################################
   #plots a histogram of the length distribution given a list of Cluster objects

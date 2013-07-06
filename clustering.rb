@@ -1,19 +1,16 @@
 #!/usr/bin/env ruby
 
-#require 'rinruby.rb'
-
-# class that stores the sequence lengths for each cluster
-# used for a clusterization among a vector of lengths
+# class that stores the values belonging by one cluster
+# used for a clusterization among a vector of values
 class Cluster
   #a hash map containing the pair (length, no_occurences)
   attr_accessor :lengths
 
   def initialize(lengths)
     @lengths = lengths
-#    R.echo "enable = nil, stderr = nil" #redirect the cosole messages of R
   end
 
-  # the weighted mean length of the cluster
+  # the metohod returns the weighted mean value of the cluster
   def mean
     mean_len = 0;
     weight = 0;
@@ -24,53 +21,82 @@ class Cluster
     end		
 
     mean_len = mean_len/weight
-    mean_len
+    return mean_len
   end
 
-  # the density of the cluster: how many sequence lengths it contains
+  # the method returns the density of the cluster: how many values it contains
   def density
     d = 0;
     lengths.each do |elem|
       d = d + elem[1]
     end
-    d
+    return d
   end
 
-  # distance between two adiacent clusters (euclidian)
-  def distance(cluster)
+  # the methods returns the euclidian distance between the current cluster and another one 
+  #input: cluster 2, Cluster object
+  #input2: method 
+  # method = 0: do not into condseideration duplicate values
+  # method = 1: average linkage clustering 
+  def distance(cluster, method = 0)
+
     d = 0;
-    this_cluster_norm = 0
-    cluster_norm = 0
+    norm = 0
 
     cluster.lengths.each do |elem1|
       lengths.each do |elem2|
-        d = d + (elem1[0] - elem2[0]).abs
-        #d = d + (elem1[0]* elem1[1] - elem2[0]* elem2[1]).abs
-        #d = d + elem1[1] * elem2[1]*(elem1[0] - elem2[0]).abs
-        cluster_norm = cluster_norm + elem1[1]
-        this_cluster_norm = this_cluster_norm + elem2[1]
+        if method == 1
+          d += elem1[1] * elem2[1] * (elem1[0] - elem2[0]).abs
+          norm += elem1[1] * elem2[1]
+#          puts "#{elem1[1]} #{elem2[1]} #{(elem1[0] - elem2[0]).abs} #{d} #{norm}"
+        else
+          d = d + (elem1[0] - elem2[0]).abs
+          norm = cluster.lengths.length * lengths.length             
+        end
       end
     end
+
     #group average distance
-    d = d/(cluster.lengths.length * lengths.length)
-    #d = d/(cluster_norm * this_cluster_norm)
-    d
+    d /= (norm + 0.0)
+
+    return d
   end
 
-  def standard_deviation(lengths2 = nil)
-    if lengths2 == nil
-      lengths2 = @lengths.map{|y| y[0]}
+  #the method returns between cluster sum of squares
+  def wss(lengths = nil)
+    if lengths == nil
+      lengths = @lengths.map{|x| a = Array.new(x[1],x[0])}.flatten
+    end
+
+    cluster_mean = mean()
+    ss = 0
+    lengths.each do |len|
+      ss += (cluster_mean - len) * (cluster_mean - len)
+    end
+
+    return ss
+  end
+
+  #the methods returns the standard deviation of a set of values
+  #input (optional): a vector of values
+  def standard_deviation(lengths = nil)
+    if lengths == nil
+      lengths = @lengths.map{|x| a = Array.new(x[1],x[0])}.flatten
     end
 
     cluster_mean = mean()
     std_deviation = 0
-    lengths2.each do |len|
+    lengths.each do |len|
       std_deviation = std_deviation + (cluster_mean - len) * (cluster_mean - len)
     end
 
-    std_deviation = Math.sqrt(std_deviation.to_f / (lengths2.length - 1))
+    std_deviation = Math.sqrt(std_deviation.to_f / (lengths.length - 1))
+    return std_deviation
   end
 
+  #the methods returns the deviation of a value from the values in all clusters
+  #input1: a list of Cluster objects
+  #innput2: a reference Sequence object
   def deviation(clusters, queryLength)
     hits = clusters.map{|c| c.lengths.map{ |x| a = Array.new(x[1],x[0])}.flatten}.flatten
     raw_hits = clusters.map{|c| c.lengths.map{ |x| a = Array.new(x[1],x[0])}.flatten}.flatten.to_s.gsub('[','').gsub(']','')
@@ -82,6 +108,9 @@ class Cluster
 
   end
 
+  #the method returns the p-value of a wilcox test
+  #input1: a list of Cluster objects
+  #innput2: a reference Sequence object
   def wilcox_test(clusters, queryLength)
 
     raw_hits = clusters.map{|c| c.lengths.map{ |x| a = Array.new(x[1],x[0])}.flatten}.flatten.to_s.gsub('[','').gsub(']','')
@@ -101,33 +130,41 @@ class Cluster
 
   end
 
+  #the method returns the p-value of a t-test
+  #input1: a list of Cluster objects
+  #innput2: a reference Sequence object
   def t_test(clusters, queryLength)
 
     #normalize the data so that to fit a bell curve
     #raw_hits = lengths.map{ |x| a = Array.new(x[1],x[0])}.flatten.to_s.gsub('[','').gsub(']','')
     raw_hits = clusters.map{|c| c.lengths.map{ |x| a = Array.new(x[1],x[0])}.flatten}.flatten.to_s.gsub('[','').gsub(']','')
 
-    R.eval("library(preprocessCore)")
-    R.eval("x = matrix(c(#{raw_hits}), ncol=1)")
-    mean_length = raw_hits.sum / raw_hits.size.to_f
-    R.eval("target = rnorm(10000, m=#{mean}, sd=sd(c(#{raw_hits})))")
+    if raw_hits.length == 1
 
-    R.eval("hits = normalize.quantiles.use.target(x,target,copy=TRUE)")
+      R.eval("library(preprocessCore)")
+      R.eval("x = matrix(c(#{raw_hits}), ncol=1)")
+      mean_length = raw_hits.sum / raw_hits.size.to_f
+      R.eval("target = rnorm(10000, m=#{mean}, sd=sd(c(#{raw_hits})))")
 
-    #make the t-test and get the p-value
-    R. eval("pval = t.test(hits - #{queryLength})$p.value")
-    pval = R.pull "pval"
+      R.eval("hits = normalize.quantiles.use.target(x,target,copy=TRUE)")
+
+      #make the t-test and get the p-value
+      R. eval("pval = t.test(hits - #{queryLength})$p.value")
+      pval = R.pull "pval"
+    end
 
   end
 
-  # merge two clusters
+
+  # this method merges the current cluster with another one
+  # input1: vector of Cluster objects
   def add(cluster)
     cluster.lengths.each do |elem|
       lengths[elem[0]] = elem[1]
     end
   end
 
-  #print the current cluster
+  # this method prints the current cluster
   def print
     puts "Cluster: mean = #{mean()}, density = #{density}"
     lengths.sort{|a,b| a<=>b}.each do |elem|
@@ -136,6 +173,7 @@ class Cluster
     puts "--------------------------"
   end
 
+  #this methos returns the interval limits of the current cluster
   def get_limits
     min = 100000
     max = 0
@@ -147,14 +185,29 @@ class Cluster
         max = elem[0]
       end
     end
-    [min,max]
+    return [min,max]
   end
  
 end
 
-# takes a vector of lengths and makes hiararchical clustering
-# outputs the most dense cluster
-def hierarchical_clustering (vec, debug = false)
+# input1: a vector of values
+# input2 (optional): stop test (number of clusters)
+# input3 (optional): distance method (method 0 or method 1)
+# input4 (optional): display debug information
+# output: a vector of Cluster objects
+def hierarchical_clustering (vec, no_clusters = 0, distance_method = 0, debug = false)
+
+  clusters = Array.new 
+  vec = vec.sort
+
+  if vec.length == 1
+    hash = Hash.new
+    hash[vec[0]] = 1
+    cluster = Cluster.new(hash)
+    clusters.push(cluster)
+    return clusters
+  end
+
 
   # Thresholds
   threshold_distance = (0.25 * (vec.max-vec.min))
@@ -165,7 +218,6 @@ def hierarchical_clustering (vec, debug = false)
 
   # clusters = array of clusters
   #initially each length belongs to a different cluster
-  clusters = Array.new 
   histogram.sort {|a,b| a[0]<=>b[0]}.each do |elem|
     if debug
       puts "len #{elem[0]} appears #{elem[1]} times"
@@ -186,6 +238,11 @@ def hierarchical_clustering (vec, debug = false)
   # the loop stops according to the stop conditions
   iteration = 0
   while 1
+
+    if no_clusters != 0 and clusters.length == no_clusters
+      break
+    end
+
     iteration = iteration + 1
     if debug
       puts "\nIteration #{iteration}"
@@ -197,7 +254,7 @@ def hierarchical_clustering (vec, debug = false)
 
     clusters.each_with_index do |item, i|
       if i < clusters.length-1
-        dist = clusters[i].distance(clusters[i+1])
+        dist = clusters[i].distance(clusters[i+1], distance_method)
         if debug
           puts "distance between clusters #{i} and #{i+1} is #{dist}"	
         end
@@ -217,10 +274,10 @@ def hierarchical_clustering (vec, debug = false)
 
     #stop condition
     #the distance between the closest clusters exceeds the threshold
-    if (clusters[cluster].mean - clusters[cluster+1].mean).abs > threshold_distance
-      #puts "Clusterization stoped because clusters #{cluster} and #{cluster+1} that should be merged are too far one from the other."
-      clusters
-      break
+    if no_clusters == 0 and (clusters[cluster].mean - clusters[cluster+1].mean).abs > threshold_distance
+        #puts "Clusterization stoped because clusters #{cluster} and #{cluster+1} that should be merged are too far one from the other."
+        #clusters
+        break
     end
 
     #merge clusters 'cluster' and 'cluster'+1
@@ -240,20 +297,19 @@ def hierarchical_clustering (vec, debug = false)
 
     #stop condition
     #the density of the biggest clusters exceeds the threshold
-    if clusters[cluster].density > threshold_density
-      #puts "Clusterization stoped because cluster's #{cluster} no of elements exceeded half of the total no of elements."
-      clusters
-      break
+    if no_clusters == 0 and clusters[cluster].density > threshold_density
+        #puts "Clusterization stoped because cluster's #{cluster} no of elements exceeded half of the total no of elements."
+        #clusters
+        break
     end
 
   end
 
-  clusters
+  return clusters
 end
 
 # Main body
 #Test hierarchical clustering
-
 =begin
 vec = [4,5,8,11,11,14,15,15,15,15,15,16,17,17,20]
 clusters = hierarchical_clustering(vec)

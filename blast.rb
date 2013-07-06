@@ -14,25 +14,29 @@ end
 
 class Blast
 
-  # blast command: blastn or blastp
-  attr_reader :command
-  # result of executing command
-  attr_reader :result
-  #blast output
-  attr_reader :xml_output
   #query sequence type
   attr_reader :type
   #query sequence fasta file
   attr_reader :fasta_file
   #Enumerator that iterates through the hits from the blast xml output
-  attr_writer :blast_xml_iterator
+  attr_reader :blast_xml_iterator
+  #current number of the querry processed
+  attr_reader :idx
+  #number of the sequence from the file to start with
+  attr_reader :start_idx
 
   ################################
-  def initialize(fasta_file, type)
+  def initialize(fasta_file, type, start_idx=0)
     @type = type
     @fasta_file = fasta_file
+    @idx = 0
+    @start_idx = start_idx
     R.echo "enable = nil, stderr = nil" #redirect the cosole messages of R
     #R.eval "x11()"  # othetwise I get SIGPIPE
+
+    puts "\nDepending on your input and your computational resources, this may take a while. Please wait...\n\n"
+    printf "%5s | %20s | %50s | %30s | %20s\n","Query", "Query Name", "Length Validation", "Reading Frame Validation", "Gene Merge Validation"
+
   end
 
   #################################################
@@ -46,24 +50,28 @@ class Blast
 
     #file seek for each query
     positions[0..positions.length-2].each_with_index do |pos, i|
-      query = IO.binread(@fasta_file, positions[i+1] - positions[i], positions[i]);
-      #puts query
+      
+      if (i+1) >= @start_idx
+        query = IO.binread(@fasta_file, positions[i+1] - positions[i], positions[i]);
+        #puts query
 
-      #call blast with the default parameters
-      if type == 'protein'
-        output = call_blast_from_stdin("blastp", query, 11, 1)
+        #call blast with the default parameters
+        if type == 'protein'
+          output = call_blast_from_stdin("blastp", query, 11, 1)
+        else
+          output = call_blast_from_stdin("blastx", query, 11, 1)
+        end
+
+        #save output in a file
+        xml_file = "#{@fasta_file}_#{i+1}.xml"
+        File.open(xml_file , "w") do |f| f.write(output) end
+
+        #parse output
+        parse_xml_output(output)   
       else
-        output = call_blast_from_stdin("blastx", query, 11, 1)
+        @idx = @idx + 1
       end
-
-      #save output in a file
-      xml_file = "#{@fasta_file}_#{i+1}.xml"
-      File.open(xml_file , "w") do |f| f.write(output) end
-
-      #parse output
-      parse_xml_output(output, "#{@fasta_file}_#{i+1}",i+1)   
     end
-
   end
 
   ####################################
@@ -130,28 +138,41 @@ class Blast
   ##########################################################################
   #parse the xml blast output given as string parameter (optional parameter)
   #initializes the class blast xml iterator
-  def parse_xml_output(output, filename, idx0 = 0)
+  def parse_xml_output(output)
 
     iterator = Bio::BlastXMLParser::NokogiriBlastXml.new(output).to_enum
-    idx = 0
 
     begin
-      idx = idx + 1
-      sequences = parse_next_query(iterator) #returns [hits, predicted_seq]
+      @idx = @idx + 1      
+      if @idx < @start_idx  
+        iter = iterator.next 
+      else     
+        sequences = parse_next_query(iterator) #returns [hits, predicted_seq]
+        if sequences == nil          
+          @idx = @idx -1
+          break
+        end
 
-      if sequences == nil
-        break
+        hits = sequences[0]
+        prediction = sequences[1]
+
+        query = BlastQuery.new(hits, prediction,"#{@fasta_file}_#{@idx}", @idx)
+        rez_lv = query.length_validation
+        rez_rfv = query.reading_frame_validation
+        rez_merge = query.gene_merge_validation
+        printf "%5d |\'%-20s\'| %50s | %30s | %20s|\n",
+              @idx,
+              prediction.definition[0, [prediction.definition.length-1,20].min],
+              rez_lv, rez_rfv, rez_merge
       end
 
-      hits = sequences[0]
-      prediction = sequences[1]
-
-      query = BlastQuery.new(hits, prediction,"#{@fasta_file}_#{idx}", "#{idx0}.#{idx}")
-      query.length_validation
       rescue QueryError
-        $stderr.print "Type error. Possible cause: one of the arguments of blastQuery constructior has not the proper type or blast did not find any relevant output for this query.\n"
+        $stderr.print "Type error. Possible cause: blast did not find any relevant output for this query.\n"
+      rescue StopIteration
+        #@idx = @idx - 1
+        return
     end while 1
-    
+
   end
 
   #####################################################
@@ -164,7 +185,6 @@ class Blast
 
       hits = Array.new
       predicted_seq = Sequence.new
-
       iter = iterator.next
 
       #puts "#################################################"
@@ -173,7 +193,7 @@ class Blast
       predicted_seq.definition = iter.field("Iteration_query-def")
 
       iter.each do | hit |
-
+ 
         hsp = hit.hsps.first
         hsp.field("Hsp_bit-score")
         seq = Sequence.new
@@ -198,6 +218,11 @@ class Blast
         seq.xml_length = hit.len.to_i
         seq.hit_from = hsp.hit_from.to_i
         seq.hit_to = hsp.hit_to.to_i
+
+        seq.match_query_from = hsp.query_from.to_i
+        seq.match_query_to = hsp.query_to.to_i
+
+        seq.query_reading_frame = hsp.query_frame.to_i
 
         #get gene by accession number
         if @type == "protein"
