@@ -35,7 +35,7 @@ class Blast
     #R.eval "x11()"  # othetwise I get SIGPIPE
 
     puts "\nDepending on your input and your computational resources, this may take a while. Please wait...\n\n"
-    printf "%5s | %20s | %50s | %30s | %20s\n","Query", "Query Name", "Length Validation", "Reading Frame Validation", "Gene Merge Validation"
+    printf "%3s | %30s | %15s | %15s | %15s | %15s | %15s |\n", "No", "Description", "Length_Rank", "Length_Cluster", "Reading_Frame", "Gene_Merge", "Duplication"
 
   end
 
@@ -157,13 +157,20 @@ class Blast
         prediction = sequences[1]
 
         query = BlastQuery.new(hits, prediction,"#{@fasta_file}_#{@idx}", @idx)
-        rez_lv = query.length_validation
+        limits = query.length_validation #returns I=[left, right]
+        if prediction.xml_length.to_i >= limits[0] and prediction.xml_length.to_i <= limits[1]
+          lv = "YES"
+        else
+          lv = "NO"
+        end  
+        rez_lr = query.length_rank
         rez_rfv = query.reading_frame_validation
         rez_merge = query.gene_merge_validation
-        printf "%5d |\'%-20s\'| %50s | %30s | %20s|\n",
+
+        printf "%3d | \'%28s\' | %15s | %25s | %15s| %15s | %15s |\n",
               @idx,
-              prediction.definition[0, [prediction.definition.length-1,20].min],
-              rez_lv, rez_rfv, rez_merge
+              prediction.definition.scan(/([^ ]+)/)[0][0],
+              rez_lr, "#{prediction.xml_length} #{limits} #{lv}", rez_rfv, rez_merge, "?"
       end
 
       rescue QueryError

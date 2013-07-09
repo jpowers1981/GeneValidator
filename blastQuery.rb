@@ -8,6 +8,9 @@ require 'rinruby.rb'
 class QueryError < Exception
 end
 
+##
+# This class stores all the data obtained from the blast query
+
 class BlastQuery
 
   attr_reader :filename
@@ -18,16 +21,51 @@ class BlastQuery
   attr_reader :max_density_cluster
   attr_reader :mean
 
+##
+# Initilizes the object
+# Params:
+# +hits+: a vector of +Sequence+ objects (usually representig the blast hits)
+# +prediction+: a +Sequence+ object representing the blast query
+# +filename+: name of the input file, used when generatig the plot files
+# query_index: the number of the query in the blast output
+
   def initialize(hits, prediction, filename, query_index)
     begin
       raise QueryError unless hits[0].is_a? Sequence and prediction.is_a? Sequence and filename.is_a? String and query_index.is_a? Fixnum
-#      R.echo "enable = nil, stderr = nil" #redirect the cosole messages of R
-#      R.eval "x11()"
       @hits = hits
       @prediction = prediction
       @filename = filename
       @query_index = query_index
 
+    end
+  end
+
+##
+# Calculates a precentage based on the rank of the predicion among the hit lengths
+# Params:
+# +hits+ (optional): a vector of +Sequence+ objects
+# +prediction+ (optional): a +Sequence+ object
+  def length_rank(debug = false, hits = @hits, prediction = @prediction)
+    begin
+      raise TypeError unless hits[0].is_a? Sequence and prediction.is_a? Sequence
+
+      lengths = hits.map{ |x| x.xml_length.to_i }.sort{|a,b| a<=>b}
+      len = lengths.length
+      median = len % 2 == 1 ? lengths[len/2] : (lengths[len/2 - 1] + lengths[len/2]).to_f / 2
+
+      predicted_len = prediction.xml_length.to_i
+      if predicted_len < median
+        rank = lengths.find_all{|x| x < predicted_len}.length
+      else
+        rank = lengths.find_all{|x| x > predicted_len}.length
+      end
+
+      percentage = rank / (len + 0.0)
+      percentage.round(2)
+
+    rescue TypeError
+      $stderr.print "Type error. Possible cause: one of the arguments of 'length_rank' method has not the proper type.\n"
+      exit
     end
   end
 
@@ -48,28 +86,32 @@ class BlastQuery
       max_len = @hits.map{|x| x.xml_length}.max
       predicted_len = @prediction.xml_length
       pval = @clusters[@max_density_cluster].t_test(@clusters, predicted_len)
-      #wval = @clusters[@max_density_cluster].wilcox_test(@clusters, predicted_len)
+      wval = @clusters[@max_density_cluster].wilcox_test(@clusters, predicted_len)
       deviation = @clusters[@max_density_cluster].deviation(@clusters, predicted_len)
 
       if predicted_len <= limits[1] and predicted_len >= limits[0]
         status = "YES"
       else
-        status = "NO "
+        status = "NO"
       end
 
-      return "len=#{predicted_len}, I=[#{limits[0]}, #{limits[1]}], #{status}, deviation=#{deviation.round(2)}"
+      return [limits[0], limits[1]]
   end
 
-  #test for reading frame inconsistency
+  ## Test for reading frame inconsistency
+  # Params:
+  # +lst+: vector of +Sequence+ objects
+  # Output:
+  # yes/no answer
   def reading_frame_validation(lst = @hits)
     frames_histo = Hash[lst.group_by { |x| x.query_reading_frame }.map { |k, vs| [k, vs.length] }]
     rez = ""
     frames_histo.each do |x, y|
       rez << "#{x} #{y}; "
     end
+
     #if there are different reading frames of the same sign
     #count for positive reading frames
-
     count_p = 0
     count_n = 0
     frames_histo.each do |x, y|
@@ -83,12 +125,12 @@ class BlastQuery
     end
 
     if count_p > 1 or count_n > 1
-      answ = "NOT GOOD"
+      answ = "INVALID"
     else
-      answ = "GOOD"
+      answ = "VALID"
     end
 
-    return "#{answ} (#{rez})"
+    return answ
   end
 
   def gene_merge_validation
@@ -151,17 +193,19 @@ class BlastQuery
     ratio = (wss1 + wss2) / (wss1 + wss2 + bss + 0.0)
     ratio_y = (wss1 + wss2) / (wss1 + wss2 + big_wss + 0.0)
 
-    return " y: #{ratio_y.round(2)} || #{ratio.round(2)} "
+    ratio.round(2)
 
   end
 
-  ##################################################
-  #clusterization by length from a list of sequences
-  #input 1: lst = array of Sequence objects
-  #input 2: predicted_seq = Sequence objetc
-  #input 3: debug = true to display debug information, false by default (optional argument)
-  #output 1: array of Cluster objects
-  #output 2: the index of the most dense cluster
+  ## 
+  # Clusterization by length from a list of sequences
+  # Params:
+  # +lst+:: array of +Sequence+ objects
+  # +predicted_seq+:: +Sequence+ objetc
+  # +debug+ (optional):: true to display debug information, false by default (optional argument)
+  # Output
+  # output 1:: array of Cluster objects
+  # output 2:: the index of the most dense cluster
   def clusterization_by_length(debug = false, lst = @hits, predicted_seq = @prediction)
     begin
 
