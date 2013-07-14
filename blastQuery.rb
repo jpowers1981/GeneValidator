@@ -43,9 +43,10 @@ class BlastQuery
 ##
 # Calculates a precentage based on the rank of the predicion among the hit lengths
 # Params:
+# +threshold+: limit above which we consider the validation passed
 # +hits+ (optional): a vector of +Sequence+ objects
 # +prediction+ (optional): a +Sequence+ object
-  def length_rank(debug = false, hits = @hits, prediction = @prediction)
+  def length_rank(threshold = 0.2,  hits = @hits, prediction = @prediction)
     begin
       raise TypeError unless hits[0].is_a? Sequence and prediction.is_a? Sequence
 
@@ -56,19 +57,30 @@ class BlastQuery
       predicted_len = prediction.xml_length.to_i
       if predicted_len < median
         rank = lengths.find_all{|x| x < predicted_len}.length
+        percentage = rank / (len + 0.0)
+        msg = "TOO_SHORT"
       else
         rank = lengths.find_all{|x| x > predicted_len}.length
+        percentage = rank / (len + 0.0)
+        msg = "TOO_LONG"
       end
 
-      percentage = rank / (len + 0.0)
-      percentage.round(2)
+      if percentage >= threshold
+        msg = "OK"
+      end
+      [percentage.round(2), msg]
 
-    rescue TypeError
-      $stderr.print "Type error. Possible cause: one of the arguments of 'length_rank' method has not the proper type.\n"
+    rescue TypeError => error
+      $stderr.print "Type error at #{error.backtrace[0].scan(/\/([^\/]+:\d+):.*/)[0][0]}. Possible cause: one of the arguments of 'length_rank' method has not the proper type.\n"
       exit
     end
   end
 
+  ## 
+  # Validates the length of the predicted gene by comparing the length of the prediction to the most dense cluster
+  # The most dense cluster is obtained by hierarchical clustering
+  # Output:
+  # array of 2 elements containing the limits of the most dense cluster i.e [limit_left; limit_right]
   def length_validation
 
       ret = clusterization_by_length  #returns [clusters, max_density_cluster_idx]
@@ -76,18 +88,11 @@ class BlastQuery
       @clusters = ret[0]
       @max_density_cluster = ret[1]
       @mean = @clusters[@max_density_cluster].mean      
+      predicted_len = @prediction.xml_length
 
       plot_histo_clusters(@filename)
       plot_length(@filename)
-
-      silhouette = sequence_silhouette
-
       limits = @clusters[@max_density_cluster].get_limits
-      max_len = @hits.map{|x| x.xml_length}.max
-      predicted_len = @prediction.xml_length
-      pval = @clusters[@max_density_cluster].t_test(@clusters, predicted_len)
-      wval = @clusters[@max_density_cluster].wilcox_test(@clusters, predicted_len)
-      deviation = @clusters[@max_density_cluster].deviation(@clusters, predicted_len)
 
       if predicted_len <= limits[1] and predicted_len >= limits[0]
         status = "YES"
@@ -98,13 +103,16 @@ class BlastQuery
       return [limits[0], limits[1]]
   end
 
-  ## Test for reading frame inconsistency
+  ## 
+  # Check reading frame inconsistency
   # Params:
   # +lst+: vector of +Sequence+ objects
   # Output:
   # yes/no answer
   def reading_frame_validation(lst = @hits)
-    frames_histo = Hash[lst.group_by { |x| x.query_reading_frame }.map { |k, vs| [k, vs.length] }]
+
+    rfs =  lst.map{ |x| x.hsp_list.map{ |y| y.query_reading_frame}}.flatten
+    frames_histo = Hash[rfs.group_by { |x| x }.map { |k, vs| [k, vs.length] }]
     rez = ""
     frames_histo.each do |x, y|
       rez << "#{x} #{y}; "
@@ -130,47 +138,28 @@ class BlastQuery
       answ = "VALID"
     end
 
-    return answ
+    return "#{answ}"
   end
 
+  ##
+  # Validation test for gene merge
+  # Output:
+  # a number between 0 and 1, closer to 0 means multimodality, closer to 1 means unimodality
   def gene_merge_validation
 
     plot_matched_regions(@filename)
 
     # make a histogram with the middles of each matched subsequence from the predicted sequence
-    middles = @hits.map { |hit| ((hit.match_query_from + hit.match_query_to)/2.0).to_i }
+    middles = @hits.map { |hit| ((hit.hsp_list.first.match_query_from + hit.hsp_list.last.match_query_to)/2.0).to_i }
 
     #calculate the likelyhood to have a binomial distribution
-    #split in two clusters
-    #puts middles
-    clusters = hierarchical_clustering(middles, 2, 1)
+    #split into two clusters
+    hc = HierarchicalClusterization.new(middles)
+    clusters = hc.hierarchical_clustering(2, 1)
 
-    max_freq = clusters.map{ |x| x.lengths.map{|y| y[1]}.max}.max
+    #plot_merge_clusters(@filename, clusters, middles)
+    plot_2d_start_from(@filename)
 
-    R.eval "colors = c('red', 'blue', 'yellow', 'green', 'gray', 'orange')"
-    R.eval "jpeg('#{@filename}_match_distr.jpg')"
-
-    clusters.each_with_index do |cluster, i|
-      cluster_values = cluster.lengths.sort{|a,b| a[0]<=>b[0]}.map{ |x| a = Array.new(x[1],x[0])}.flatten
-      color = "colors[#{i%5+1}]"
-         
-      R.eval "hist(c#{cluster_values.to_s.gsub('[','(').gsub(']',')')},
-                     breaks = 30,
-                     xlim=c(#{middles.min-10},#{middles.max+10}),
-                     ylim=c(0,#{max_freq}),
-                     col=#{color},
-                     border=#{color},
-                     main='Predction match distribution (middle of the matches)', xlab='position idx', ylab='Frequency')"
-      R.eval "par(new=T)"    
-    end
-    R.eval "dev.off()"
-=begin
-    R.eval "library(diptest)"
-    R.eval "pval = dip.test(c#{middles.to_s.gsub('[','(').gsub(']',')')}, simulate.p.value = FALSE)$p.value"
-    pval = R.pull("pval")
-=end
-    pval = 0
-    
     wss1 = clusters[0].wss
     wss2 = clusters[1].wss   
 
@@ -185,10 +174,9 @@ class BlastQuery
     big_mean = big_cluster.mean
     big_wss = big_cluster.wss
 
-    #puts "#{mean1} #{mean2} #{big_mean}"
-
     bss = n1 * (mean1 - big_mean) * (mean1 - big_mean)
     bss += n2 * (mean2 - big_mean) * (mean2 - big_mean)
+    #puts "#{mean1} #{mean2} #{big_mean} #{n1} #{n2} #{bss}"
 
     ratio = (wss1 + wss2) / (wss1 + wss2 + bss + 0.0)
     ratio_y = (wss1 + wss2) / (wss1 + wss2 + big_wss + 0.0)
@@ -197,7 +185,72 @@ class BlastQuery
 
   end
 
-  ## 
+  ##
+  # Check duplication in the first n hits
+  # Returns 
+  def check_duplication (n=10)
+
+    # get the first n hits
+    less_hits = @hits[0..[n-1,@hits.length].min]
+    averages = []
+
+    less_hits.each do |hit|
+      #puts "--------------------"
+      # indexing in blast starts from 1
+      start_match_interval =  hit.hsp_list.each.map{|x| x.hit_from}.min - 1
+      end_match_interval = hit.hsp_list.map{|x| x.hit_to}.max - 1
+   
+      #puts "#{start_match_interval} #{end_match_interval}"
+
+      coverage = Array.new(hit.xml_length,0)
+      hit.hsp_list.each do |hsp|
+        aux = []
+        # for each hsp
+        # iterate through the alignment and count the matching residues
+        [*(0 .. hsp.align_len-1)].each do |i|
+          residue_hit = hsp.hit_alignment[i]
+          residue_query = hsp.query_alignment[i]
+          if residue_hit != ' ' and residue_hit != '+' and residue_hit != '-'
+            if residue_hit == residue_query             
+              idx = i + (hsp.hit_from-1) - hsp.hit_alignment[0..i].scan(/-/).length 
+              aux.push(idx)
+              #puts "#{idx} #{i} #{hsp.hit_alignment[0..i].scan(/-/).length}"
+              # indexing in blast starts from 1
+              coverage[idx] += 1
+            end
+          end
+        end
+        #puts aux.to_s               
+      end
+      #puts coverage.to_s
+      #overlap = coverage[start_match_interval..end_match_interval]
+      overlap = coverage.reject{|x| x==0}
+      #puts overlap.to_s
+      averages.push(overlap.inject(:+)/(overlap.length + 0.0))
+      
+    end
+    #puts averages.to_s
+
+    # if all hsps match only one time
+    if averages.reject{|x| x==1} == []
+      return "NO(pval=1)"
+    end
+
+    R.eval("library(preprocessCore)")
+
+    #make the wilcox-test and get the p-value
+    R.eval("coverageDistrib = c#{averages.to_s.gsub('[','(').gsub(']',')')}")
+    R. eval("pval = wilcox.test(coverageDistrib - 1)$p.value")
+    pval = R.pull "pval"
+ 
+    if pval < 0.01
+      return "YES(pval=#{pval})"
+    else
+      return "NO(pval=#{pval})"
+    end
+  end
+
+  ##
   # Clusterization by length from a list of sequences
   # Params:
   # +lst+:: array of +Sequence+ objects
@@ -208,12 +261,13 @@ class BlastQuery
   # output 2:: the index of the most dense cluster
   def clusterization_by_length(debug = false, lst = @hits, predicted_seq = @prediction)
     begin
-
       raise TypeError unless lst[0].is_a? Sequence and predicted_seq.is_a? Sequence
 
       contents = lst.map{ |x| x.xml_length.to_i }.sort{|a,b| a<=>b}
 
-      clusters = hierarchical_clustering(contents,0)
+      hc = HierarchicalClusterization.new(contents)
+      clusters = hc.hierarchical_clustering
+
       max_density = 0;
       max_density_cluster_idx = 0;
       clusters.each_with_index do |item, i|
@@ -225,56 +279,47 @@ class BlastQuery
 
       return [clusters, max_density_cluster_idx]
 
-    rescue TypeError
-      $stderr.print "Type error. Possible cause: one of the arguments of 'clusterization_by_length' method has not the proper type.\n"
+    rescue TypeError => error
+      $stderr.print "Type error at #{error.backtrace[0].scan(/\/([^\/]+:\d+):.*/)[0][0]}. Possible cause: one of the arguments of 'clusterization_by_length' method has not the proper type.\n"
       exit
     end
   end
 
-  ######################################################################
-  #calculates the silhouette score of the sequence
-  #input1: Sequence object
-  #input2: index of the target cluster within the clusters (see input 3)
-  #input3: an array of Cluster objects
-  #output: the silhouette of the sequence
-  def sequence_silhouette (seq = @prediction, idx = @max_density_cluster, clusters = @clusters)
-    seq_len = seq.xml_length    
+  ##
+  # Plots the histogram of the distribution of the middles of the hits
+  # Params:
+  # +output+: filename where to save the graph
+  # +clusters+: array of Cluster objects
+  # +middles+: array with values with potential multimodal distribution
+  def plot_merge_clusters(output, clusters = @clustersi, middles)
+    max_freq = clusters.map{ |x| x.lengths.map{|y| y[1]}.max}.max
 
-    #the average dissimilarity of the sequence with other elements in idx cluster
-    a = 0
-    clusters[idx].lengths.each do |len, frecv|
-      a = a + (len - seq_len).abs
-    end
-    a = a.to_f / clusters[idx].lengths.length
-    
-    b_vector = Array.new
-    
+    R.eval "colors = c('red', 'blue', 'yellow', 'green', 'gray', 'orange')"
+    R.eval "jpeg('#{output}_match_distr.jpg')"
+
     clusters.each_with_index do |cluster, i|
-      #the average dissimilarity of the sequence with the members of cluster i
-      if i != idx
-        b = 0
-        cluster.lengths.each do |len, frecv|
-          b = b + (len - seq_len).abs
-        end
-        b = b.to_f / cluster.lengths.length
-        unless b == 0
-          b_vector.push(b)
-        end
-      end  
+      cluster_values = cluster.lengths.sort{|a,b| a[0]<=>b[0]}.map{ |x| a = Array.new(x[1],x[0])}.flatten
+      color = "colors[#{i%5+1}]"
+
+      R.eval "hist(c#{cluster_values.to_s.gsub('[','(').gsub(']',')')},
+                     breaks = 30,
+                     xlim=c(#{middles.min-10},#{middles.max+10}),
+                     ylim=c(0,#{max_freq}),
+                     col=#{color},
+                     border=#{color},
+                     main='Predction match distribution (middle of the matches)', xlab='position idx', ylab='Frequency')"
+      R.eval "par(new=T)"
     end
-    b = b_vector.min
-    if b == nil
-      b=0
-    end
-    silhouette = (b - a).to_f / [a,b].max
-    return silhouette  
+    R.eval "dev.off()"
+
   end
 
-  #########################################  
-  #plots lines corresponding to each length
-  #highlights the start and end hit offsets
-  #input 1: lst = array of Sequence objects
-  #input 2: predicted_seq = Sequence objetc
+  ##
+  # Plots lines corresponding to each length
+  # Highlights the start and end hit offsets
+  # +output+: filename where to save the graph
+  # +lst+: array of Sequence objects
+  # +predicted_seq+: Sequence object
   def plot_length(output, lst = @hits, predicted_seq = @prediction)
     max_len = lst.map{|x| x.xml_length.to_i}.max
     lst = lst.sort{|a,b| a.xml_length<=>b.xml_length}
@@ -283,23 +328,27 @@ class BlastQuery
     skip= lst.length/max_plots
 
     R.eval "jpeg('#{output}_len.jpg')"
-    R.eval "plot(1:#{[lst.length-1,max_plots].min}, xlim=c(1,#{max_len}), xlab='Hit Length (black) vs part of the hit that matches the query (red)',ylab='Hit Number', col='white')"
+    R.eval "plot(1:#{[lst.length-1,max_plots].min}, xlim=c(0,#{max_len}), xlab='Hit Length (black) vs part of the hit that matches the query (red)',ylab='Hit Number', col='white')"
     height = -1;
     lst.each_with_index do |seq,i|
       if skip == 0 or i%skip == 0
-        height = height + 1
+        height += 1
         R.eval "lines(c(1,#{seq.xml_length}), c(#{height}, #{height}), lwd=10)"
-        R.eval "lines(c(#{seq.hit_from},#{seq.hit_to}), c(#{height}, #{height}), lwd=6, col='red')"
+        seq.hsp_list.each do |hsp|
+          R.eval "lines(c(#{hsp.hit_from},#{hsp.hit_to}), c(#{height}, #{height}), lwd=6, col='red')"
+        end
       end
     end
     R.eval "dev.off()"
   end
 
-  #########################################  
-  #plots lines corresponding to each hit
-  #highlights the matched region of the prediction for each hit
-  #input 1: lst = array of Sequence objects
-  #input 2: predicted_seq = Sequence objetc
+  ##  
+  # Plots lines corresponding to each hit
+  # highlights the matched region of the prediction for each hit
+  # Param
+  # +output+: location where the plot will be saved in jped file format
+  # +lst+: array of Sequence objects
+  # +predicted_seq+: Sequence objetc
   def plot_matched_regions(output, lst = @hits, predicted_seq = @prediction)
 
     max_len = lst.map{|x| x.xml_length.to_i}.max
@@ -309,25 +358,61 @@ class BlastQuery
     len = predicted_seq.xml_length
 
     R.eval "jpeg('#{output}_match.jpg')"
-    R.eval "plot(1:#{[lst.length-1,max_plots].min}, xlim=c(1,#{len}), xlab='Prediction length (black) vs part of the prediction that matches hit x (yellow)',ylab='Hit Number', col='white')"
+    R.eval "plot(1:#{lst.length-1}, xlim=c(0,#{len}), xlab='Prediction length (black) vs part of the prediction that matches hit x (red/yellow)',ylab='Hit Number', col='white')"
+    R.eval "colors = c('yellow', 'red')"
+    R.eval "colors2 = c('black', 'gray')"
     height = -1;
     lst.each_with_index do |seq,i|
-      if skip == 0 or i%skip == 0
-        height = height + 1
-        R.eval "lines(c(1,#{len}), c(#{height}, #{height}), lwd=10)"
-        R.eval "lines(c(#{seq.match_query_from},#{seq.match_query_to}), c(#{height}, #{height}), lwd=6, col='yellow')"
-      end
+      #if skip == 0 or i%skip == 0
+      #if i < max_plots
+        height += 1
+        color = "colors[#{height%2+1}]"
+        color2 = "colors2[#{height%2+1}]"
+        R.eval "lines(c(1,#{len}), c(#{height}, #{height}), lwd=7)"
+        seq.hsp_list.each do |hsp|
+          R.eval "lines(c(#{hsp.match_query_from},#{hsp.match_query_to}), c(#{height}, #{height}), lwd=6, col=#{color})"         
+        end
+      #end
     end
     R.eval "dev.off()"
   end
 
+  def plot_2d_start_from(output, hits = @hits)
+    min_start = hits.map{|hit| hit.hsp_list.map{|hsp| hsp.match_query_from}.min}.min
+    max_start = hits.map{|hit| hit.hsp_list.map{|hsp| hsp.match_query_from}.max}.max
 
-  #############################################################################
-  #plots a histogram of the length distribution given a list of Cluster objects
-  #input 1: array of Cluster objects
-  #input 2: length of the predicted sequence (number)
-  #input 3: index from the clusters array of the most_dense_cluster_idx
-  #input 4: name of the histogram file (optional argument, if missing the histogram will be displayed in a new window)
+    min_end = hits.map{|hit| hit.hsp_list.map{|hsp| hsp.match_query_to}.min}.min
+    max_end = hits.map{|hit| hit.hsp_list.map{|hsp| hsp.match_query_to}.min}.max
+
+    R.eval "jpeg('#{output}_match_2d.jpg')"
+
+    R.eval "colors = c('yellow', 'red')"
+
+#    hits.each_with_index do |hit,i|
+#      color = "colors[#{i%2+1}]"
+    hits.each do |hit|
+      #hit.hsp_list.each do |hsp|
+        query = "plot(c(#{hit.hsp_list.first.match_query_from}), c(#{hit.hsp_list.last.match_query_to}), 
+              xlim=c(0,#{max_start+10}),
+              ylim=c(0,#{max_end+10}),
+              main='Start vs end match 2D plot', xlab='from', ylab='to',
+              pch=10)"    
+        #puts query
+        R.eval query
+        R.eval "par(new=T)"      
+    end
+    R.eval "dev.off()"
+
+  end
+
+
+  ##
+  # Plots a histogram of the length distribution given a list of Cluster objects
+  # Params:
+  # +output+: filename where to save the graph
+  # +clusters+: array of Cluster objects
+  # +predicted_length+: length of the rpedicted sequence
+  # +most_dense_cluster_idx+index from the clusters array of the most_dense_cluster_idx
   def plot_histo_clusters(output, clusters = @clusters, predicted_length = @prediction.xml_length, 
                           most_dense_cluster_idx = @max_dense_cluster)
     begin
@@ -343,7 +428,7 @@ class BlastQuery
         unless output == nil
           #puts "---- #{output}"
           #R.eval "dev.copy(png,'#{output}.png')"
-          R.eval "jpeg('#{output}.jpg')"
+          R.eval "jpeg('#{output}_len_clusters.jpg')"
         end
 
         clusters.each_with_index do |cluster, i|
@@ -371,10 +456,52 @@ class BlastQuery
           R.eval "dev.off()"
         end
 
-    rescue TypeError
-      $stderr.print "Type error. Possible cause: one of the arguments of 'plot_histo_clusters' method has not the proper type.\n"
+    rescue TypeError => error
+      $stderr.print "Type error at #{error.backtrace[0].scan(/\/([^\/]+:\d+):.*/)[0][0]}. Possible cause: one of the arguments of 'plot_histo_clusters' method has not the proper type.\n"
       exit
     end
+  end
+
+
+  ##
+  # Calculates the silhouette score of the sequence
+  # Params:
+  # +seq+: Sequence object
+  # +idx+: index of the cluster with the maximul internisty
+  # +clusters+:array of +Cluster+ objects
+  # Output
+  # the silhouette of the sequence
+  def sequence_silhouette (seq = @prediction, idx = @max_density_cluster, clusters = @clusters)
+    seq_len = seq.xml_length
+
+    #the average dissimilarity of the sequence with other elements in idx cluster
+    a = 0
+    clusters[idx].lengths.each do |len, frecv|
+      a = a + (len - seq_len).abs
+    end
+    a = a.to_f / clusters[idx].lengths.length
+
+    b_vector = Array.new
+
+    clusters.each_with_index do |cluster, i|
+      #the average dissimilarity of the sequence with the members of cluster i
+      if i != idx
+        b = 0
+        cluster.lengths.each do |len, frecv|
+          b = b + (len - seq_len).abs
+        end
+        b = b.to_f / cluster.lengths.length
+        unless b == 0
+          b_vector.push(b)
+        end
+      end
+    end
+    b = b_vector.min
+    if b == nil
+      b=0
+    end
+    silhouette = (b - a).to_f / [a,b].max
+    return silhouette
   end
 
 end

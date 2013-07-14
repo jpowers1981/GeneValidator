@@ -7,7 +7,7 @@ require './sequences'
 
 options = {}
 opt_parser = OptionParser.new do |opt|
-  opt.banner = "Usage: TYPE [SKIP_BLAST] FILE"
+  opt.banner = "Usage: TYPE [SKIP_BLAST] [START] FILE"
   opt.separator  ""
   opt.separator  "File: filename of the FASTA file containing the predicted sequences"
   opt.separator  ""
@@ -17,14 +17,23 @@ opt_parser = OptionParser.new do |opt|
     if type.to_s.downcase == 'protein' or type.to_s.downcase == 'mrna'
       options[:type] = type
     else 
-      $stderr.print "Error: type may be protein or mRNA." + "\n"
+      $stderr.print "Error: type must be protein or mRNA." + "\n"
       exit
     end
   end
 
-  opt.on("-skip_blast","--skip_blast","skip blast-ing part and provide a blast xml output as input to this script") do
-    options[:skip_blast] = true
+  opt.on("-s","--start [START]", Integer, "starts the validation with a certain sequence in the input file ") do |start|
+    if start.is_a? Fixnum
+      options[:start] = start     
+    else 
+      $stderr.print "Error: start must be a natural number." + "\n"
+    end
   end
+
+  opt.on("-x", "--skip_blast","skip blast-ing part and provide a blast xml output as input to this script") do |skip|
+    options[:skip_blast] = skip
+  end
+
 
   opt.on("-h","--help","help") do
     puts opt_parser
@@ -52,14 +61,21 @@ end
 
 # Main body
 
-b = Blast.new(ARGV[0], options[:type].to_s.downcase)
+if options[:start]
+  b = Blast.new(ARGV[0], options[:type].to_s.downcase, options[:start])
+else
+  b = Blast.new(ARGV[0], options[:type].to_s.downcase)
+end
 
 unless options[:skip_blast]
   b.blast
-  #b.parse_xml_output
 else
-  # Skip the blast-ing part and provide a xml blast output file as argument to this ruby script
-  file = File.open(ARGV[0], "rb").read
-  b.parse_xml_output(file, ARGV[0])
+  begin
+    # Skip the blast-ing part and provide a xml blast output file as argument to this ruby script
+    file = File.open(ARGV[0], "rb").read
+    b.parse_xml_output(file)
+  rescue SystemCallError
+    $stderr.print "Load error. Possible cause: input file is not valid\n"
+    exit
+  end
 end
-
