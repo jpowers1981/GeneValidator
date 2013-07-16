@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require './clustering'
+require './clusterization'
 require './sequences'
 require './blastQuery'
 require './output'
@@ -29,13 +29,17 @@ class Blast
   attr_reader :idx
   #number of the sequence from the file to start with
   attr_reader :start_idx
+  #output format
+  attr_reader :outfmt
 
-  def initialize(fasta_file, type, start_idx=0)
+  def initialize(fasta_file, type, outfmt, start_idx=0)
     if type == "protein"
       @type = :protein
     else 
       @type = :nucleotide
     end
+
+    @outfmt = outfmt
 
     @fasta_file = fasta_file
     @idx = 0
@@ -44,7 +48,44 @@ class Blast
     #R.eval "x11()"  # othetwise I get SIGPIPE
 
     puts "\nDepending on your input and your computational resources, this may take a while. Please wait...\n\n"
-    printf "%3s | %25s | %15s | %15s | %15s | %15s | %15s |\n", "No", "Description", "Valid_Length(Cluster)", "Valid_Length(Rank)", "Valid_Reading_Frame", "Gene_Merge(0=bimodal)", "Duplication"
+    printf "%3s|%25s|%10s|%15s|%15s|%15s|%15s|%15s|\n", "No", "Description", "No_Hits", "Valid_Length(Cluster)", "Valid_Length(Rank)", "Valid_Reading_Frame", "Gene_Merge(slope)", "Duplication"
+
+    if @outfmt == :html
+       header = "<html>
+                  <head>
+                     <title>Gene Validation Result</title>
+                     <script language=\"javascript\"> 
+
+                     function showDiv(toggle){
+                       var button = document.getElementById(toggle)
+                       if(button.style.display == \"block\"){
+                          button.style.display = \"none\";
+                       }
+                       else{
+                          button.style.display = \"block\";
+                       }
+                     }
+                  </script>             
+                  </head>
+                  <body>
+                      <table border=\"1\" cellpadding=\"5\" cellspacing=\"0\" height=\"65\" width=\"642\">
+                        <tbody>
+				<tr bgcolor = #E8E8E8>
+				        <td></td>
+					<td>No.</td>
+					<td>Description</td>
+					<td>No_Hits</td>
+					<td>Valid_Length(Cluster)</td>
+					<td>Valid_Length(Rank)</td>
+					<td>Valid_Reading_Frame</td>
+					<td>Gene_Merge(0=bimodal)</td>
+					<td>Duplication</td>
+				</tr>"
+
+       File.open("#{@fasta_file}.html", "w+") do |f|
+         f.write(header)
+       end
+     end
 
   end
 
@@ -208,9 +249,16 @@ class Blast
         query_output.reading_frame_validation = query.reading_frame_validation
         query_output.merged_genes_score = query.gene_merge_validation
         query_output.duplication = query.check_duplication
-
+       
         query_output.print_output_console
-        #query_output.print_output_file_yaml
+
+        if @outfmt == :html
+          query_output.generate_html
+        end
+
+        if @outfmt == :yaml
+          query_output.print_output_file_yaml
+        end
       end
 
       rescue QueryError => error

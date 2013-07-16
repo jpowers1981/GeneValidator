@@ -1,6 +1,3 @@
-#/usr/bin/env ruby
-
-require './clustering'
 require './sequences'
 require './blastQuery'
 require 'rinruby.rb'
@@ -78,7 +75,7 @@ class BlastQuery
 
   ## 
   # Validates the length of the predicted gene by comparing the length of the prediction to the most dense cluster
-  # The most dense cluster is obtained by hierarchical clustering
+  # The most dense cluster is obtained by hierarchical clusterization
   # Output:
   # array of 2 elements containing the limits of the most dense cluster i.e [limit_left; limit_right]
   def length_validation
@@ -147,19 +144,20 @@ class BlastQuery
   # a number between 0 and 1, closer to 0 means multimodality, closer to 1 means unimodality
   def gene_merge_validation
 
-    plot_matched_regions(@filename)
+     plot_matched_regions(@filename)
 
     # make a histogram with the middles of each matched subsequence from the predicted sequence
-    middles = @hits.map { |hit| ((hit.hsp_list.first.match_query_from + hit.hsp_list.last.match_query_to)/2.0).to_i }
+    # INCORECT middles = @hits.map { |hit| ((hit.hsp_list.first.match_query_from + hit.hsp_list.last.match_query_to)/2.0).to_i }
 
     #calculate the likelyhood to have a binomial distribution
     #split into two clusters
-    hc = HierarchicalClusterization.new(middles)
-    clusters = hc.hierarchical_clustering(2, 1)
+    #hc = HierarchicalClusterization.new(middles)
+    #clusters = hc.hierarchical_clusterization(2, 1)
 
     #plot_merge_clusters(@filename, clusters, middles)
-    plot_2d_start_from(@filename)
+    slope = plot_2d_start_from(@filename)
 
+=begin
     wss1 = clusters[0].wss
     wss2 = clusters[1].wss   
 
@@ -176,13 +174,12 @@ class BlastQuery
 
     bss = n1 * (mean1 - big_mean) * (mean1 - big_mean)
     bss += n2 * (mean2 - big_mean) * (mean2 - big_mean)
-    #puts "#{mean1} #{mean2} #{big_mean} #{n1} #{n2} #{bss}"
 
     ratio = (wss1 + wss2) / (wss1 + wss2 + bss + 0.0)
     ratio_y = (wss1 + wss2) / (wss1 + wss2 + big_wss + 0.0)
 
     ratio.round(2)
-
+=end
   end
 
   ##
@@ -195,7 +192,6 @@ class BlastQuery
     averages = []
 
     less_hits.each do |hit|
-      #puts "--------------------"
       # indexing in blast starts from 1
       start_match_interval =  hit.hsp_list.each.map{|x| x.hit_from}.min - 1
       end_match_interval = hit.hsp_list.map{|x| x.hit_to}.max - 1
@@ -265,8 +261,11 @@ class BlastQuery
 
       contents = lst.map{ |x| x.xml_length.to_i }.sort{|a,b| a<=>b}
 
+      beginning_time = Time.now
       hc = HierarchicalClusterization.new(contents)
-      clusters = hc.hierarchical_clustering
+      clusters = hc.hierarchical_clusterization
+      end_time = Time.now
+      puts "Time elapsed clusterization_by_length #{((end_time - beginning_time)*1000).round(2)} milliseconds"
 
       max_density = 0;
       max_density_cluster_idx = 0;
@@ -348,7 +347,7 @@ class BlastQuery
   # Param
   # +output+: location where the plot will be saved in jped file format
   # +lst+: array of Sequence objects
-  # +predicted_seq+: Sequence objetc
+  # +predicted_seq+: Sequence objects
   def plot_matched_regions(output, lst = @hits, predicted_seq = @prediction)
 
     max_len = lst.map{|x| x.xml_length.to_i}.max
@@ -377,37 +376,79 @@ class BlastQuery
     R.eval "dev.off()"
   end
 
-  def plot_2d_start_from(output, hits = @hits)
+  ##  
+  # Plots 2D graph with the start/end of the matched region offsets in the prediction
+  # Param
+  # +output+: location where the plot will be saved in jped file format
+  # +hits+: array of Sequence objects
+  def plot_2d_start_from(output, hits = @hits)    
+
+    pairs = @hits.map {|hit| Pair.new(hit.hsp_list.map{|hsp| hsp.match_query_from}.min, hit.hsp_list.map{|hsp| hsp.match_query_to}.max)}
+
+    xx = pairs.map{|pair| pair.x}
+    yy = pairs.map{|pair| pair.y}
+=begin
+    x_values = pairs.map{|pair| pair.x}
+    y_values = pairs.map{|pair| pair.y}
+
+    R.eval "m = matrix(c(#{x_values.to_s.gsub('[','').gsub(']','')}, #{y_values.to_s.gsub('[','').gsub(']','')}), 2, byrow = T)"
+    R.eval "clusters = kmeans(t(m),2)$cluster"
+    get time rubyget time rubyrservnign time rubyget time rubyrservt runget time rubyrservunget time rubyrservcoget time rubyrservrservget time rubyget time rubyrservnign time rubyget time rubyrservt runget time rubyrservunget time rubyrservcoget time rubyrservrservR.eval "cluster1 = t(m[,clusters==1])"
+    R.eval "cluster2 = t(m[,clusters==2])"
+=end
     min_start = hits.map{|hit| hit.hsp_list.map{|hsp| hsp.match_query_from}.min}.min
     max_start = hits.map{|hit| hit.hsp_list.map{|hsp| hsp.match_query_from}.max}.max
 
     min_end = hits.map{|hit| hit.hsp_list.map{|hsp| hsp.match_query_to}.min}.min
     max_end = hits.map{|hit| hit.hsp_list.map{|hsp| hsp.match_query_to}.min}.max
 
+    #calculate the likelyhood to have a binomial distribution
+    #split into two clusters
+
+    beginning_time = Time.now 
+    hc = HierarchicalClusterization.new(pairs)
+    clusters = hc.hierarchical_clusterization_2d(2, 1)
+    end_time = Time.now
+    puts "Time elapsed #{((end_time - beginning_time)*1000).round(2)} milliseconds"
+
     R.eval "jpeg('#{output}_match_2d.jpg')"
+    R.eval "colors = c('red', 'blue')";
 
-    R.eval "colors = c('yellow', 'red')"
+    clusters.each_with_index do |cluster, i|
+      x_values = cluster.objects.map{|pair| pair[0].x}
+      y_values = cluster.objects.map{|pair| pair[0].y}
 
-#    hits.each_with_index do |hit,i|
-#      color = "colors[#{i%2+1}]"
-    hits.each do |hit|
-      #hit.hsp_list.each do |hsp|
-        query = "plot(c(#{hit.hsp_list.first.match_query_from}), c(#{hit.hsp_list.last.match_query_to}), 
-              xlim=c(0,#{max_start+10}),
-              ylim=c(0,#{max_end+10}),
-              main='Start vs end match 2D plot', xlab='from', ylab='to',
-              pch=10)"    
-        #puts query
-        R.eval query
-        R.eval "par(new=T)"      
+     # puts x_values.to_s
+     # puts ""
+     # puts y_values.to_s
+     # puts ""
+     # puts ""
+
+      color = "colors[#{i%2+1}]"
+      R.eval "plot(c#{x_values.to_s.gsub("[","(").gsub("]",")")},
+                   c#{y_values.to_s.gsub("[","(").gsub("]",")")},
+                   xlim=c(0,#{max_start+10}), 
+                   ylim=c(0,#{max_end+10}), 
+                   col=#{color}, 
+                   main='Start vs end match 2D plot', xlab='from', ylab='to', 
+                   pch=10)"        
+      R.eval "par(new=T)"           
     end
-    R.eval "dev.off()"
 
+    R.eval "x = c#{xx.to_s.gsub("[","(").gsub("]",")")}"
+    R.eval "y = c#{yy.to_s.gsub("[","(").gsub("]",")")}"
+    R.eval "abline(lm(y~x, singular.ok=FALSE))"
+    R.eval "slope = lm(y~x)$coefficients[2]"
+    slope = R.pull "slope"
+    puts slope
+
+    R.eval "dev.off()"
+    return slope
   end
 
 
   ##
-  # Plots a histogram of the length distribution given a list of Cluster objects
+# Plots a histogram of the length distribution given a list of Cluster objects
   # Params:
   # +output+: filename where to save the graph
   # +clusters+: array of Cluster objects

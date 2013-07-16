@@ -43,6 +43,10 @@ class Output
     @filename = filename
     @idx = idx
 
+    @image_histo_len = "#{filename}_#{@idx}_len_clusters.jpg"
+    @image_plot_merge = "#{filename}_#{@idx}_match.jpg"
+    @image_histo_merge = "#{filename}_#{@idx}_match_2d.jpg"
+
   end
   
   def print_output_console
@@ -53,9 +57,10 @@ class Output
       @lv_cluster = "NO"
     end
 
-    printf " %3d | %25s | %25s | %s(%s) | %15s| %15s | %10s |\n",              
+    printf "%3s|%25s|%10s|%15s|%15s|%15s|%15s|%15s|\n",              
               @idx,
               @prediction_def.scan(/([^ ]+)/)[0][0],
+              @nr_hits,
               "#{@prediction_len} #{@length_cluster_limits} #{@lv_cluster}", 
               @length_rank_msg, @length_rank_score, 
               @reading_frame_validation,
@@ -64,24 +69,82 @@ class Output
   end
 
   def print_output_file_yaml
-    File.open("#{@filename}.yaml", "w+") do |f|
+    File.open("#{@filename}.yaml", "a") do |f|
       f.write({@prediction_def.scan(/([^ ]+)/)[0][0] => self}.to_yaml)
     end
   end
 
   def generate_html
-    output = "<h1>#{@prediction_def}</h1>  \\
-		<h3>Length Validation</h3>  \\
-		<p><img alt=img src= #{@image_histo_len} style=\"width: 300px;\" /></p>		\\
-		<ul>  \\
-			<li>clustering : YES</li>  \\
-			<li>ranking</li>  \\
-		</ul> \\
-		<h3> Reading Frame Validation:</h3> \\
-		<h3> Gene Merge Validation:</h3> \\
-		<p> \\
-			<img alt=img src=#{@image_histo_len} style=\"width: 300px; height: 300px; float: left; margin-left: 20px; margin-right: 20px;\" /></p> \\
-		<h3> \\
-			<img alt=img src=#{@image_histo_len} style=\"width: 300px; height: 300px; float: left; margin-left: 20px; margin-right: 20px;\" /></h3>"
+    if idx%2 == 0
+      color = "#E8E8E8"
+    else 
+      color = "#FFFFFF"
+    end
+
+    # color length validation cluster
+    if @lv_cluster == "NO"
+      color_lvc = "red"
+    else
+      color_lvc = "#FFFFFF"
+    end
+ 
+    # color length validation rank
+    if @length_rank_score < 0.2
+      color_lvr = "red"
+    else
+      color_lvr = "#FFFFFF"
+    end
+
+    # color reading frame validation
+    if @reading_frame_validation != "VALID"
+      color_rf = "red"
+    else
+      color_rf = "#FFFFFF"
+    end
+
+    # color gene merge validation
+    if @merged_genes_score > 0.4 and @merged_genes_score < 1.2
+      status_merge = "YES"
+      color_merge = "red"
+    else
+      status_merge = "NO"
+      color_merge = "#FFFFFF"
+    end
+
+    # color duplication validation
+    if @duplication == "YES"
+      color_dup = "red"
+    else
+      color_dup = "#FFFFFF"
+    end
+
+
+    toggle = "toggle#{@idx}"
+
+    output = "<tr bgcolor=#{color}> 
+	      <td><button type=button name=answer onclick=showDiv('#{toggle}')>Show/Hide Plots</button></td> 
+	      <td>#{@idx}</td>
+	      <td width=100>#{@prediction_def}</td>
+	      <td>#{@nr_hits}</td>
+	      <td bgcolor=#{color_lvc}>#{@prediction_len} #{@length_cluster_limits} #{@lv_cluster}</td>
+	      <td bgcolor=#{color_lvr}>#{@length_rank_score}</td>
+	      <td bgcolor=#{color_rf}>#{@reading_frame_validation}</td>
+	      <td bgcolor=#{color_merge}>#{status_merge}(slope=#{@merged_genes_score.round(2)})</td>
+	      <td bgcolor=#{color_dup}>#{@duplication}</td>
+	      </tr>
+
+	      <tr bgcolor=#{color}>
+	      <td  colspan=9>
+              <div id=#{toggle} style='display:none'>
+
+              <img src=#{image_histo_len.scan(/\/([^\/]+)$/)[0][0]} height=400>
+	      <img src=#{image_plot_merge.scan(/\/([^\/]+)$/)[0][0]} height=400>
+              <img src=#{image_histo_merge.scan(/\/([^\/]+)$/)[0][0]} height=400>
+              </div>					
+	      </td>
+	      </tr>"
+    File.open("#{@filename}.html", "a") do |f|
+      f.write(output)
+    end  
   end
 end

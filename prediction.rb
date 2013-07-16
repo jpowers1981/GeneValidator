@@ -1,5 +1,5 @@
 require 'optparse'
-require './clustering'
+require './clusterization'
 require './blast'
 require './sequences'
 
@@ -7,7 +7,7 @@ require './sequences'
 
 options = {}
 opt_parser = OptionParser.new do |opt|
-  opt.banner = "Usage: TYPE [SKIP_BLAST] [START] FILE"
+  opt.banner = "Usage: TYPE [SKIP_BLAST] [START] [OUTFMT] FILE"
   opt.separator  ""
   opt.separator  "File: filename of the FASTA file containing the predicted sequences"
   opt.separator  ""
@@ -28,6 +28,18 @@ opt_parser = OptionParser.new do |opt|
     else 
       $stderr.print "Error: start must be a natural number." + "\n"
     end
+  end
+
+  opt.on("-o","--outfmt [OUTFMT]", "output format ") do |outfmt|
+    if outfmt == "html"
+      options[:outfmt] = :html    
+    else 
+      if outfmt == "yaml"
+        options[:outfmt] = :yaml
+      else
+        options[:outfmt] = :console
+      end
+    end    
   end
 
   opt.on("-x", "--skip_blast","skip blast-ing part and provide a blast xml output as input to this script") do |skip|
@@ -62,9 +74,9 @@ end
 # Main body
 
 if options[:start]
-  b = Blast.new(ARGV[0], options[:type].to_s.downcase, options[:start])
+  b = Blast.new(ARGV[0], options[:type].to_s.downcase, options[:outfmt], options[:start])
 else
-  b = Blast.new(ARGV[0], options[:type].to_s.downcase)
+  b = Blast.new(ARGV[0], options[:type].to_s.downcase, options[:outfmt])
 end
 
 unless options[:skip_blast]
