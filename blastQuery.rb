@@ -105,7 +105,8 @@ class BlastQuery
   # Params:
   # +lst+: vector of +Sequence+ objects
   # Output:
-  # yes/no answer
+  # output1: yes/no answer
+  # output2: additional information (what reading frames were used)
   def reading_frame_validation(lst = @hits)
 
     rfs =  lst.map{ |x| x.hsp_list.map{ |y| y.query_reading_frame}}.flatten
@@ -115,8 +116,8 @@ class BlastQuery
       rez << "#{x} #{y}; "
     end
 
-    #if there are different reading frames of the same sign
-    #count for positive reading frames
+    # if there are different reading frames of the same sign
+    # count for positive reading frames
     count_p = 0
     count_n = 0
     frames_histo.each do |x, y|
@@ -135,56 +136,23 @@ class BlastQuery
       answ = "VALID"
     end
 
-    return "#{answ}"
+    return [answ, rez]
   end
 
   ##
   # Validation test for gene merge
   # Output:
-  # a number between 0 and 1, closer to 0 means multimodality, closer to 1 means unimodality
+  # the slope of the line obtained by linear regression
   def gene_merge_validation
 
-     plot_matched_regions(@filename)
-
-    # make a histogram with the middles of each matched subsequence from the predicted sequence
-    # INCORECT middles = @hits.map { |hit| ((hit.hsp_list.first.match_query_from + hit.hsp_list.last.match_query_to)/2.0).to_i }
-
-    #calculate the likelyhood to have a binomial distribution
-    #split into two clusters
-    #hc = HierarchicalClusterization.new(middles)
-    #clusters = hc.hierarchical_clusterization(2, 1)
-
-    #plot_merge_clusters(@filename, clusters, middles)
+    plot_matched_regions(@filename)
     slope = plot_2d_start_from(@filename)
 
-=begin
-    wss1 = clusters[0].wss
-    wss2 = clusters[1].wss   
-
-    mean1 = clusters[0].mean
-    mean2 = clusters[1].mean
-
-    n1 = clusters[0].density
-    n2 = clusters[1].density
-
-    big_cluster = clusters[0].dup
-    big_cluster.add(clusters[1])
-    big_mean = big_cluster.mean
-    big_wss = big_cluster.wss
-
-    bss = n1 * (mean1 - big_mean) * (mean1 - big_mean)
-    bss += n2 * (mean2 - big_mean) * (mean2 - big_mean)
-
-    ratio = (wss1 + wss2) / (wss1 + wss2 + bss + 0.0)
-    ratio_y = (wss1 + wss2) / (wss1 + wss2 + big_wss + 0.0)
-
-    ratio.round(2)
-=end
   end
 
   ##
   # Check duplication in the first n hits
-  # Returns 
+  # Returns yes/no answer
   def check_duplication (n=10)
 
     # get the first n hits
@@ -216,20 +184,15 @@ class BlastQuery
             end
           end
         end
-        #puts aux.to_s               
       end
-      #puts coverage.to_s
-      #overlap = coverage[start_match_interval..end_match_interval]
       overlap = coverage.reject{|x| x==0}
-      #puts overlap.to_s
       averages.push(overlap.inject(:+)/(overlap.length + 0.0))
       
     end
-    #puts averages.to_s
-
+  
     # if all hsps match only one time
     if averages.reject{|x| x==1} == []
-      return "NO(pval=1)"
+      return ["NO",1]
     end
 
     R.eval("library(preprocessCore)")
@@ -238,12 +201,13 @@ class BlastQuery
     R.eval("coverageDistrib = c#{averages.to_s.gsub('[','(').gsub(']',')')}")
     R. eval("pval = wilcox.test(coverageDistrib - 1)$p.value")
     pval = R.pull "pval"
- 
+
     if pval < 0.01
-      return "YES(pval=#{pval})"
+      status = "YES"
     else
-      return "NO(pval=#{pval})"
+      status = "NO"
     end
+     return [status, pval]
   end
 
   ##
@@ -261,11 +225,8 @@ class BlastQuery
 
       contents = lst.map{ |x| x.xml_length.to_i }.sort{|a,b| a<=>b}
 
-      beginning_time = Time.now
       hc = HierarchicalClusterization.new(contents)
       clusters = hc.hierarchical_clusterization
-      end_time = Time.now
-      puts "Time elapsed clusterization_by_length #{((end_time - beginning_time)*1000).round(2)} milliseconds"
 
       max_density = 0;
       max_density_cluster_idx = 0;
@@ -387,15 +348,7 @@ class BlastQuery
 
     xx = pairs.map{|pair| pair.x}
     yy = pairs.map{|pair| pair.y}
-=begin
-    x_values = pairs.map{|pair| pair.x}
-    y_values = pairs.map{|pair| pair.y}
 
-    R.eval "m = matrix(c(#{x_values.to_s.gsub('[','').gsub(']','')}, #{y_values.to_s.gsub('[','').gsub(']','')}), 2, byrow = T)"
-    R.eval "clusters = kmeans(t(m),2)$cluster"
-    get time rubyget time rubyrservnign time rubyget time rubyrservt runget time rubyrservunget time rubyrservcoget time rubyrservrservget time rubyget time rubyrservnign time rubyget time rubyrservt runget time rubyrservunget time rubyrservcoget time rubyrservrservR.eval "cluster1 = t(m[,clusters==1])"
-    R.eval "cluster2 = t(m[,clusters==2])"
-=end
     min_start = hits.map{|hit| hit.hsp_list.map{|hsp| hsp.match_query_from}.min}.min
     max_start = hits.map{|hit| hit.hsp_list.map{|hsp| hsp.match_query_from}.max}.max
 
@@ -405,11 +358,8 @@ class BlastQuery
     #calculate the likelyhood to have a binomial distribution
     #split into two clusters
 
-    beginning_time = Time.now 
     hc = HierarchicalClusterization.new(pairs)
     clusters = hc.hierarchical_clusterization_2d(2, 1)
-    end_time = Time.now
-    puts "Time elapsed #{((end_time - beginning_time)*1000).round(2)} milliseconds"
 
     R.eval "jpeg('#{output}_match_2d.jpg')"
     R.eval "colors = c('red', 'blue')";
@@ -417,12 +367,6 @@ class BlastQuery
     clusters.each_with_index do |cluster, i|
       x_values = cluster.objects.map{|pair| pair[0].x}
       y_values = cluster.objects.map{|pair| pair[0].y}
-
-     # puts x_values.to_s
-     # puts ""
-     # puts y_values.to_s
-     # puts ""
-     # puts ""
 
       color = "colors[#{i%2+1}]"
       R.eval "plot(c#{x_values.to_s.gsub("[","(").gsub("]",")")},
@@ -440,7 +384,6 @@ class BlastQuery
     R.eval "abline(lm(y~x, singular.ok=FALSE))"
     R.eval "slope = lm(y~x)$coefficients[2]"
     slope = R.pull "slope"
-    puts slope
 
     R.eval "dev.off()"
     return slope
@@ -448,7 +391,7 @@ class BlastQuery
 
 
   ##
-# Plots a histogram of the length distribution given a list of Cluster objects
+  # Plots a histogram of the length distribution given a list of Cluster objects
   # Params:
   # +output+: filename where to save the graph
   # +clusters+: array of Cluster objects

@@ -14,9 +14,11 @@ class Output
   attr_accessor :length_rank_msg
 
   attr_accessor :reading_frame_validation
+  attr_accessor :reading_frame_info
 
   attr_accessor :merged_genes_score
   attr_accessor :duplication
+  attr_accessor :duplication_info
 
   attr_accessor :filename
   attr_accessor :image_histo_len
@@ -37,8 +39,11 @@ class Output
     @length_rank_msg = "?"
     
     @reading_frame_validation = "?"
+    @reading_frame_info = ""
+
     @merged_genes_score = 0
     @duplication = "?"
+    @duplication_info = ""
 
     @filename = filename
     @idx = idx
@@ -57,14 +62,14 @@ class Output
       @lv_cluster = "NO"
     end
 
-    printf "%3s|%25s|%10s|%15s|%15s|%15s|%15s|%15s|\n",              
+    printf "%3s|%25s|%10s|%15s|%15s|%15s|%10s|%15s|%15s|\n",              
               @idx,
               @prediction_def.scan(/([^ ]+)/)[0][0],
               @nr_hits,
               "#{@prediction_len} #{@length_cluster_limits} #{@lv_cluster}", 
               @length_rank_msg, @length_rank_score, 
               @reading_frame_validation,
-              @merged_genes_score, @duplication
+              @merged_genes_score.round(2), "#{@duplication}(pval=#{@duplication_info.round(4)})"
 
   end
 
@@ -75,31 +80,35 @@ class Output
   end
 
   def generate_html
+
+    gray = "#E8E8E8"
+    white = "#FFFFFF"
+
     if idx%2 == 0
-      color = "#E8E8E8"
+      color = gray
     else 
-      color = "#FFFFFF"
+     color = white 
     end
 
     # color length validation cluster
     if @lv_cluster == "NO"
       color_lvc = "red"
     else
-      color_lvc = "#FFFFFF"
+      color_lvc = color
     end
  
     # color length validation rank
     if @length_rank_score < 0.2
       color_lvr = "red"
     else
-      color_lvr = "#FFFFFF"
+      color_lvr = color
     end
 
     # color reading frame validation
     if @reading_frame_validation != "VALID"
       color_rf = "red"
     else
-      color_rf = "#FFFFFF"
+      color_rf = color
     end
 
     # color gene merge validation
@@ -108,16 +117,15 @@ class Output
       color_merge = "red"
     else
       status_merge = "NO"
-      color_merge = "#FFFFFF"
+      color_merge = color
     end
 
     # color duplication validation
     if @duplication == "YES"
       color_dup = "red"
     else
-      color_dup = "#FFFFFF"
+      color_dup = color
     end
-
 
     toggle = "toggle#{@idx}"
 
@@ -127,10 +135,10 @@ class Output
 	      <td width=100>#{@prediction_def}</td>
 	      <td>#{@nr_hits}</td>
 	      <td bgcolor=#{color_lvc}>#{@prediction_len} #{@length_cluster_limits} #{@lv_cluster}</td>
-	      <td bgcolor=#{color_lvr}>#{@length_rank_score}</td>
-	      <td bgcolor=#{color_rf}>#{@reading_frame_validation}</td>
+	      <td bgcolor=#{color_lvr}>#{@length_rank_score}(#{@length_rank_msg})</td>
+	      <td bgcolor=#{color_rf}>#{@reading_frame_validation}(#{@reading_frame_info})</td>
 	      <td bgcolor=#{color_merge}>#{status_merge}(slope=#{@merged_genes_score.round(2)})</td>
-	      <td bgcolor=#{color_dup}>#{@duplication}</td>
+	      <td bgcolor=#{color_dup}>#{@duplication}(pval=#{@duplication_info.round(4)})</td>
 	      </tr>
 
 	      <tr bgcolor=#{color}>

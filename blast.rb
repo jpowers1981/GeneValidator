@@ -78,7 +78,7 @@ class Blast
 					<td>Valid_Length(Cluster)</td>
 					<td>Valid_Length(Rank)</td>
 					<td>Valid_Reading_Frame</td>
-					<td>Gene_Merge(0=bimodal)</td>
+					<td>Gene_Merge(slope)</td>
 					<td>Duplication</td>
 				</tr>"
 
@@ -246,9 +246,15 @@ class Blast
         query_output.length_rank_score = rez_lr[0]
         query_output.length_rank_msg = rez_lr[1]
 
-        query_output.reading_frame_validation = query.reading_frame_validation
+        rez_rf = query.reading_frame_validation        
+        query_output.reading_frame_validation = rez_rf[0]
+        query_output.reading_frame_info = rez_rf[1]
+
         query_output.merged_genes_score = query.gene_merge_validation
-        query_output.duplication = query.check_duplication
+
+        rez_duplication = query.check_duplication
+        query_output.duplication = rez_duplication[0]
+        query_output.duplication_info = rez_duplication[1]
        
         query_output.print_output_console
 

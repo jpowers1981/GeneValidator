@@ -407,7 +407,7 @@ class HierarchicalClusterization
     # Thresholds
     # threshold_distance = (0.25 * (vec.max-vec.min))
     threshold_density = (0.5 * vec.length).to_i
-  
+
     # make a histogram from the input vector
     histogram = Hash[vec.group_by{|a| a}.map { |k, vs| [k, vs.length] }]
 
@@ -426,6 +426,10 @@ class HierarchicalClusterization
       clusters.each do |elem|
         elem.print
       end
+    end
+
+    if clusters.length == 1
+      return clusters
     end
 
     # each iteration merge the closest two adiacent cluster
@@ -469,7 +473,7 @@ class HierarchicalClusterization
         end
       end
 
-      #merge clusters 'cluster1' and 'cluster2'
+      # merge clusters 'cluster1' and 'cluster2'
       if debug
         puts "clusters to merge #{cluster1} and #{cluster2}"
       end
@@ -539,6 +543,10 @@ class HierarchicalClusterization
       clusters.each do |elem|
         elem.print
       end	
+    end
+
+    if clusters.length == 1
+      return clusters
     end
 
     # each iteration merge the closest two adiacent cluster
