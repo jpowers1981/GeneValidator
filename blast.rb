@@ -262,9 +262,9 @@ class Blast
           query_output.generate_html
         end
 
-        if @outfmt == :yaml
+        #if @outfmt == :yaml
           query_output.print_output_file_yaml
-        end
+        #end
       end
 
       rescue QueryError => error
@@ -298,6 +298,9 @@ Possible cause: input file is not in blast xml format.\n"
       #puts "#################################################"
       #puts "Parsing query #{iter.field('Iteration_iter-num')}"
       predicted_seq.xml_length = iter.field("Iteration_query-len").to_i
+      if @type == :nucleotide
+        predicted_seq.xml_length /= 3
+      end
       predicted_seq.definition = iter.field("Iteration_query-def")
 
       iter.each do | hit | 
@@ -320,10 +323,10 @@ Possible cause: input file is not in blast xml format.\n"
         end
 
         #get gene by accession number
-        if @type == "protein"
-          seq.raw_sequence = ""#get_sequence_by_accession_no(seq.accession_no, "protein")
+        if @type == :protein
+          seq.raw_sequence = ""#get_sequence_by_accession_no(seq.accession_no, :protein)
         else
-          seq.raw_sequence = ""#get_sequence_by_accession_no(seq.accession_no, "nucleotide")
+          seq.raw_sequence = ""#get_sequence_by_accession_no(seq.accession_no, :nucleotide)
         end
         seq.fasta_length = 0#seq.raw_sequence.length
         seq.fasta_length = 0#seq.raw_sequence.length
@@ -338,9 +341,15 @@ Possible cause: input file is not in blast xml format.\n"
           
           current_hsp.hit_from = hsp.hit_from.to_i
           current_hsp.hit_to = hsp.hit_to.to_i
-
           current_hsp.match_query_from = hsp.query_from.to_i
           current_hsp.match_query_to = hsp.query_to.to_i
+
+          if @type == :nucleotide
+            current_hsp.match_query_from /= 3 
+            current_hsp.match_query_to /= 3             
+          end
+
+
           current_hsp.query_reading_frame = hsp.query_frame.to_i
 
           current_hsp.hit_alignment = hsp.hseq.to_s

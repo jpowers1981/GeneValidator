@@ -74,8 +74,17 @@ class Output
   end
 
   def print_output_file_yaml
-    File.open("#{@filename}.yaml", "a") do |f|
-      f.write({@prediction_def.scan(/([^ ]+)/)[0][0] => self}.to_yaml)
+    file_yaml = "#{@filename}.yaml"
+    if @idx != 1
+      hsh = YAML.load_file(file_yaml)
+      hsh[@prediction_def.scan(/([^ ]+)/)[0][0]] = self
+      File.open(file_yaml, "w") do |f|
+        YAML.dump(hsh, f)
+      end
+    else 
+      File.open(file_yaml, "w") do |f|
+        YAML.dump({@prediction_def.scan(/([^ ]+)/)[0][0] => self},f)
+      end
     end
   end
 

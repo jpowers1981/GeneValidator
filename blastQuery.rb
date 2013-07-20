@@ -63,7 +63,7 @@ class BlastQuery
       end
 
       if percentage >= threshold
-        msg = "OK"
+        msg = "YES"
       end
       [percentage.round(2), msg]
 
@@ -164,7 +164,7 @@ class BlastQuery
       start_match_interval =  hit.hsp_list.each.map{|x| x.hit_from}.min - 1
       end_match_interval = hit.hsp_list.map{|x| x.hit_to}.max - 1
    
-      #puts "#{start_match_interval} #{end_match_interval}"
+      #puts "#{hit.xml_length} #{start_match_interval} #{end_match_interval}" 
 
       coverage = Array.new(hit.xml_length,0)
       hit.hsp_list.each do |hsp|
@@ -187,7 +187,6 @@ class BlastQuery
       end
       overlap = coverage.reject{|x| x==0}
       averages.push(overlap.inject(:+)/(overlap.length + 0.0))
-      
     end
   
     # if all hsps match only one time
@@ -201,6 +200,8 @@ class BlastQuery
     R.eval("coverageDistrib = c#{averages.to_s.gsub('[','(').gsub(']',')')}")
     R. eval("pval = wilcox.test(coverageDistrib - 1)$p.value")
     pval = R.pull "pval"
+
+    puts averages.to_s 
 
     if pval < 0.01
       status = "YES"
