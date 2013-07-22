@@ -32,7 +32,7 @@ ruby prediction.rb -t protein data/prot1_predicted.fasta
 
 * Skip BLAST
 ruby prediction.rb -t mrna --skip_blast data/output_seq2.xml
-ruby prediction.rb -t protein --skip_blast data/output_prot1_predicted.xml
+ruby prediction.rb -t protein --skip_blast --outfmt html gene_merge_validation/duplications/duplications.xml
 
 * Run BLAST from command line:
 blastn -query data/seq2.fasta -db nr -remote -evalue 1e-5 -outfmt 5 -gapopen 5 -gapextend 2 -out data/output_seq2.xml
