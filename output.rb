@@ -20,6 +20,8 @@ class Output
   attr_accessor :duplication
   attr_accessor :duplication_info
 
+  attr_accessor :orf
+
   attr_accessor :filename
   attr_accessor :image_histo_len
   attr_accessor :image_plot_merge
@@ -32,18 +34,21 @@ class Output
     @prediction_def = "no_definition"
     @nr_hits = 0
 
-    @lv_cluster = "?"
-    @length_cluster_limits = [0,0]
+    @lv_cluster = "No evidence"
+    @length_cluster_limits = ""
     
-    @length_rank_score = 0
-    @length_rank_msg = "?"
+    @length_rank_score = ""
+    @length_rank_msg = "No evidence"
     
-    @reading_frame_validation = "?"
+    @reading_frame_validation = "No evidence"
     @reading_frame_info = ""
 
     @merged_genes_score = 0
-    @duplication = "?"
-    @duplication_info = ""
+
+    @duplication = "No evidence"
+    @duplication_info = 0
+
+    @orf = {}
 
     @filename = filename
     @idx = idx
@@ -62,14 +67,18 @@ class Output
       @lv_cluster = "NO"
     end
 
-    printf "%3s|%25s|%10s|%15s|%15s|%15s|%10s|%15s|%15s|\n",              
+    
+
+    short_def = @prediction_def.scan(/([^ ]+)/)[0][0]
+    printf "%3s|%25s|%7s|%15s|%15s|%15s|%10s|%15s|%10s|%5s\n",              
               @idx,
-              @prediction_def.scan(/([^ ]+)/)[0][0],
+              short_def[0..[25,short_def.length].min],
               @nr_hits,
               "#{@prediction_len} #{@length_cluster_limits} #{@lv_cluster}", 
               @length_rank_msg, @length_rank_score, 
               @reading_frame_validation,
-              @merged_genes_score.round(2), "#{@duplication}(pval=#{@duplication_info.round(4)})"
+              @merged_genes_score.round(2), "#{@duplication}(pval=#{@duplication_info.round(2)})",
+              @orf.map{|elem| elem[1].length}.reduce(:+)
 
   end
 
@@ -113,6 +122,8 @@ class Output
       color_lvr = color
     end
 
+    rf_html = ""
+    @reading_frame_info.map{|elem| rf_html<<"#{elem[0]}:#{elem[1].to_s}; "}
     # color reading frame validation
     if @reading_frame_validation != "VALID"
       color_rf = "red"
@@ -136,22 +147,37 @@ class Output
       color_dup = color
     end
 
+    # color orf
+    if @orf.length > 1
+      color_orf = "red"
+    else
+      color_orf = color
+    end
+
+    orf_html = ""    
+    unless @orf.length == 0
+      @orf.map{|elem| orf_html<<"#{elem[0]}:#{elem[1].to_s}<br>"}
+    else
+      orf_html = "No evidence"
+    end
+
     toggle = "toggle#{@idx}"
 
     output = "<tr bgcolor=#{color}> 
 	      <td><button type=button name=answer onclick=showDiv('#{toggle}')>Show/Hide Plots</button></td> 
 	      <td>#{@idx}</td>
-	      <td width=100>#{@prediction_def}</td>
+	      <td>#{@prediction_def}</td>
 	      <td>#{@nr_hits}</td>
 	      <td bgcolor=#{color_lvc}>#{@prediction_len} #{@length_cluster_limits} #{@lv_cluster}</td>
 	      <td bgcolor=#{color_lvr}>#{@length_rank_score}(#{@length_rank_msg})</td>
-	      <td bgcolor=#{color_rf}>#{@reading_frame_validation}(#{@reading_frame_info})</td>
+	      <td bgcolor=#{color_rf}>#{@reading_frame_validation}(#{rf_html})</td>
 	      <td bgcolor=#{color_merge}>#{status_merge}(slope=#{@merged_genes_score.round(2)})</td>
 	      <td bgcolor=#{color_dup}>#{@duplication}(pval=#{@duplication_info.round(4)})</td>
+              <td width = 200 style=\"white-space:nowrap\" bgcolor=#{color_orf}>#{orf_html}</td>
 	      </tr>
 
 	      <tr bgcolor=#{color}>
-	      <td  colspan=9>
+	      <td  colspan=10>
               <div id=#{toggle} style='display:none'>
 
               <img src=#{image_histo_len.scan(/\/([^\/]+)$/)[0][0]} height=400>

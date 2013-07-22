@@ -17,6 +17,7 @@ class BlastQuery
   attr_reader :clusters
   attr_reader :max_density_cluster
   attr_reader :mean
+  attr_reader :reading_frame
 
 ##
 # Initilizes the object
@@ -33,7 +34,7 @@ class BlastQuery
       @prediction = prediction
       @filename = filename
       @query_index = query_index
-
+      @reading_frame = {}
     end
   end
 
@@ -111,9 +112,11 @@ class BlastQuery
 
     rfs =  lst.map{ |x| x.hsp_list.map{ |y| y.query_reading_frame}}.flatten
     frames_histo = Hash[rfs.group_by { |x| x }.map { |k, vs| [k, vs.length] }]
-    rez = ""
+    #rez = ""
+    rez={}
     frames_histo.each do |x, y|
-      rez << "#{x} #{y}; "
+      #rez << "#{x} #{y}; "
+      rez[x]=y
     end
 
     # if there are different reading frames of the same sign
@@ -136,6 +139,7 @@ class BlastQuery
       answ = "VALID"
     end
 
+    @reading_frame = rez    
     return [answ, rez]
   end
 
@@ -201,8 +205,6 @@ class BlastQuery
     R. eval("pval = wilcox.test(coverageDistrib - 1)$p.value")
     pval = R.pull "pval"
 
-    puts averages.to_s 
-
     if pval < 0.01
       status = "YES"
     else
@@ -210,6 +212,122 @@ class BlastQuery
     end
      return [status, pval]
   end
+
+  ##
+  # Find open reading frames in the original sequence
+  # Applied only to nucleotide sequences
+  # Params:
+  # +prediction+: +Sequence+ object
+  # Output:
+  # hash of reading frames
+  def orf_find(prediction = @prediction)
+
+    if prediction.seq_type != "nucleotide"
+      "-"
+    end
+    
+    #stop codons
+    stop_codons = ["TAG", "TAA", "TGA"]
+    #minimimum ORF length
+    orf_length = 100
+ 
+    seq = prediction.raw_sequence
+    stops = {}
+    result = {}
+
+    stop_codons.each do |codon|
+      occurences = (0 .. seq.length - 1).find_all { |i| seq[i,3].downcase == codon.downcase }
+      occurences.each do |occ|
+        stops[occ + 3] = codon
+      end
+    end
+
+
+    #direct strand
+    stop_positions = stops.map{|x| x[0]}
+    result["+1"] = []
+    result["+2"] = []
+    result["+3"] = []
+    result["-1"] = []
+    result["-2"] = []
+    result["-3"] = []
+
+    #reading frame 1, direct strand
+    m3 = stops.map{|x| x[0]}.select{|y| y % 3 == 0}.sort
+    m3 = [1, m3, prediction.raw_sequence.length].flatten
+    #puts "multiple of 3: #{m3.to_s}"
+    (1..m3.length-1).each do |i|
+      if m3[i] - m3[i-1] > orf_length
+#        result[[m3[i-1], m3[i]]] = "+1"
+         result["+1"].push([m3[i-1], m3[i]])
+      end
+    end
+ 
+    #reading frame 2, direct strand
+    m3_1 = stops.map{|x| x[0]}.select{|y| y % 3 == 1}.sort
+    m3_1 = [2, m3_1, prediction.raw_sequence.length].flatten
+    #puts "multiple of 3 + 1: #{m3_1.to_s}"
+    (1..m3_1.length-1).each do |i|
+      if m3_1[i] - m3_1[i-1] > orf_length
+#        result[[m3_1[i-1], m3_1[i]]] = "+2"
+         result["+2"].push([m3_1[i-1], m3_1[i]])
+      end
+    end
+
+    #reading frame 3, direct strand
+    m3_2 = stops.map{|x| x[0]}.select{|y| y % 3 == 2}.sort
+    m3_2 = [3, m3_2, prediction.raw_sequence.length].flatten
+    #puts "multiple of 3 + 2: #{m3_2.to_s}"
+    (1..m3_2.length-1).each do |i|
+      if m3_2[i] - m3_2[i-1] > orf_length
+#        result[[m3_2[i-1], m3_2[i]]] = "+3"
+         result["+3"].push([m3_2[i-1], m3_2[i]])
+      end
+    end
+
+    #reverse strand
+    stops_reverse = {}
+    seq_reverse = seq.reverse.downcase.gsub('a','T').gsub('t','A').gsub('c','G').gsub('g','C')
+    stop_codons.each do |codon|
+      occurences = (0 .. seq_reverse.length - 1).find_all { |i| seq_reverse[i,3].downcase == codon.downcase }
+      #puts "-1 #{codon}: #{occurences.to_s}"
+      occurences.each do |occ|
+        stops_reverse[occ + 3] = codon
+      end
+    end
+
+    stop_positions_reverse = stops_reverse.map{|x| x[0]}
+    m3 = stops_reverse.map{|x| x[0]}.select{|y| y % 3 == 0}.sort
+    m3 = [1, m3, prediction.raw_sequence.length].flatten
+    #puts "-1 multiple of 3: #{m3.to_s}"
+    (1..m3.length-1).each do |i|
+      if m3[i] - m3[i-1] > orf_length
+#        result[[m3[i-1], m3[i]]] = "-1"
+         result["-1"].push([m3[i-1], m3[i]])
+      end
+    end
+
+    m3_1 = stops_reverse.map{|x| x[0]}.select{|y| y % 3 == 1}.sort
+    m3_1 = [2, m3_1, prediction.raw_sequence.length].flatten
+    #puts "-1 multiple of 3 + 1: #{m3_1.to_s}"
+    (1..m3_1.length-1).each do |i|
+      if m3_1[i] - m3_1[i-1] > orf_length
+        result["-2"].push([m3_1[i-1], m3_1[i]])
+      end
+    end
+
+    m3_2 = stops_reverse.map{|x| x[0]}.select{|y| y % 3 == 2}.sort
+    m3_2 = [3, m3_2, prediction.raw_sequence.length].flatten
+    #puts "-1 multiple of 3 + 2: #{m3_2.to_s}"
+    (1..m3_2.length-1).each do |i|
+      if m3_2[i] - m3_2[i-1] > orf_length
+        result["-3"].push([m3_2[i-1], m3_2[i]])
+#        result[[m3_2[i-1], m3_2[i]]] = "-3"
+      end
+    end
+
+    result
+  end  
 
   ##
   # Clusterization by length from a list of sequences
@@ -359,17 +477,20 @@ class BlastQuery
     #calculate the likelyhood to have a binomial distribution
     #split into two clusters
 
-    hc = HierarchicalClusterization.new(pairs)
-    clusters = hc.hierarchical_clusterization_2d(2, 1)
+    #hc = HierarchicalClusterization.new(pairs)
+    #clusters = hc.hierarchical_clusterization_2d(2, 1)
 
     R.eval "jpeg('#{output}_match_2d.jpg')"
     R.eval "colors = c('red', 'blue')";
 
-    clusters.each_with_index do |cluster, i|
-      x_values = cluster.objects.map{|pair| pair[0].x}
-      y_values = cluster.objects.map{|pair| pair[0].y}
+    #clusters.each_with_index do |cluster, i|
+    #  x_values = cluster.objects.map{|pair| pair[0].x}
+    #  y_values = cluster.objects.map{|pair| pair[0].y}
 
-      color = "colors[#{i%2+1}]"
+    x_values = xx
+    y_values = yy
+
+      color = "'red'"#"colors[#{i%2+1}]"
       R.eval "plot(c#{x_values.to_s.gsub("[","(").gsub("]",")")},
                    c#{y_values.to_s.gsub("[","(").gsub("]",")")},
                    xlim=c(0,#{max_start+10}), 
@@ -378,7 +499,7 @@ class BlastQuery
                    main='Start vs end match 2D plot', xlab='from', ylab='to', 
                    pch=10)"        
       R.eval "par(new=T)"           
-    end
+    #end
 
     R.eval "x = c#{xx.to_s.gsub("[","(").gsub("]",")")}"
     R.eval "y = c#{yy.to_s.gsub("[","(").gsub("]",")")}"

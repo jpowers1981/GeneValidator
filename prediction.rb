@@ -42,7 +42,7 @@ opt_parser = OptionParser.new do |opt|
     end    
   end
 
-  opt.on("-x", "--skip_blast","skip blast-ing part and provide a blast xml output as input to this script") do |skip|
+  opt.on("-x", "--skip_blast [FILENAME]","skip blast-ing part and provide a blast xml output as input to this script") do |skip|
     options[:skip_blast] = skip
   end
 
@@ -60,8 +60,12 @@ begin
     exit
   end 
 
+  unless options[:skip_blast]
+    options[:skip_blast] = nil
+  end
+
   unless ARGV.length == 1
-    $stderr.puts "Error: you must specify a single input file." + "\n"
+    $stderr.puts "Error: you must specify a single fasta input file instead of #{ARGV.length}." + "\n"
     exit
   end 
 
@@ -74,11 +78,13 @@ end
 # Main body
 
 if options[:start]
-  b = Blast.new(ARGV[0], options[:type].to_s.downcase, options[:outfmt], options[:start])
+  b = Blast.new(ARGV[0], options[:type].to_s.downcase, options[:outfmt], options[:skip_blast], options[:start])
 else
-  b = Blast.new(ARGV[0], options[:type].to_s.downcase, options[:outfmt])
+  b = Blast.new(ARGV[0], options[:type].to_s.downcase, options[:outfmt], options[:skip_blast])
 end
 
+b.blast
+=begin
 unless options[:skip_blast]
   b.blast
 else
@@ -91,3 +97,4 @@ else
     exit
   end
 end
+=end

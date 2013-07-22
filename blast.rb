@@ -31,28 +31,43 @@ class Blast
   attr_reader :start_idx
   #output format
   attr_reader :outfmt
+  #array of indexes for the start offsets of each query in the fasta file
+  attr_reader :query_offset_lst
 
-  def initialize(fasta_file, type, outfmt, start_idx=0)
-    if type == "protein"
-      @type = :protein
-    else 
-      @type = :nucleotide
-    end
+  def initialize(fasta_file, type, outfmt, xml_file, start_idx=0)
+    begin
+      if type == "protein"
+        @type = :protein
+      else 
+        @type = :nucleotide
+      end
 
-    @outfmt = outfmt
+      @fasta_file = fasta_file
+      @xml_file = xml_file
+      @idx = 0
+      @start_idx = start_idx
+      @outfmt = outfmt
 
-    @fasta_file = fasta_file
-    @idx = 0
-    @start_idx = start_idx
-    R.echo "enable = nil, stderr = nil" #redirect the cosole messages of R
-    #R.eval "x11()"  # othetwise I get SIGPIPE
+      fasta_content = IO.binread(@fasta_file);
 
-    puts "\nDepending on your input and your computational resources, this may take a while. Please wait...\n\n"
-    printf "%3s|%25s|%10s|%15s|%15s|%15s|%15s|%15s|\n", "No", "Description", "No_Hits", "Valid_Length(Cluster)", "Valid_Length(Rank)", "Valid_Reading_Frame", "Gene_Merge(slope)", "Duplication"
+      #type validation
+      if @type != type_of_sequences(fasta_content)
+        raise SequenceTypeError.new
+      end
 
-    if @outfmt == :html
-       header = "<html>
-                  <head>
+      @query_offset_lst = fasta_content.enum_for(:scan, /(>[^>]+)/).map{ Regexp.last_match.begin(0)}
+      @query_offset_lst.push(fasta_content.length)
+      fasta_content = nil # free memory for variable fasta_content
+
+
+      R.echo "enable = nil, stderr = nil" #redirect the cosole messages of R
+      #R.eval "x11()"  # othetwise I get SIGPIPE
+
+      puts "\nDepending on your input and your computational resources, this may take a while. Please wait...\n\n"
+      printf "No | Description | No_Hits | Valid_Length(Cluster) | Valid_Length(Rank) | Valid_Reading_Frame | Gene_Merge(slope) | Duplication | No. ORFs\n"
+
+      if @outfmt == :html
+         header = "<html><head>
                      <title>Gene Validation Result</title>
                      <script language=\"javascript\"> 
 
@@ -68,70 +83,67 @@ class Blast
                   </script>             
                   </head>
                   <body>
-                      <table border=\"1\" cellpadding=\"5\" cellspacing=\"0\" height=\"65\" width=\"642\">
-                        <tbody>
+                      <table border=\"1\" cellpadding=\"5\" cellspacing=\"0\">
 				<tr bgcolor = #E8E8E8>
-				        <td></td>
-					<td>No.</td>
-					<td>Description</td>
-					<td>No_Hits</td>
-					<td>Valid_Length(Cluster)</td>
-					<td>Valid_Length(Rank)</td>
-					<td>Valid_Reading_Frame</td>
-					<td>Gene_Merge(slope)</td>
-					<td>Duplication</td>
+				        <th></th>
+					<th>No.</th>
+					<th width=100>Description</th>
+					<th>No_Hits</th>
+					<th>Valid_Length(Cluster)</th>
+					<th>Valid_Length(Rank)</th>
+					<th>Valid_Reading_Frame</th>
+					<th>Gene_Merge(slope)</th>
+					<th>Duplication</th>
+                                        <th width = 200 style=\"white-space:nowrap\"> ORFs</th>
 				</tr>"
 
-       File.open("#{@fasta_file}.html", "w+") do |f|
-         f.write(header)
+         File.open("#{@fasta_file}.html", "w+") do |f|
+           f.write(header)
+         end
        end
-     end
-
+    rescue SequenceTypeError => error
+      $stderr.print "Sequence Type error at #{error.backtrace[0].scan(/\/([^\/]+:\d+):.*/)[0][0]}. Possible cause: input file is not FASTA or the --type parameter is incorrect.\n"
+      exit
+    end
   end
 
   ##
   # Calls blast according to the type of the sequence
   def blast
     begin
-      fasta_content = IO.binread(@fasta_file);
 
-      #type validation
-      if type != type_of_sequences(fasta_content)
-        raise SequenceTypeError.new
-      end
-
-      positions = fasta_content.enum_for(:scan, /(>[^>]+)/).map{ Regexp.last_match.begin(0)}
-      positions.push(fasta_content.length)
-      fasta_content = nil # free memory of variable fasta_content
-
-      #file seek for each query
-      positions[0..positions.length-2].each_with_index do |pos, i|
+      if @xml_file == nil
+ 
+        #file seek for each query
+        @query_offset_lst[0..@query_offset_lst.length-2].each_with_index do |pos, i|
       
-        if (i+1) >= @start_idx
-          query = IO.binread(@fasta_file, positions[i+1] - positions[i], positions[i]);
+          if (i+1) >= @start_idx
+            query = IO.binread(@fasta_file, @query_offset_lst[i+1] - @query_offset_lst[i], @query_offset_lst[i]);
 
-          #call blast with the default parameters
-          if type == :protein
-            output = call_blast_from_stdin("blastp", query, 11, 1)
+            #call blast with the default parameters
+            if type == :protein
+              output = call_blast_from_stdin("blastp", query, 11, 1)
+            else
+              output = call_blast_from_stdin("blastx", query, 11, 1)
+            end
+
+            #save output in a file
+            xml_file = "#{@fasta_file}_#{i+1}.xml"
+            File.open(xml_file , "w") do |f| f.write(output) end
+
+            #parse output
+            parse_xml_output(output)   
           else
-            output = call_blast_from_stdin("blastx", query, 11, 1)
+            @idx = @idx + 1
           end
-
-          #save output in a file
-          xml_file = "#{@fasta_file}_#{i+1}.xml"
-          File.open(xml_file , "w") do |f| f.write(output) end
-
-          #parse output
-          parse_xml_output(output)   
-        else
-          @idx = @idx + 1
         end
+      else
+        file = File.open(@xml_file, "rb").read
+        parse_xml_output(file)      
       end
+
     rescue SystemCallError => error
       $stderr.print "Load error at #{error.backtrace[0].scan(/\/([^\/]+:\d+):.*/)[0][0]}. Possible cause: input file is not valid\n"
-      exit
-    rescue SequenceTypeError => error
-      $stderr.print "Sequence Type error at #{error.backtrace[0].scan(/\/([^\/]+:\d+):.*/)[0][0]}. Possible cause: input file is not FASTA or the --type parameter is incorrect.\n"
       exit
     end
   end
@@ -192,7 +204,10 @@ class Blast
       cmd = "#{command} -query #{filename} -db nr -remote -evalue #{evalue} -outfmt 5 -gapopen #{gapopen} -gapextend #{gapextend} "
       puts "Executing \"#{cmd}\"..."
       puts "This may take a while..."
-      output = %x[#{cmd} 2>/dev/null]
+      output = %x[#{cmd}          if xml_file == nil
+            file = File.open(xml_file, "rb").read
+            b.parse_xml_output(file)
+          end 2>/dev/null]
 
       if output == ""
         raise ClasspathError.new      
@@ -230,12 +245,19 @@ class Blast
 
         hits = sequences[0]
         prediction = sequences[1]
-
+        # get the @idx-th sequence  from the fasta file
+        i = @idx-1
+       
+        ### add exception
+        query = IO.binread(@fasta_file, @query_offset_lst[i+1] - @query_offset_lst[i], @query_offset_lst[i])
+        #puts query.scan(/[^\n]*\n([ATGCatgc\n]*)/)[0][0].gsub('\n','')
+        prediction.raw_sequence = query.scan(/[^\n]*\n([ATGCatgc\n]*)/)[0][0].gsub("\n","")      
+        #file seek for each query
+        
         # do validations
-
+        query_output = Output.new(@fasta_file, @idx)
         query = BlastQuery.new(hits, prediction,"#{@fasta_file}_#{@idx}", @idx)
         
-        query_output = Output.new(@fasta_file, @idx)
         query_output.prediction_len = prediction.xml_length
         query_output.prediction_def = prediction.definition
         query_output.nr_hits = hits.length
@@ -255,6 +277,9 @@ class Blast
         rez_duplication = query.check_duplication
         query_output.duplication = rez_duplication[0]
         query_output.duplication_info = rez_duplication[1]
+        if @type == :nucleotide
+          query_output.orf = query.orf_find
+        end
        
         query_output.print_output_console
 
@@ -268,6 +293,20 @@ class Blast
       end
 
       rescue QueryError => error
+=begin
+        if @type == :nucleotide
+          query_output.orf = BlastQuery.orf_find
+        end
+        query_output.print_output_console
+
+        if @outfmt == :html
+          query_output.generate_html
+        end
+
+        #if @outfmt == :yaml
+          query_output.print_output_file_yaml
+        #end
+=end
         $stderr.print "Type error at #{error.backtrace[0].scan(/\/([^\/]+:\d+):.*/)[0][0]}. Possible cause: blast did not find any relevant output for this query.\n"
       rescue NoMethodError => error
         $stderr.print "NoMethod error at #{error.backtrace[0].scan(/\/([^\/]+:\d+):.*/)[0][0]}. \
@@ -297,12 +336,15 @@ Possible cause: input file is not in blast xml format.\n"
 
       #puts "#################################################"
       #puts "Parsing query #{iter.field('Iteration_iter-num')}"
+
+      # get info about the query
       predicted_seq.xml_length = iter.field("Iteration_query-len").to_i
       if @type == :nucleotide
         predicted_seq.xml_length /= 3
       end
       predicted_seq.definition = iter.field("Iteration_query-def")
 
+      # parse blast the xml output and get the hits
       iter.each do | hit | 
         
         seq = Sequence.new
@@ -324,11 +366,10 @@ Possible cause: input file is not in blast xml format.\n"
 
         #get gene by accession number
         if @type == :protein
-          seq.raw_sequence = ""#get_sequence_by_accession_no(seq.accession_no, :protein)
+          seq.raw_sequence = ""#get_sequence_by_accession_no(seq.accession_no, "protein")
         else
-          seq.raw_sequence = ""#get_sequence_by_accession_no(seq.accession_no, :nucleotide)
+          seq.raw_sequence = ""#get_sequence_by_accession_no(seq.accession_no, "nucleotide")
         end
-        seq.fasta_length = 0#seq.raw_sequence.length
         seq.fasta_length = 0#seq.raw_sequence.length
 
         # get all high-scoring segment pairs (hsp)
@@ -391,6 +432,7 @@ Possible cause: input file is not in blast xml format.\n"
   def get_sequence_by_accession_no(accno,db)
 
     uri = "http://www.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=#{db}&retmax=1&usehistory=y&term=#{accno}/"
+    puts uri
     result = Net::HTTP.get(URI.parse(uri))
 
     result2 = result
