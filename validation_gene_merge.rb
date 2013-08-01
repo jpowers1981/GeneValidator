@@ -71,11 +71,13 @@ class GeneMergeValidation
   # +GeneMergeValidationOutput+ object
   def validation_test
 
+    lm_slope = slope
+ 
     if plots
       plot_matched_regions(@filename)
-      plot_2d_start_from(@filename)
+      plot_2d_start_from(@filename, lm_slope)
     end
-    GeneMergeValidationOutput.new(slope)
+    GeneMergeValidationOutput.new(lm_slope)
 
   end
 
@@ -147,8 +149,9 @@ class GeneMergeValidation
   # Plots 2D graph with the start/end of the matched region offsets in the prediction
   # Param
   # +output+: location where the plot will be saved in jped file format
+  # +slope+: slope of the linear regression line
   # +hits+: array of Sequence objects
-  def plot_2d_start_from(output, hits = @hits)    
+  def plot_2d_start_from(output, slope, hits = @hits)    
 
     pairs = @hits.map {|hit| Pair.new(hit.hsp_list.map{|hsp| hsp.match_query_from}.min, hit.hsp_list.map{|hsp| hsp.match_query_to}.max)}
 
@@ -187,11 +190,12 @@ class GeneMergeValidation
                    pch=10)"        
       R.eval "par(new=T)"           
     #end
-
-    R.eval "x = c#{xx.to_s.gsub("[","(").gsub("]",")")}"
-    R.eval "y = c#{yy.to_s.gsub("[","(").gsub("]",")")}"
-    R.eval "abline(lm(y~x, singular.ok=FALSE))"
-
+ 
+    unless slope.nan?
+      R.eval "x = c#{xx.to_s.gsub("[","(").gsub("]",")")}"
+      R.eval "y = c#{yy.to_s.gsub("[","(").gsub("]",")")}"
+      R.eval "abline(lm(y~x, singular.ok=FALSE))"
+    end
     R.eval "dev.off()"
   end
 
