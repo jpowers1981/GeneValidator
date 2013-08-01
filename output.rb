@@ -76,8 +76,10 @@ class Output
 
     if idx%2 == 0
       color = gray
+      icon = "&#33;"
     else 
       color = white 
+      icon = "&#10003;"
     end
 
     # if it's the first time I write in the html file
@@ -101,15 +103,17 @@ class Output
                       <table border=\"1\" cellpadding=\"5\" cellspacing=\"0\">
                                 <tr bgcolor = #E8E8E8>
                                         <th></th>
+                                        <th></th>
                                         <th>No.</th>
-                                        <th width=100>Description</th>
-                                        <th>No_Hits</th>
-                                        <th>Valid_Length(Cluster)</th>
-                                        <th>Valid_Length(Rank)</th>
-                                        <th>Valid_Reading_Frame</th>
-                                        <th>Gene_Merge(slope)</th>
-                                        <th>Duplication</th>
-                                        <th width = 200 style=\"white-space:nowrap\"> ORFs</th>
+                                        <th width=100 title=\"FASTA Header of the query\">Description</th>
+                                        <th title=\"Number of hits found by BLAST.\">No. Hits</th>
+                                        <th title=\"Check whether the prediction length fits the most of the BLAST hit lengths, by 1D hierarchical clusterization.\">Valid Length(Cluster)</th>
+                                        <th title=\"Check whether the rank of the prediction length lies among 80% of all the BLAST hit lengths.\">Valid Length(Rank)</th>
+                                        <th title=\"Check whether the reading frame shifts.\">Valid Reading Frame</th>
+                                        <th title=\"Check whether there BLAST hits make evidence about a merge of two genes that cover the predicted gene.\">Gene Merge(slope)</th>
+                                        <th title=\"Check whether there is a duplicated subsequence in the predicted gene.\">Duplication</th>
+                                        <th title=\"Check whether there is a single main Open Reading Frame in the predicted gene.\" style=\"white-space:nowrap\"> ORFs</th>
+                                        <th title=\"Overall evaluation based on all validation tests\" > Overall Evaluation</th>
                                 </tr>"                  
       
       File.open("#{@filename}.html", "w+") do |f|
@@ -122,7 +126,8 @@ class Output
 
     output = "<tr bgcolor=#{color}> 
 	      <td><button type=button name=answer onclick=showDiv('#{toggle}')>Show/Hide Plots</button></td> 
-	      <td>#{@idx}</td>
+              <td>#{@idx}</td>
+              <td>#{icon}</td>
 	      <td>#{@prediction_def}</td>
 	      <td>#{@nr_hits}</td>
 	      <td bgcolor=#{@length_validation_cluster.color}>#{@length_validation_cluster.print}</td>
@@ -130,11 +135,12 @@ class Output
 	      <td bgcolor=#{@reading_frame_validation.color}>#{@reading_frame_validation.print}</td>
 	      <td bgcolor=#{@gene_merge_validation.color}>#{@gene_merge_validation.print}</td>
 	      <td bgcolor=#{@duplication.color}>#{@duplication.print}</td>
-              <td bgcolor=#{@orf.color} width = 200 style=\"white-space:nowrap\">#{@orf.print}</td>
+              <td bgcolor=#{@orf.color} style=\"white-space:nowrap\">#{@orf.print}</td>
+              <td style=\"white-space:nowrap\">...</td>
 	      </tr>
 
 	      <tr bgcolor=#{color}>
-	      <td  colspan=10>
+	      <td  colspan=12>
               <div id=#{toggle} style='display:none'>
 
               <img src=#{image_histo_len.scan(/\/([^\/]+)$/)[0][0]} height=400>

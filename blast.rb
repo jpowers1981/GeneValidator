@@ -1,9 +1,9 @@
 #!/usr/bin/env ruby
 
-require 'genevalidator/clusterization'
-require 'genevalidator/sequences'
-require 'genevalidator/validation'
-require 'genevalidator/output'
+require './clusterization'
+require './sequences'
+require './output'
+require './validation'
 require 'bio-blastxmlparser'
 require 'rinruby'
 require 'net/http'
@@ -62,8 +62,8 @@ class Blast
       @query_offset_lst.push(fasta_content.length)
       fasta_content = nil # free memory for variable fasta_content
 
-      #redirect the cosole messages of R
-      R.echo "enable = nil, stderr = nil"
+      # redirect the cosole messages of R
+      R.echo "enable = nil, stderr = nil, warn = nil"
 
       printf "No | Description | No_Hits | Valid_Length(Cluster) | Valid_Length(Rank) | Valid_Reading_Frame | Gene_Merge(slope) | Duplication | No_ORFs\n"
 
@@ -222,12 +222,15 @@ class Blast
         # do validations
 
         v = Validation.new(hits, prediction, @type, @fasta_file, @idx, @start_idx)
-        query_output = v.validate_all
-        query_output.print_output_console
 
         if @outfmt == :html
+          query_output = v.validate_all(true)
           query_output.generate_html
+        else
+          query_output = v.validate_all
         end
+      
+        query_output.print_output_console
 
         #if @outfmt == :yaml
           query_output.print_output_file_yaml

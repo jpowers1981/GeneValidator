@@ -1,5 +1,7 @@
-require 'genevalidator/validation_output'
+require './validation_output'
 
+##
+# Class that stores the validation output information
 class ORFValidationOutput < ValidationOutput
 
   attr_reader :orfs
@@ -22,19 +24,30 @@ class ORFValidationOutput < ValidationOutput
 end
 
 ##
-# 
+# This class contains the methods necessary for
+# checking whether there is a main Open Reading Frame
+# in the predicted sequence
 class OpenReadingFrameValidation
 
+  attr_reader :plots
   attr_reader :hits
   attr_reader :prediction
+  attr_reader :filename
 
   ##
-  #
-  def initialize(hits, prediction)
+  # Initilizes the object
+  # Params:
+  # +hits+: a vector of +Sequence+ objects (usually representig the blast hits)
+  # +prediction+: a +Sequence+ object representing the blast query
+  # +filename+: name of the input file, used when generatig the plot files
+  # +plots+: boolean variable, indicated whether plots should be generated or not
+  def initialize(hits, prediction, filename, plots)
     begin
       raise QueryError unless hits[0].is_a? Sequence and prediction.is_a? Sequence
       @hits = hits
       @prediction = prediction
+      @filename = filename
+      @plots = plots
     end
   end
 
@@ -45,7 +58,7 @@ class OpenReadingFrameValidation
   # +orf_length+: minimimum ORF length, default 100
   # +prediction+: +Sequence+ object
   # Output:
-  # hash of reading frames
+  # +ORFValidationOutput+ object
   def validation_test(orf_length = 100, prediction = @prediction)
 
     if prediction.seq_type != "nucleotide"
