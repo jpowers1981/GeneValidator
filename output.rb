@@ -18,6 +18,7 @@ class Output
   attr_accessor :image_histo_len
   attr_accessor :image_plot_merge
   attr_accessor :image_histo_merge
+  attr_accessor :image_orfs
   attr_accessor :idx
   attr_accessor :start_idx
 
@@ -34,6 +35,7 @@ class Output
     @image_histo_len = "#{filename}_#{@idx}_len_clusters.jpg"
     @image_plot_merge = "#{filename}_#{@idx}_match.jpg"
     @image_histo_merge = "#{filename}_#{@idx}_match_2d.jpg"
+    @image_orfs = "#{filename}_#{@idx}_orfs.jpg"
 
   end
   
@@ -76,11 +78,24 @@ class Output
 
     if idx%2 == 0
       color = gray
-      icon = "&#33;"
     else 
       color = white 
-      icon = "&#10003;"
     end
+
+    if @length_validation_cluster.color == "red" or
+       @length_validation_rank.color == "red" or
+       @reading_frame_validation.color == "red" or
+       @gene_merge_validation.color == "red" or
+       @duplication.color == "red" or
+       @orf.color == "red"
+      icon = "<b>&#33;</b>"
+      bg_icon = "red"
+    else
+      icon = "&#10003;"
+      bg_icon = "white"
+    end
+
+   
 
     # if it's the first time I write in the html file
     if @idx == @start_idx
@@ -100,7 +115,7 @@ class Output
                   </script>             
                   </head>
                   <body>
-                      <table border=\"1\" cellpadding=\"5\" cellspacing=\"0\">
+                      <table border=\"1\" cellpadding=\"5\" cellspacing=\"0\" width = 1650>
                                 <tr bgcolor = #E8E8E8>
                                         <th></th>
                                         <th></th>
@@ -112,7 +127,7 @@ class Output
                                         <th title=\"Check whether the reading frame shifts.\">Valid Reading Frame</th>
                                         <th title=\"Check whether there BLAST hits make evidence about a merge of two genes that cover the predicted gene.\">Gene Merge(slope)</th>
                                         <th title=\"Check whether there is a duplicated subsequence in the predicted gene.\">Duplication</th>
-                                        <th title=\"Check whether there is a single main Open Reading Frame in the predicted gene.\" style=\"white-space:nowrap\"> ORFs</th>
+                                        <th title=\"Check whether there is a single main Open Reading Frame in the predicted gene.\" style=\"white-space:nowrap\"> ORF Test</th>
                                         <th title=\"Overall evaluation based on all validation tests\" > Overall Evaluation</th>
                                 </tr>"                  
       
@@ -124,10 +139,10 @@ class Output
 
     toggle = "toggle#{@idx}"
 
-    output = "<tr bgcolor=#{color}> 
+    output = "<tr bgcolor=#{'white'}> 
 	      <td><button type=button name=answer onclick=showDiv('#{toggle}')>Show/Hide Plots</button></td> 
+              <td bgcolor=#{bg_icon}>#{icon}</td>
               <td>#{@idx}</td>
-              <td>#{icon}</td>
 	      <td>#{@prediction_def}</td>
 	      <td>#{@nr_hits}</td>
 	      <td bgcolor=#{@length_validation_cluster.color}>#{@length_validation_cluster.print}</td>
@@ -145,10 +160,12 @@ class Output
 
               <img src=#{image_histo_len.scan(/\/([^\/]+)$/)[0][0]} height=400>
 	      <img src=#{image_plot_merge.scan(/\/([^\/]+)$/)[0][0]} height=400>
-              <img src=#{image_histo_merge.scan(/\/([^\/]+)$/)[0][0]} height=400>
-              </div>					
-	      </td>
-	      </tr>"
+              <img src=#{image_histo_merge.scan(/\/([^\/]+)$/)[0][0]} height=400>"
+              if @orf.print != "-"
+                output += "<img src=#{image_orfs.scan(/\/([^\/]+)$/)[0][0]} height=400>"
+              end
+              output+="</div></td></tr>"
+
     File.open("#{@filename}.html", "a") do |f|
       f.write(output)
     end  

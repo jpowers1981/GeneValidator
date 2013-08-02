@@ -76,7 +76,7 @@ class LengthClusterValidation
 
       if plots
         plot_histo_clusters(@filename)
-        plot_length(@filename)
+        #plot_length(@filename)
       end
 
       LengthClusterValidationOutput.new(prediction_len, limits)

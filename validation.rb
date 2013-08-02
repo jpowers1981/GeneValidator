@@ -70,14 +70,17 @@ class Validation
       query_output.duplication  = DuplicationValidation.new(hits, prediction).validation_test
 
       if @type == :nucleotide
-        query_output.orf = OpenReadingFrameValidation.new(hits, prediction, plot_filename, plots).validation_test
+#        query_output.orf = OpenReadingFrameValidation.new(hits, prediction, plot_filename, plots, ["TAG", "TAA", "TGA"]).validation_test
+         query_output.orf = OpenReadingFrameValidation.new(prediction, plot_filename, plots, ["ATG"]).validation_test
       end
 
       query_output
 
+    # Exception is raised when blast founds no hits
     rescue QueryError => error
       if @type == :nucleotide
-        query_output.orf = OpenReadingFrameValidation.new(hits, prediction, plot_filename, plots).validation_test
+#        query_output.orf = OpenReadingFrameValidation.new(hits, prediction, plot_filename, plots, ["TAG", "TAA", "TGA"]).validation_test
+         query_output.orf = OpenReadingFrameValidation.new(prediction, plot_filename, plots, ["ATG"]).validation_test
       end
       query_output
     end
