@@ -2,14 +2,9 @@ Identify problems with predicted genes
 ===============
 
 This is a GSoC 2013 project.<br>
-Details about the project's progress during the **Community Bonding period** can be found [here](https://github.com/monicadragan/gene_prediction/wiki/Community-Bonding).<br>
 Details about the project's progress during the **Coding period** can be found [here](https://github.com/monicadragan/gene_prediction/wiki/Project-Diary).<br>
 We also have a [blog](http://gene-prediction.blogspot.ro/).
 <br><br>
-
-**Look forward to showing you a functional application soon!**<br>
-Meanwhile, you can [clone](https://github.com/monicadragan/gene_prediction) the last functional version of the application and read more about the project. <br>
-**Your feedback is welcome!**
 
 ### Authors
 
@@ -17,22 +12,47 @@ Meanwhile, you can [clone](https://github.com/monicadragan/gene_prediction) the 
 * Mentors: [Anurag Priyam](https://plus.google.com/114122400102590087616/about)([email](mailto:anurag08priyam@gmail.com)) and [Yannick Wurm](http://yannick.poulet.org/)([email](mailto:y.wurm@qmul.ac.uk))
 
 ### Abstract
+The goal of this tool is to identify problems with gene predictions and provide useful information based on the similarities to genes in public databases.The results of the prediction validation will make evidence about how the sequencing curation may be done and can be useful in improving / trying new approaches for gene prediction tools. The main target users of this tool are the Biologists who want to validate the data obtained in their own laboratories.
 
-The goal of the project is to validate predicted genes by computing a confidence score and suggesting possible errors / untrusted regions in the sequence. The results of the prediction validation will make evidence about how the sequencing curation may be done and can be useful in improving / trying new approaches for gene prediction tools. The main target users of this tool are the Biologists who want to validate the data obtained in their own laboratories.
+### Actual Validations
+* Length validation by clusterization
+* Length validation by ranking
+* Reading frame validation
+* Check gene merge
+* Check duplications
+* Main ORF validation (for nucleotides)
+* Validation based on multiple alignment ~ under development
+* Codon coverage ~ under development
 
-### Background and Approach
+### Requirements
+Ruby (>= 1.9.3), R (>= 2.14.2), RubyGems (>= 1.3.6), and NCBI BLAST+ (>= 2.2.25+), and MAFFT installation (download it from here: http://mafft.cbrc.jp/alignment/software/ )
+Linux and MacOS are officially supported!
 
-Genome sequencing is now possible at almost no cost. However, obtaining accurate gene predictions remains a target hard to achieve with the existing biotechnology. The goal of this project is to create a tool  that identifies potential problems with the predicted genes, in order to make evidence about how the gene curation can be made or whether a certain predicted gene may not be considered in other analysis. Also, the prediction validation could be used for improving the results of the existing gene prediction tools.
+### Installation
+1. Get the source code
+$ git clone git@github.com:monicadragan/gene_prediction.git
 
-The application takes as input a collection of mRNA / protein predictions (called **predicted sequences**) and identifies potential problems with each sequence, by matching and comparing them with sequences available in trusted databases (called **reference sequences**). The tool will determine if the following errors appear in the predicted sequence: 
-* whether the predicted sequence does not have an acceptable length, according to the reference sequence set.
-* the occurrence of gaps or extra sections in the predicted sequence, according to the reference sequence set.
-* some of the conserved regions among the reference sequence are absent in the predicted sequence.
+2. Be sudo and build the gem
+$ sudo rake
 
-The main target users of this tool are the Biologists who want to validate the data obtained in their own laboratories. The application will be be easily installable as a RubyGem.
+3. Run GeneValidation
+$ genevalidator type [validations] [skip_blast] [start] FILE 
 
-_More details can be found in the project's [proposal](http://www.google-melange.com/gsoc/proposal/review/google/gsoc2013/mdragan/11001)._
+Example that runs all validations on a set of ant gene predictions:
+$ genevalidator -t protein -x data/solenopsis_length_test/prot_Solenopsis_invicta.xml data/solenopsis_length_test/prot_Solenopsis_invicta.fasta
 
+Outputs:
+* validation results in yaml format (the name of the input file with yaml extension) 
+* html output with plot visualization (the useful files will be generated in the 'html' directory, at the same path with the input file)
+! Note: for the moment check the html output with Firefox browser only.
+
+Other things:
+
+4. Run unit tests
+$ rake test
+
+5. Generate documentation
+$ rake doc
 
 
  
