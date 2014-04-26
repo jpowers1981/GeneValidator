@@ -54,6 +54,8 @@ class Validation
   attr_reader :no_internet
   attr_reader :map_errors
   attr_reader :map_running_times 
+  attr_reader :global_codon_bias
+  attr_reader :local_codon_bias_vector 
 
   attr_reader :wq
   attr_reader :threads
@@ -80,7 +82,7 @@ class Validation
                   mafft_path = nil,
                   start_idx = 1,
                   overall_evaluation = true,
-                  multithreading = true)
+                  multithreading = false)
 
     puts "\nDepending on your input and your computational "<<
            "resources, this may take a while. Please wait..."
@@ -111,6 +113,8 @@ class Validation
     @no_internet = 0
     @map_errors = Hash.new(0)
     @map_running_times = Hash.new(Pair1.new(0,0))
+    @global_codon_bias = AllCodonsBias.new 
+    @local_codon_bias_vector = Hash.new({})
 
     raise FileNotFoundException.new unless File.exists?(@fasta_filepath)
     raise FileNotFoundException.new unless File.file?(@fasta_filepath)
@@ -246,6 +250,16 @@ class Validation
         #file = File.open(@xml_file, "rb").read
         #check the format of the input file
         parse_output(@xml_file)
+      end
+
+      # evaluate codon bias
+      #@global_codon_bias = AllCodonsBias.new
+      if @local_codon_bias_vector != []
+        @local_codon_bias_vector.each do |key,codon_bias|
+          @global_codon_bias.update_codon_bias(codon_bias)
+        end
+
+        @global_codon_bias.each{|codon| codon.print_bias}
       end
 
       if @overall_evaluation
@@ -384,7 +398,7 @@ class Validation
 
       hits = nil # free memory
       GC.start # force garbage collector
-
+      #puts `ps -o rss= -p #{Process.pid}`.to_i
     end while 1
 
     @threads.each {|t| t.join}
@@ -461,6 +475,16 @@ class Validation
         end
       end
 
+      codon_bias_validation = validations.select {|v| v.class == CodonBiasValidationOutput }[0]
+
+      if codon_bias_validation != []
+        if codon_bias_validation.validation_result != :unapplicable
+          codons = codon_bias_validation.codon_bias
+          #codons.each{|codon| codon.print_bias}
+          @local_codon_bias_vector[idx] = codons
+        end
+      end
+
     }
   
     return query_output
@@ -530,7 +554,7 @@ class Validation
     validations.push DuplicationValidation.new(@type, prediction, hits, @mafft_path, @raw_seq_file, @raw_seq_file_index, @raw_seq_file_load)
     validations.push OpenReadingFrameValidation.new(@type, prediction, hits, plot_path, ["ATG"])
     validations.push AlignmentValidation.new(@type, prediction, hits, plot_path, @mafft_path, @raw_seq_file, @raw_seq_file_index, @raw_seq_file_load)
-    #validations.push CodonBiasValidation.new(@type, prediction, hits)
+    validations.push CodonBiasValidation.new(@type, prediction, hits)
 
     # check the class type of the elements in the list
     validations.each do |v|

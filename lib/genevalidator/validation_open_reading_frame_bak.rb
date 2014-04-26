@@ -16,7 +16,7 @@ class ORFValidationOutput < ValidationReport
     @description = 'Check whether there is a single main Open Reading Frame'<<
     ' in the predicted gene. Aplicable only for nucleotide queries. Meaning'<<
     '  of the output displayed: %=MAIN ORF COVERAGE. Coverage higher than 80%'<<
-    ' passe the validation test.'
+    ' passes the validation test.'
 
     @orfs = orfs
     @ratio = ratio
@@ -93,22 +93,27 @@ class OpenReadingFrameValidation < ValidationTest
                              hits[0].is_a? Sequence 
 
       start = Time.new
-      orfs = OpenReadingFrameValidation.get_orfs(100, @prediction, @start_codons, @stop_codons)
+      orfs = get_orfs
 
       # check if longest ORF / prediction > 0.8 (ok)
       prediction_len = prediction.raw_sequence.length 
-      longest_orf = orfs.map{|elem| elem[1].map{|orf| orf[1]-orf[0]}}.flatten.max
+      longest_orf = orfs.map{|key, value| value.map{|orf| orf[1]-orf[0]}}.flatten.max
       ratio =  longest_orf/(prediction_len + 0.0)
-
-      max_ratio = orfs.map{|key, value| value.map{|orf| (orf[1]-orf[0])/(prediction_len + 0.0)}.max}.select{|e| e != nil}.max
-
-      ratios = {}
-      orfs.each do |key, value|
-        ratios[value.map{|orf| (orf[1]-orf[0])/(prediction_len + 0.0)}.max] = key
+=begin
+      ratios = orfs.map {|key, value| value.map{|orf| (orf[1]-orf[0])/(prediction_len + 0.0)}.reject{|i| i.nil?}.max}
+      reading_frames = []
+      ratios.each_with_index do |ratio, idx|
+        if ratio > 0.8
+          reading_frames.push(idx)
+        end
       end
 
-      prediction.nucleotide_rf = ratios[max_ratio]
-
+      if(reading_frames.length != 1)
+        prediction.nucleotide_rf = -1
+      else 
+        prediction.nucleotide_rf = reading_frames[0]
+      end      
+=end
       plot1 = plot_orfs(orfs)
 
       @validation_report = ORFValidationOutput.new(orfs, ratio)
@@ -136,8 +141,7 @@ class OpenReadingFrameValidation < ValidationTest
   # +stop_codon+: Array of +String+
   # Output:
   # +Hash+ containing the reading frame (the key) and a list of intervals (the values) 
-  #def get_orfs(orf_length = 100, prediction = @prediction, start_codons = @start_codons, stop_codons = @stop_codons)
-  def self.get_orfs(orf_length = 100, prediction, start_codons, stop_codons)
+  def self.get_orfs(orf_length = 100, prediction = @prediction, start_codons = @start_codons, stop_codons = @stop_codons)
 
     if prediction.type != "nucleotide"
       "-"
@@ -285,7 +289,7 @@ class OpenReadingFrameValidation < ValidationTest
       end
     end
 
-    return result 
+    result 
   end  
 
   ##  

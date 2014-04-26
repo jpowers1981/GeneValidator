@@ -14,7 +14,7 @@ class Sequence
  
   attr_accessor :raw_sequence
   attr_accessor :protein_translation # used only for nucleotides
-  attr_accessor :nucleotide_rf #used only for nucleotides
+  attr_accessor :nucleotide_rf #reading frame - used only for nucleotides
 
   def initialize
     @hsp_list = []
