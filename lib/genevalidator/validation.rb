@@ -256,6 +256,9 @@ class Validation
       #@global_codon_bias = AllCodonsBias.new
       if @local_codon_bias_vector != []
         @local_codon_bias_vector.each do |key,codon_bias|
+          puts key
+          codon_bias.each{|codon| codon.print_bias}
+          puts "###############"
           @global_codon_bias.update_codon_bias(codon_bias)
         end
 
@@ -476,7 +479,7 @@ class Validation
       end
 
       codon_bias_validation = validations.select {|v| v.class == CodonBiasValidationOutput }[0]
-
+=begin
       if codon_bias_validation != []
         if codon_bias_validation.validation_result != :unapplicable
           codons = codon_bias_validation.codon_bias
@@ -484,7 +487,7 @@ class Validation
           @local_codon_bias_vector[idx] = codons
         end
       end
-
+=end
     }
   
     return query_output
@@ -552,7 +555,7 @@ class Validation
     validations.push BlastReadingFrameValidation.new(@type, prediction, hits)
     validations.push GeneMergeValidation.new(@type, prediction, hits, plot_path)
     validations.push DuplicationValidation.new(@type, prediction, hits, @mafft_path, @raw_seq_file, @raw_seq_file_index, @raw_seq_file_load)
-    validations.push OpenReadingFrameValidation.new(@type, prediction, hits, plot_path, ["ATG"])
+    validations.push OpenReadingFrameValidation.new(@type, prediction, hits, plot_path, ["ATG"], ["TAG", "TAA", "TGA"])
     validations.push AlignmentValidation.new(@type, prediction, hits, plot_path, @mafft_path, @raw_seq_file, @raw_seq_file_index, @raw_seq_file_load)
     validations.push CodonBiasValidation.new(@type, prediction, hits)
 
