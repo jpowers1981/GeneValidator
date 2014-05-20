@@ -31,7 +31,7 @@ class ORFValidationOutput < ValidationReport
     orf_list = ""
     @orfs.map{|elem| orf_list<<"#{elem[0]}:#{elem[1].to_s},"}
 
-    "#{validation.to_s} (%=#{@ratio.round(2)*100})"
+    "#{validation.to_s} (%=#{(@ratio*100).round(2)})"
   end
 
   def validation
@@ -94,6 +94,7 @@ class OpenReadingFrameValidation < ValidationTest
 
       start = Time.new
       orfs = OpenReadingFrameValidation.get_orfs(100, @prediction, @start_codons, @stop_codons)
+      puts orfs.to_s
 
       # check if longest ORF / prediction > 0.8 (ok)
       prediction_len = prediction.raw_sequence.length 
@@ -165,7 +166,6 @@ class OpenReadingFrameValidation < ValidationTest
     #direct strand
     #reading frame 1, direct strand
     m3 = stops.map{|x| x[0]}.select{|y| y % 3 == 0}.sort
-
     m3 = [1, m3, prediction.raw_sequence.length].flatten
     (1..m3.length-1).each do |i|
       if start_codons.length == 0
