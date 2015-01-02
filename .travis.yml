@@ -13,7 +13,7 @@ before_install:
   - export PATH=$PATH:~/mafft/bin
   - which mafft
   - ruby -v
-script: gem list && rake test
+script: bundle exec rake test
 cache: bundler
 sudo: false
 addons:
