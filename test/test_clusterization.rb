@@ -2,6 +2,7 @@ require 'minitest/autorun'
 require 'genevalidator/clusterization'
 
 class TestHierarchicalClusterization < Minitest::Test
+  SimpleCov.command_name 'TestHierarchicalClusterization'
 
   describe "Hierarchical clusterization" do
 

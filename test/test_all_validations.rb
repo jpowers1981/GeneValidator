@@ -37,6 +37,7 @@ class ValidateOutput < Minitest::Test
 
   validations = ["lenc", "lenr", "dup", "orf", "align"]
 
+  SimpleCov.command_name 'ValidationOutput'
 
   describe "Protein dataset" do
     it "xml and tabular inputs give the same output" do
