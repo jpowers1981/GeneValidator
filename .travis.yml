@@ -12,7 +12,8 @@ before_install:
   - (cd ~/mafft-7.205-with-extensions/core/ && make clean && make && make install)
   - export PATH=$PATH:~/mafft/bin
   - which mafft
-script: rake test
+  - ruby -v
+script: gem list && rake test
 cache: bundler
 sudo: false
 addons:
