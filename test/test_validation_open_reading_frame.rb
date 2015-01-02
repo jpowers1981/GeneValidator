@@ -5,7 +5,6 @@ require 'genevalidator/validation_open_reading_frame'
 require 'genevalidator/sequences'
 
 class TestORFValidation < Minitest::Test
-  SimpleCov.command_name 'TestORFValidation'
 
   describe "ORF Validation" do
 

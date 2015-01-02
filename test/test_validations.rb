@@ -12,7 +12,6 @@ require 'genevalidator/validation_open_reading_frame'
 require 'genevalidator/validation_alignment'
 
 class ValidateOutput < Minitest::Test
-  SimpleCov.command_name 'ValidateOutput'
 
     filename = "test/test_files/test_validations"
     filename_fasta = "#{filename}.fasta"

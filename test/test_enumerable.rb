@@ -2,7 +2,6 @@ require 'genevalidator/enumerable'
 require 'minitest/autorun'
 
 class TestEnumerable < Minitest::Test
-  SimpleCov.command_name 'TestEnumerable'
 
   include Enumerable
 

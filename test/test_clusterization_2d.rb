@@ -2,7 +2,6 @@ require 'minitest/autorun'
 require 'genevalidator/clusterization'
 
 class Test2DClusterization < Minitest::Test
-  SimpleCov.command_name 'Test2DClusterization'
 
   describe "2D clusterization" do
 

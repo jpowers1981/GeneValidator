@@ -5,7 +5,6 @@ require 'genevalidator/blast'
 require 'genevalidator/tabular_parser'
 
 class TestBlastClass < Minitest::Test
-  SimpleCov.command_name 'TestBlastClass'
 
   describe "Test Blast Class" do
 

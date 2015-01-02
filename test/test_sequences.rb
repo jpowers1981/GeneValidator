@@ -3,7 +3,6 @@ require 'genevalidator/sequences'
 require 'genevalidator/hsp'
 
 class TestSequenceClass < Minitest::Test
-  SimpleCov.command_name 'TestSequenceClass'
 
   describe "Test Sequence Class" do
 
