@@ -17,4 +17,4 @@ cache: bundler
 sudo: false
 addons:
   code_climate:
-    repo_token: c47db3a4a7d96eb8a54354f5616502ae37a2bb07ece184395ea91fd5e22249a6
+    repo_token: e3164b3768619310e03a51f84d6cfd640469ecb33d744434b84aaabd821fc28c
