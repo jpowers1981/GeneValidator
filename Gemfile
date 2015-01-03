@@ -1,5 +1,5 @@
 source "http://rubygems.org"
 
 gemspec
-gem "codeclimate-test-reporter", group: :test, require: nil
+gem 'coveralls', require: false
 gem 'simplecov', :require => false, :group => :test
