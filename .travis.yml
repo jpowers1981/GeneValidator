@@ -18,3 +18,5 @@ sudo: false
 addons:
   code_climate:
     repo_token: e3164b3768619310e03a51f84d6cfd640469ecb33d744434b84aaabd821fc28c
+after_script:
+  - cat /home/travis/build/jonathancadepowers/GeneValidator/coverage/index.html
